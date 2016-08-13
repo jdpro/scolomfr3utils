@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <!-- Vocabulaire scolomfr-voc-016 (Compétence) -->
+  <xs:annotation>
+    <xs:documentation>
+		Licence
+		Ce travail est placé sous licence Creative commons Attribution Partage à l'Identique 3.0 France.
+		Pour plus d'information, consulter le fichier "licence_scolomfr.txt" à la racine de ce package, ou le site http://creativecommons.org/licenses/by-sa/3.0/fr/
+	</xs:documentation>
+    <xs:documentation>
+	  Copyright
+      ScoLOMFRv3.0, schémas XSD (juillet 2016)
+      © 2015 Direction du Numérique pour l'Éducation - Ministère de l'Éducation nationale, de l'enseignement supérieur et de la Recherche / Réseau Canopé
+	</xs:documentation>
+    <xs:documentation>
+	  Nature
+		Ce fichier est un élément de l'ensemble des schémas XSD nécessaires à la mise en œuvre de ScoLOMFR 2.1 (juillet 2016).
+		ScoLOMFR est un profil d'application de LOM et LOMFR.
+		La version 2.1 des schémas intègre la validation de l'ensemble des vocabulaires définis à cette date, et comprend les ajouts suivants :
+		- intégration d'un élément complexe 4.3.1 "localisation étendue", destiné à fournir les éléments nécessaires pour un accès à la ressource via des plates-formes de gestion des accès ;
+		- intégration des URI comme identifiants de tous les concepts utilisés, dans une évolution vers le web sémantique ;
+		- ajout d'un élément "label" à tous les éléments déclinés du lom, et définis comme des paires (source, value).
+		           - Le champ "source" devient SCOLOMv2.1 ;
+		           - le champ "value" porte l'URI du concept, tel que défini dans les vocabulaires publiés ;
+		           - le champ "label" permet de saisir un libellé (par défaut le libellé du terme préférentiel du concept).
+		  Les présents schémas XSD présentent une compatibilité ascendante avec les fichiers conformes à LOMv1.0, LOMFR et ScoLOMFRv1.x.
+		  Toutes les valeurs de termes ayant été valides dans les schémas et vocabulaires publiés pour ces différentes version sont valides au sens des schémas ScoLOMFRv3.0.
+		 Toutefois, le présent package propose aussi un outil de migration permettant de migrer les fichiers LOM, LOMFR et ScoLOMFRv1.x en un format "strict" ScoLOMFRv3.0, dans lequel tous les éléments liés à des vocabulaires sont identifiés par leurs URI de concepts.
+		 Une version ultérieure des schémas permettra de passer dans une version ScoLOMFR dans laquelle tous les éléments liés à des vocabulaires seront identifiés par les URI de concepts.
+		 L'ensemble des vocabulaires, de la documentation et des éléments de cyce de vie de ScoLOMFR sont publiés sur le site http://www.lom-fr.fr/scolomfr/.
+	  </xs:documentation>
+    <xs:documentation>
+	    Ce  fichier énumère, pour le vocabulaire scolomfr-voc-016 (Compétence), les valeurs valides du champ correspondant.
+		Afin de pouvoir valider toutes notices réalisées antérieurement, ce schéma définit un format dit "ScoLOMFRv3.0_lax", qui permet l'utilisation de toutes les valeurs ayant été utilisées dans les versions antérieures.
+		Les valeurs valides au sens des schémas ScoLOMFRv3.0 comportent :
+		- les URI nominaux des concepts du vocabulaire
+		- tous les ID ayant été utilisés dans une des versions antérieurement publiées
+		- dans un souci de compatibilité maximale, il comporte également tous les libellés correspondants.
+		Il est vivement conseillé de procéder à la migration des anciens fichiers, afin que les éléments relevant de vocabulaires contrôlés portent tous des identifiants URI nominaux des concepts. Ce format, dit "ScoLOMFRv3.0_strict", sera rendu obligatoire dans la version 3.0.
+	  </xs:documentation>
+  </xs:annotation>
+  <xs:simpleType name="voc016Values">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="Compétence du socle commun (2008-2014)"/>
+      <xs:enumeration value="Compétences du socle commun (2015-)"/>
+      <xs:enumeration value="S4C (socle commun de connaissances, de compétences et de culture)"/>
+      <xs:enumeration value="SCCCC (socle commun de connaissances, de compétences et de culture)"/>
+      <xs:enumeration value="accès à l'information et à la documentation (socle commun 2016)"/>
+      <xs:enumeration value="avoir des outils pour comprendre l'unité et la complexité du monde"/>
+      <xs:enumeration value="avoir des repères en histoire des arts et pratiquer les arts"/>
+      <xs:enumeration value="avoir des repères géographiques"/>
+      <xs:enumeration value="avoir des repères historiques"/>
+      <xs:enumeration value="avoir des repères littéraires"/>
+      <xs:enumeration value="avoir un comportement responsable"/>
+      <xs:enumeration value="communication non-violente, confiance en soi et esprit critique (socle commun 2016)"/>
+      <xs:enumeration value="compréhension des sociétés dans le temps et dans l'espace (socle commun 2016)"/>
+      <xs:enumeration value="compétence 1 - la maîtrise de la langue française"/>
+      <xs:enumeration value="compétence 2 - la pratique d'une langue vivante étrangère (niveau a2)"/>
+      <xs:enumeration value="compétence 3 - les principaux éléments de mathématiques et la culture scientifique et technologique"/>
+      <xs:enumeration value="compétence 4 - la maîtrise des techniques usuelles de l'information et de la communication (b2i)"/>
+      <xs:enumeration value="compétence 5 - la culture humaniste"/>
+      <xs:enumeration value="compétence 6 - les compétences sociales et civiques"/>
+      <xs:enumeration value="compétence 7 - l'autonomie et l'initiative"/>
+      <xs:enumeration value="conduite de projets individuels et collectifs (socle commun 2016)"/>
+      <xs:enumeration value="connaissance du monde social et des productions culturelles humaines (socle commun 2016)"/>
+      <xs:enumeration value="connaître les principes et fondements de la vie civique et sociale"/>
+      <xs:enumeration value="créations d'objets culturels (socle commun 2016)"/>
+      <xs:enumeration value="domaine 1 - s'approprier un environnement informatique de travail"/>
+      <xs:enumeration value="domaine 1 : les langages pour penser et communiquer"/>
+      <xs:enumeration value="domaine 1.1 : comprendre, s'exprimer en utilisant la langue française à l'oral et à l'écrit"/>
+      <xs:enumeration value="domaine 1.2 : comprendre, s'exprimer en utilisant une langue étrangère ou régionale"/>
+      <xs:enumeration value="domaine 1.3 : comprendre, s'exprimer en utilisant les langages mathématiques, scientifiques et informatiques"/>
+      <xs:enumeration value="domaine 1.4 : comprendre, s'exprimer en utilisant les langages des arts et du corps"/>
+      <xs:enumeration value="domaine 2 - adopter une attitude responsable"/>
+      <xs:enumeration value="domaine 2 : les méthodes et outils pour apprendre"/>
+      <xs:enumeration value="domaine 2.1 : organisation du travail personnel"/>
+      <xs:enumeration value="domaine 2.2 : coopération et réalisation de projets"/>
+      <xs:enumeration value="domaine 2.3 : médias, démarches de recherche et de traitement de l'information"/>
+      <xs:enumeration value="domaine 2.4 : outils numériques pour échanger et communiquer"/>
+      <xs:enumeration value="domaine 3 - créer, produire, traiter, exploiter des données"/>
+      <xs:enumeration value="domaine 3 : la formation de la personne et du citoyen"/>
+      <xs:enumeration value="domaine 3.1 : expression de la sensibilité et des opinions, respect des autres"/>
+      <xs:enumeration value="domaine 3.2 : la règle et le droit"/>
+      <xs:enumeration value="domaine 3.3 : réflexion et discernement"/>
+      <xs:enumeration value="domaine 3.4 : responsabilité, sens de l'engagement et de l'initiative"/>
+      <xs:enumeration value="domaine 4 - s'informer, se documenter"/>
+      <xs:enumeration value="domaine 4 : les systèmes naturels et les systèmes techniques"/>
+      <xs:enumeration value="domaine 4.1 : démarches scientifiques"/>
+      <xs:enumeration value="domaine 4.2 : conception, création, réalisation d'objets et systèmes techniques"/>
+      <xs:enumeration value="domaine 4.3 : responsabilités individuelles et collectives"/>
+      <xs:enumeration value="domaine 5 - communiquer, échanger"/>
+      <xs:enumeration value="domaine 5 : les représentations du monde et l'activité humaine"/>
+      <xs:enumeration value="domaine 5.1 : l'espace et le temps"/>
+      <xs:enumeration value="domaine 5.2 : organisation et représentations du monde"/>
+      <xs:enumeration value="domaine 5.3 : invention, élaboration, production d'objets culturels"/>
+      <xs:enumeration value="découvrir les métiers et les formations"/>
+      <xs:enumeration value="démonstration mathématique (socle commun 2016)"/>
+      <xs:enumeration value="esprit critique (socle commun 2016)"/>
+      <xs:enumeration value="expérimentation (socle commun 2016)"/>
+      <xs:enumeration value="faire preuve d'initiative"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-001"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-0011"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-0012"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-0013"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-0014"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-002"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-0021"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-0022"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-0023"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-0024"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-0025"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-003"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-0031"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-0032"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-0033"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-0034"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-004"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-0041"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-0042"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-0043"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-0044"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-0045"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-005"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-0051"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-0052"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-0053"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-0054"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-0055"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-0056"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-006"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-0061"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-0062"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-007"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-0071"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-00712"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-00713"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-00714"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-00715"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-00716"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-00717"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-00718"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-00719"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-00720"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-00721"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-00722"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-00723"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-00724"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-00725"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-00726"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-00727"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-00728"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-00729"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-00730"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-00731"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-00732"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-00733"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-00734"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-00735"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-00736"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-00737"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-00762"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-037"/>
+      <xs:enumeration value="jugement et validation de l'information (socle commun 2016)"/>
+      <xs:enumeration value="langages des arts et du corps (socle commun 2016)"/>
+      <xs:enumeration value="langages mathématiques, scientifiques et informatiques (socle commun 2016)"/>
+      <xs:enumeration value="langue française (socle commun 2016)"/>
+      <xs:enumeration value="langue vivante régionale (socle commun 2016)"/>
+      <xs:enumeration value="langue vivante étrangère (socle commun 2016)"/>
+      <xs:enumeration value="lire"/>
+      <xs:enumeration value="lire et utiliser différents langages"/>
+      <xs:enumeration value="mobiliser ses connaissances pour comprendre des questions liées à l'environnement et au développement durable"/>
+      <xs:enumeration value="monde vivant, matière et énergie (socle commun 2016)"/>
+      <xs:enumeration value="organisation des apprentissages (socle commun 2016)"/>
+      <xs:enumeration value="parler en continu"/>
+      <xs:enumeration value="pratiquer une démarche scientifique et technologique, résoudre des problèmes"/>
+      <xs:enumeration value="réagir et dialoguer"/>
+      <xs:enumeration value="réseaux sociaux (socle commun 2016)"/>
+      <xs:enumeration value="s'exprimer à l'oral"/>
+      <xs:enumeration value="savoir utiliser des connaissances dans divers domaines scientifiques"/>
+      <xs:enumeration value="savoir utiliser des connaissances et des compétences mathématiques"/>
+      <xs:enumeration value="scolomfr-voc-016-num-001"/>
+      <xs:enumeration value="scolomfr-voc-016-num-0011"/>
+      <xs:enumeration value="scolomfr-voc-016-num-0012"/>
+      <xs:enumeration value="scolomfr-voc-016-num-0013"/>
+      <xs:enumeration value="scolomfr-voc-016-num-0014"/>
+      <xs:enumeration value="scolomfr-voc-016-num-002"/>
+      <xs:enumeration value="scolomfr-voc-016-num-0021"/>
+      <xs:enumeration value="scolomfr-voc-016-num-0022"/>
+      <xs:enumeration value="scolomfr-voc-016-num-0023"/>
+      <xs:enumeration value="scolomfr-voc-016-num-0024"/>
+      <xs:enumeration value="scolomfr-voc-016-num-0025"/>
+      <xs:enumeration value="scolomfr-voc-016-num-003"/>
+      <xs:enumeration value="scolomfr-voc-016-num-0031"/>
+      <xs:enumeration value="scolomfr-voc-016-num-0032"/>
+      <xs:enumeration value="scolomfr-voc-016-num-0033"/>
+      <xs:enumeration value="scolomfr-voc-016-num-0034"/>
+      <xs:enumeration value="scolomfr-voc-016-num-004"/>
+      <xs:enumeration value="scolomfr-voc-016-num-0041"/>
+      <xs:enumeration value="scolomfr-voc-016-num-0042"/>
+      <xs:enumeration value="scolomfr-voc-016-num-0043"/>
+      <xs:enumeration value="scolomfr-voc-016-num-0044"/>
+      <xs:enumeration value="scolomfr-voc-016-num-0045"/>
+      <xs:enumeration value="scolomfr-voc-016-num-005"/>
+      <xs:enumeration value="scolomfr-voc-016-num-0051"/>
+      <xs:enumeration value="scolomfr-voc-016-num-0052"/>
+      <xs:enumeration value="scolomfr-voc-016-num-0053"/>
+      <xs:enumeration value="scolomfr-voc-016-num-0054"/>
+      <xs:enumeration value="scolomfr-voc-016-num-0055"/>
+      <xs:enumeration value="scolomfr-voc-016-num-0056"/>
+      <xs:enumeration value="scolomfr-voc-016-num-006"/>
+      <xs:enumeration value="scolomfr-voc-016-num-0061"/>
+      <xs:enumeration value="scolomfr-voc-016-num-0062"/>
+      <xs:enumeration value="scolomfr-voc-016-num-007"/>
+      <xs:enumeration value="scolomfr-voc-016-num-0071"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00712"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00713"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00714"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00715"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00716"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00717"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00718"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00719"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00720"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00721"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00722"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00723"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00724"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00725"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00726"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00727"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00728"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00729"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00730"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00731"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00732"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00733"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00734"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00735"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00736"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00737"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00738"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00739"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00740"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00741"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00742"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00743"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00744"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00745"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00746"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00747"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00748"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00749"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00750"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00751"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00752"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00753"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00754"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00755"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00756"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00757"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00758"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00759"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00760"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00761"/>
+      <xs:enumeration value="scolomfr-voc-016-num-00762"/>
+      <xs:enumeration value="scolomfr-voc-016-num-037"/>
+      <xs:enumeration value="socle commun (2016)"/>
+      <xs:enumeration value="socle commun de connaissances, de compétences et de culture"/>
+      <xs:enumeration value="usage critique et réfléchi de l'information (socle commun 2016)"/>
+      <xs:enumeration value="utiliser des outils"/>
+      <xs:enumeration value="vie en communauté et principes démocratiques (socle commun 2016)"/>
+      <xs:enumeration value="écocitoyenneté (socle commun 2016)"/>
+      <xs:enumeration value="écouter et comprendre"/>
+      <xs:enumeration value="écrire"/>
+      <xs:enumeration value="être capable de mobiliser ses ressources intellectuelles et physiques dans diverses situations"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

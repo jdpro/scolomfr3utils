@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <!-- Vocabulaire scolomfr-voc-040 (CadrePédagogique) -->
+  <xs:annotation>
+    <xs:documentation>
+		Licence
+		Ce travail est placé sous licence Creative commons Attribution Partage à l'Identique 3.0 France.
+		Pour plus d'information, consulter le fichier "licence_scolomfr.txt" à la racine de ce package, ou le site http://creativecommons.org/licenses/by-sa/3.0/fr/
+	</xs:documentation>
+    <xs:documentation>
+	  Copyright
+      ScoLOMFRv3.0, schémas XSD (juillet 2016)
+      © 2015 Direction du Numérique pour l'Éducation - Ministère de l'Éducation nationale, de l'enseignement supérieur et de la Recherche / Réseau Canopé
+	</xs:documentation>
+    <xs:documentation>
+	  Nature
+		Ce fichier est un élément de l'ensemble des schémas XSD nécessaires à la mise en œuvre de ScoLOMFR 2.1 (juillet 2016).
+		ScoLOMFR est un profil d'application de LOM et LOMFR.
+		La version 2.1 des schémas intègre la validation de l'ensemble des vocabulaires définis à cette date, et comprend les ajouts suivants :
+		- intégration d'un élément complexe 4.3.1 "localisation étendue", destiné à fournir les éléments nécessaires pour un accès à la ressource via des plates-formes de gestion des accès ;
+		- intégration des URI comme identifiants de tous les concepts utilisés, dans une évolution vers le web sémantique ;
+		- ajout d'un élément "label" à tous les éléments déclinés du lom, et définis comme des paires (source, value).
+		           - Le champ "source" devient SCOLOMv2.1 ;
+		           - le champ "value" porte l'URI du concept, tel que défini dans les vocabulaires publiés ;
+		           - le champ "label" permet de saisir un libellé (par défaut le libellé du terme préférentiel du concept).
+		  Les présents schémas XSD présentent une compatibilité ascendante avec les fichiers conformes à LOMv1.0, LOMFR et ScoLOMFRv1.x.
+		  Toutes les valeurs de termes ayant été valides dans les schémas et vocabulaires publiés pour ces différentes version sont valides au sens des schémas ScoLOMFRv3.0.
+		 Toutefois, le présent package propose aussi un outil de migration permettant de migrer les fichiers LOM, LOMFR et ScoLOMFRv1.x en un format "strict" ScoLOMFRv3.0, dans lequel tous les éléments liés à des vocabulaires sont identifiés par leurs URI de concepts.
+		 Une version ultérieure des schémas permettra de passer dans une version ScoLOMFR dans laquelle tous les éléments liés à des vocabulaires seront identifiés par les URI de concepts.
+		 L'ensemble des vocabulaires, de la documentation et des éléments de cyce de vie de ScoLOMFR sont publiés sur le site http://www.lom-fr.fr/scolomfr/.
+	  </xs:documentation>
+    <xs:documentation>
+	    Ce  fichier énumère, pour le vocabulaire scolomfr-voc-040 (CadrePédagogique), les valeurs valides du champ correspondant.
+		Afin de pouvoir valider toutes notices réalisées antérieurement, ce schéma définit un format dit "ScoLOMFRv3.0_lax", qui permet l'utilisation de toutes les valeurs ayant été utilisées dans les versions antérieures.
+		Les valeurs valides au sens des schémas ScoLOMFRv3.0 comportent :
+		- les URI nominaux des concepts du vocabulaire
+		- tous les ID ayant été utilisés dans une des versions antérieurement publiées
+		- dans un souci de compatibilité maximale, il comporte également tous les libellés correspondants.
+		Il est vivement conseillé de procéder à la migration des anciens fichiers, afin que les éléments relevant de vocabulaires contrôlés portent tous des identifiants URI nominaux des concepts. Ce format, dit "ScoLOMFRv3.0_strict", sera rendu obligatoire dans la version 3.0.
+	  </xs:documentation>
+  </xs:annotation>
+  <xs:simpleType name="voc040Values">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="3e insertion"/>
+      <xs:enumeration value="4e aide et soutien"/>
+      <xs:enumeration value="CLIN classe d'initiation"/>
+      <xs:enumeration value="CLIS classe d'intégration scolaire"/>
+      <xs:enumeration value="DIMA"/>
+      <xs:enumeration value="EAM"/>
+      <xs:enumeration value="ECLAIR"/>
+      <xs:enumeration value="EMI"/>
+      <xs:enumeration value="EREA"/>
+      <xs:enumeration value="EREA école régionale d'enseignement adapté"/>
+      <xs:enumeration value="Erasmus"/>
+      <xs:enumeration value="European Action Scheme for the Mobility of University Students"/>
+      <xs:enumeration value="IDD"/>
+      <xs:enumeration value="IDD (itinéraire de découverte)"/>
+      <xs:enumeration value="LSF"/>
+      <xs:enumeration value="LSF (langue des signes française)"/>
+      <xs:enumeration value="Leonardo"/>
+      <xs:enumeration value="PAC"/>
+      <xs:enumeration value="PAC (projet artistique et culturel)"/>
+      <xs:enumeration value="PDMF"/>
+      <xs:enumeration value="PDMF (parcours découverte des métiers et des formations)"/>
+      <xs:enumeration value="PFE (période de formation en entreprise)"/>
+      <xs:enumeration value="PFMP (période de formation en milieu professionnel)"/>
+      <xs:enumeration value="PPCP (projet pluridisciplinaire à caractère professionnel)"/>
+      <xs:enumeration value="RAR réseau ambition réussite"/>
+      <xs:enumeration value="SEGPA section d'enseignement général et professionnel adapté"/>
+      <xs:enumeration value="TIPE (travaux d'initiative personnelle encadrés)"/>
+      <xs:enumeration value="TPE (travaux personnels encadrés)"/>
+      <xs:enumeration value="ULIS unité localisée pour l'inclusion scolaire"/>
+      <xs:enumeration value="UPI unité pédagogique d'intégration"/>
+      <xs:enumeration value="Voltaire"/>
+      <xs:enumeration value="accompagnement hors temps scolaire"/>
+      <xs:enumeration value="accompagnement pendant le temps scolaire"/>
+      <xs:enumeration value="accompagnement personnalisé"/>
+      <xs:enumeration value="accompagnement à l'orientation"/>
+      <xs:enumeration value="accompagnement éducatif"/>
+      <xs:enumeration value="accueil des primo-arrivants"/>
+      <xs:enumeration value="actions européennes et internationales"/>
+      <xs:enumeration value="actions internationales"/>
+      <xs:enumeration value="actions éducatives européennes"/>
+      <xs:enumeration value="adaptation scolaire et scolarisation des élèves à besoins spécifiques"/>
+      <xs:enumeration value="aide individualisée"/>
+      <xs:enumeration value="classe d'initiation pour non-francophone"/>
+      <xs:enumeration value="classe de mer"/>
+      <xs:enumeration value="classe de neige"/>
+      <xs:enumeration value="classe pour l'inclusion scolaire"/>
+      <xs:enumeration value="classe transplantée"/>
+      <xs:enumeration value="classe verte"/>
+      <xs:enumeration value="culture scientifique et technique"/>
+      <xs:enumeration value="culture scientifique et technologique"/>
+      <xs:enumeration value="dispositif ECLAIR"/>
+      <xs:enumeration value="dispositif Erasmus"/>
+      <xs:enumeration value="dispositif Leonardo"/>
+      <xs:enumeration value="dispositif Voltaire"/>
+      <xs:enumeration value="dispositif d'initiation aux métiers de l'alternance"/>
+      <xs:enumeration value="dispositif de scolarisation des élèves handicapés"/>
+      <xs:enumeration value="dispositif de scolarisation des élèves à besoins éducatifs particuliers"/>
+      <xs:enumeration value="dispositif e-Twinning"/>
+      <xs:enumeration value="dispositif vie scolaire"/>
+      <xs:enumeration value="dispositif école ouverte"/>
+      <xs:enumeration value="dispositifs de soutien et de remédiation scolaire"/>
+      <xs:enumeration value="dispositifs relais"/>
+      <xs:enumeration value="découverte professionnelle"/>
+      <xs:enumeration value="e-Twinning"/>
+      <xs:enumeration value="en stage"/>
+      <xs:enumeration value="enseignement de la défense et de la sécurité nationale"/>
+      <xs:enumeration value="enseignement renforcé des langues"/>
+      <xs:enumeration value="formation à l'information et à la communication"/>
+      <xs:enumeration value="gestion financière et matérielle des établissements"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-001"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-002"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-003"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-004"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-006"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-008"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-009"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-010"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-011"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-012"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-013"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-014"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-016"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-017"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-018"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-019"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-020"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-021"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-022"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-023"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-024"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-025"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-026"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-027"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-028"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-029"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-030"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-031"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-032"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-033"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-034"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-035"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-036"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-037"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-038"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-039"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-040"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-041"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-042"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-043"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-044"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-045"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-046"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-047"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-048"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-049"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-050"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-051"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-052"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-053"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-054"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-055"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-056"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-057"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-058"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-059"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-060"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-061"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-062"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-063"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-065"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-070"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-071"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-072"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-073"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-078"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-102"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-119"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-120"/>
+      <xs:enumeration value="http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-040-num-122"/>
+      <xs:enumeration value="internat d'excellence"/>
+      <xs:enumeration value="itinéraire de découverte"/>
+      <xs:enumeration value="liaison collège - lycée"/>
+      <xs:enumeration value="liaison inter-degrés"/>
+      <xs:enumeration value="liaison lycée - enseignement supérieur"/>
+      <xs:enumeration value="liaison primaire - collège"/>
+      <xs:enumeration value="mémoire et histoire"/>
+      <xs:enumeration value="organisation pédagogique des établissements d'enseignement"/>
+      <xs:enumeration value="parcours découverte des métiers et des formations"/>
+      <xs:enumeration value="partenariat électronique inter-écoles"/>
+      <xs:enumeration value="pilotage et gestion du système éducatif"/>
+      <xs:enumeration value="pratique sportive"/>
+      <xs:enumeration value="programme Erasmus"/>
+      <xs:enumeration value="programme Leonardo"/>
+      <xs:enumeration value="programme Voltaire"/>
+      <xs:enumeration value="programme e-Twinning"/>
+      <xs:enumeration value="projet artistique et culturel"/>
+      <xs:enumeration value="projet inter-établissement"/>
+      <xs:enumeration value="projet pluridisciplinaire à caractère professionnel"/>
+      <xs:enumeration value="prévention du décrochage scolaire"/>
+      <xs:enumeration value="prévention et lutte contre la violence"/>
+      <xs:enumeration value="période de formation en entreprise"/>
+      <xs:enumeration value="période de formation en milieu professionnel"/>
+      <xs:enumeration value="relation école-entreprise"/>
+      <xs:enumeration value="relations extérieures et partenariats"/>
+      <xs:enumeration value="réseau ambition réussite"/>
+      <xs:enumeration value="scolomfr-voc-040-num-001"/>
+      <xs:enumeration value="scolomfr-voc-040-num-002"/>
+      <xs:enumeration value="scolomfr-voc-040-num-003"/>
+      <xs:enumeration value="scolomfr-voc-040-num-004"/>
+      <xs:enumeration value="scolomfr-voc-040-num-005"/>
+      <xs:enumeration value="scolomfr-voc-040-num-006"/>
+      <xs:enumeration value="scolomfr-voc-040-num-007"/>
+      <xs:enumeration value="scolomfr-voc-040-num-008"/>
+      <xs:enumeration value="scolomfr-voc-040-num-009"/>
+      <xs:enumeration value="scolomfr-voc-040-num-010"/>
+      <xs:enumeration value="scolomfr-voc-040-num-011"/>
+      <xs:enumeration value="scolomfr-voc-040-num-012"/>
+      <xs:enumeration value="scolomfr-voc-040-num-013"/>
+      <xs:enumeration value="scolomfr-voc-040-num-014"/>
+      <xs:enumeration value="scolomfr-voc-040-num-015"/>
+      <xs:enumeration value="scolomfr-voc-040-num-016"/>
+      <xs:enumeration value="scolomfr-voc-040-num-017"/>
+      <xs:enumeration value="scolomfr-voc-040-num-018"/>
+      <xs:enumeration value="scolomfr-voc-040-num-019"/>
+      <xs:enumeration value="scolomfr-voc-040-num-020"/>
+      <xs:enumeration value="scolomfr-voc-040-num-021"/>
+      <xs:enumeration value="scolomfr-voc-040-num-022"/>
+      <xs:enumeration value="scolomfr-voc-040-num-023"/>
+      <xs:enumeration value="scolomfr-voc-040-num-024"/>
+      <xs:enumeration value="scolomfr-voc-040-num-025"/>
+      <xs:enumeration value="scolomfr-voc-040-num-026"/>
+      <xs:enumeration value="scolomfr-voc-040-num-027"/>
+      <xs:enumeration value="scolomfr-voc-040-num-028"/>
+      <xs:enumeration value="scolomfr-voc-040-num-029"/>
+      <xs:enumeration value="scolomfr-voc-040-num-030"/>
+      <xs:enumeration value="scolomfr-voc-040-num-031"/>
+      <xs:enumeration value="scolomfr-voc-040-num-032"/>
+      <xs:enumeration value="scolomfr-voc-040-num-033"/>
+      <xs:enumeration value="scolomfr-voc-040-num-034"/>
+      <xs:enumeration value="scolomfr-voc-040-num-035"/>
+      <xs:enumeration value="scolomfr-voc-040-num-036"/>
+      <xs:enumeration value="scolomfr-voc-040-num-037"/>
+      <xs:enumeration value="scolomfr-voc-040-num-038"/>
+      <xs:enumeration value="scolomfr-voc-040-num-039"/>
+      <xs:enumeration value="scolomfr-voc-040-num-040"/>
+      <xs:enumeration value="scolomfr-voc-040-num-041"/>
+      <xs:enumeration value="scolomfr-voc-040-num-042"/>
+      <xs:enumeration value="scolomfr-voc-040-num-043"/>
+      <xs:enumeration value="scolomfr-voc-040-num-044"/>
+      <xs:enumeration value="scolomfr-voc-040-num-045"/>
+      <xs:enumeration value="scolomfr-voc-040-num-046"/>
+      <xs:enumeration value="scolomfr-voc-040-num-047"/>
+      <xs:enumeration value="scolomfr-voc-040-num-048"/>
+      <xs:enumeration value="scolomfr-voc-040-num-049"/>
+      <xs:enumeration value="scolomfr-voc-040-num-050"/>
+      <xs:enumeration value="scolomfr-voc-040-num-051"/>
+      <xs:enumeration value="scolomfr-voc-040-num-052"/>
+      <xs:enumeration value="scolomfr-voc-040-num-053"/>
+      <xs:enumeration value="scolomfr-voc-040-num-054"/>
+      <xs:enumeration value="scolomfr-voc-040-num-055"/>
+      <xs:enumeration value="scolomfr-voc-040-num-056"/>
+      <xs:enumeration value="scolomfr-voc-040-num-057"/>
+      <xs:enumeration value="scolomfr-voc-040-num-058"/>
+      <xs:enumeration value="scolomfr-voc-040-num-059"/>
+      <xs:enumeration value="scolomfr-voc-040-num-060"/>
+      <xs:enumeration value="scolomfr-voc-040-num-061"/>
+      <xs:enumeration value="scolomfr-voc-040-num-062"/>
+      <xs:enumeration value="scolomfr-voc-040-num-063"/>
+      <xs:enumeration value="scolomfr-voc-040-num-064"/>
+      <xs:enumeration value="scolomfr-voc-040-num-065"/>
+      <xs:enumeration value="scolomfr-voc-040-num-066"/>
+      <xs:enumeration value="scolomfr-voc-040-num-067"/>
+      <xs:enumeration value="scolomfr-voc-040-num-068"/>
+      <xs:enumeration value="scolomfr-voc-040-num-069"/>
+      <xs:enumeration value="scolomfr-voc-040-num-070"/>
+      <xs:enumeration value="scolomfr-voc-040-num-071"/>
+      <xs:enumeration value="scolomfr-voc-040-num-072"/>
+      <xs:enumeration value="scolomfr-voc-040-num-073"/>
+      <xs:enumeration value="scolomfr-voc-040-num-074"/>
+      <xs:enumeration value="scolomfr-voc-040-num-076"/>
+      <xs:enumeration value="scolomfr-voc-040-num-077"/>
+      <xs:enumeration value="scolomfr-voc-040-num-078"/>
+      <xs:enumeration value="scolomfr-voc-040-num-079"/>
+      <xs:enumeration value="scolomfr-voc-040-num-080"/>
+      <xs:enumeration value="scolomfr-voc-040-num-081"/>
+      <xs:enumeration value="scolomfr-voc-040-num-082"/>
+      <xs:enumeration value="scolomfr-voc-040-num-083"/>
+      <xs:enumeration value="scolomfr-voc-040-num-084"/>
+      <xs:enumeration value="scolomfr-voc-040-num-085"/>
+      <xs:enumeration value="scolomfr-voc-040-num-086"/>
+      <xs:enumeration value="scolomfr-voc-040-num-087"/>
+      <xs:enumeration value="scolomfr-voc-040-num-088"/>
+      <xs:enumeration value="scolomfr-voc-040-num-089"/>
+      <xs:enumeration value="scolomfr-voc-040-num-090"/>
+      <xs:enumeration value="scolomfr-voc-040-num-091"/>
+      <xs:enumeration value="scolomfr-voc-040-num-092"/>
+      <xs:enumeration value="scolomfr-voc-040-num-093"/>
+      <xs:enumeration value="scolomfr-voc-040-num-094"/>
+      <xs:enumeration value="scolomfr-voc-040-num-095"/>
+      <xs:enumeration value="scolomfr-voc-040-num-096"/>
+      <xs:enumeration value="scolomfr-voc-040-num-097"/>
+      <xs:enumeration value="scolomfr-voc-040-num-098"/>
+      <xs:enumeration value="scolomfr-voc-040-num-099"/>
+      <xs:enumeration value="scolomfr-voc-040-num-100"/>
+      <xs:enumeration value="scolomfr-voc-040-num-101"/>
+      <xs:enumeration value="scolomfr-voc-040-num-102"/>
+      <xs:enumeration value="scolomfr-voc-040-num-103"/>
+      <xs:enumeration value="scolomfr-voc-040-num-104"/>
+      <xs:enumeration value="scolomfr-voc-040-num-105"/>
+      <xs:enumeration value="scolomfr-voc-040-num-106"/>
+      <xs:enumeration value="scolomfr-voc-040-num-107"/>
+      <xs:enumeration value="scolomfr-voc-040-num-108"/>
+      <xs:enumeration value="scolomfr-voc-040-num-109"/>
+      <xs:enumeration value="scolomfr-voc-040-num-110"/>
+      <xs:enumeration value="scolomfr-voc-040-num-111"/>
+      <xs:enumeration value="scolomfr-voc-040-num-112"/>
+      <xs:enumeration value="scolomfr-voc-040-num-113"/>
+      <xs:enumeration value="scolomfr-voc-040-num-115"/>
+      <xs:enumeration value="scolomfr-voc-040-num-116"/>
+      <xs:enumeration value="scolomfr-voc-040-num-117"/>
+      <xs:enumeration value="scolomfr-voc-040-num-119"/>
+      <xs:enumeration value="scolomfr-voc-040-num-123"/>
+      <xs:enumeration value="scolomfr-voc-040-num-124"/>
+      <xs:enumeration value="scolomfr-voc-040-num-125"/>
+      <xs:enumeration value="scolomfr-voc-040-num-126"/>
+      <xs:enumeration value="scolomfr-voc-040-num-127"/>
+      <xs:enumeration value="scolomfr-voc-040-num-128"/>
+      <xs:enumeration value="section binationale"/>
+      <xs:enumeration value="section d'enseignement général et professionnel adapté"/>
+      <xs:enumeration value="section européenne"/>
+      <xs:enumeration value="section européenne ou internationale"/>
+      <xs:enumeration value="section internationale"/>
+      <xs:enumeration value="section orientale"/>
+      <xs:enumeration value="stage"/>
+      <xs:enumeration value="système d'évaluation"/>
+      <xs:enumeration value="séjour et classe de découvertes"/>
+      <xs:enumeration value="séjour pédagogique"/>
+      <xs:enumeration value="travaux d'initiative personnelle encadrés"/>
+      <xs:enumeration value="unité pédagogique d'intégration"/>
+      <xs:enumeration value="vie de l'établissement"/>
+      <xs:enumeration value="vie scolaire"/>
+      <xs:enumeration value="Écoles, collèges et lycées pour l'ambition, l'innovation et la réussite"/>
+      <xs:enumeration value="échange pédagogique de classes"/>
+      <xs:enumeration value="école régionale d'enseignement adapté"/>
+      <xs:enumeration value="éducation artistique et culturelle"/>
+      <xs:enumeration value="éducation au développement et à la solidarité"/>
+      <xs:enumeration value="éducation aux médias"/>
+      <xs:enumeration value="éducation aux médias et à l'information"/>
+      <xs:enumeration value="éducation à l'image, au cinéma et à l'audiovisuel"/>
+      <xs:enumeration value="éducation à l'orientation et au choix"/>
+      <xs:enumeration value="éducation à la citoyenneté - valeurs républicaines"/>
+      <xs:enumeration value="éducation à la santé"/>
+      <xs:enumeration value="éducation à la sécurité"/>
+      <xs:enumeration value="éducation à la sécurité routière"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

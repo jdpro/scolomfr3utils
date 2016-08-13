@@ -1,0 +1,708 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ltsc.ieee.org/xsd/LOM"
+	xmlns:lomfr="http://www.lom-fr.fr/xsd/LOMFR" xmlns:scolomfr="http://www.lom-fr.fr/xsd/SCOLOMFR"
+	xsi:schemaLocation="http://www.lom-fr.fr/scolomfr/outils/xsd/scolomfrv20/scolomfr.xsd">
+	<!--**************************************************************************** 
+		* Fichier XML exemple de notice ScoLOMFR V2 "strict" * * Il est conforme 
+		aux schémas ScoLOMFR V2 * * et adopte de façon généralisée l'utilisation 
+		des identifiants * * sous forme d'URI pour tous les concepts utilisés * * 
+		________________________________________________-* * Auteur : * * Erwan Le 
+		Gall, MENESR, * * Direction du numérique éducatif * * avec la participation 
+		de Gérard Puimatto, Réseau Canopé * * version 0.2 du 14 décembre 2015 * * 
+		________________________________________________-* * cet exemple est placé 
+		sous licence Creative Commons * * Attribution - Pas d’Utilisation Commerciale 
+		- * * Partage dans les Mêmes Conditions 3.0 France * *(CC BY-NC-SA 3.0 FR) 
+		* * http://creativecommons.org/licenses/by-nc-sa/3.0/fr/ * * ************************************************************************ -->
+	<!-- structure des commentaires : /!\ = obligatoire n° d’élément ; libellé, 
+		vocabulaire associé éventuel ; ordre, cardinalité, et seuil minimal obligatoire 
+		du nombre de valeurs acceptables par les systèmes sans en tronquer, entre 
+		parenthèse ; commentaires de l’Ailf (assoc° des informaticiens de langue 
+		française) pour LOM entre accolades. NB OP = objet pédagogique. -->
+	<!-- /!\ 1. Général (1) {Généralités (Caractéristiques globales de l’OP)} -->
+	<general>
+		<!-- /!\ 1.1 Identifiant (∞ seuil bas 10) {Identifiant de l’OP} -->
+		<!-- BOUCLE -->
+		<identifier>
+			<!-- /!\ 1.1.1 Catalogue (1) {Nom du catalogue} -->
+			<catalog>URI</catalog>
+			<!-- /!\ 1.1.2 Entrée (1) {Entrée dans le catalogue} -->
+			<entry>http://www.laclassedemallory.com/theme-de-classe-harry-potter-a66059169
+			</entry>
+		</identifier>
+		<identifier>
+			<catalog>ARK</catalog>
+			<entry>ark:/19153/b2nk3c28</entry>
+		</identifier>
+		<identifier>
+			<catalog>ISBN</catalog>
+			<entry>URN:ISBN:2-07-064309-3</entry>
+		</identifier>
+		<!-- FIN BOUCLE -->
+		<!-- /!\ 1.2 Titre (1) {Titre} -->
+		<title>
+			<!-- l’indication de langue impacte la prononciation en cas d’homographes -->
+			<string>Harry Potter</string>
+			<!-- si la langue n’est pas précisée, reprendre 3.4 metaMetadata.language 
+				: ici …/fr -->
+			<string language="http://id.loc.gov/vocabulary/iso639-1/en">Harry Potter</string>
+			<string language="http://id.loc.gov/vocabulary/iso639-1/el">Χάρρυ Πόττερ</string>
+		</title>
+		<!-- /!\ 1.3 Langue de la ressource voc 001 (∞ seuil bas 10) {Langue utilisée} -->
+		<!-- BOUCLE -->
+		<language>
+			http://id.loc.gov/vocabulary/iso639-1/fr<!-- français -->
+		</language>
+		<language>
+			http://id.loc.gov/vocabulary/iso639-2/eng<!-- anglais -->
+		</language>
+		<!-- FIN BOUCLE -->
+		<!-- /!\ 1.4 Description (∞ seuil bas 10) {Description du contenu} -->
+		<description>
+			<!-- la langue peut être précisée explicitement, donc sans reprendre implicitement 
+				3.4 metaMetadata.language -->
+			<string language="http://id.loc.gov/vocabulary/iso639-1/fr">Séquence pédagogique autour du film de Harry
+				Potter en édition bilingue.</string>
+		</description>
+		<!-- 1.5 Mot clé libre (∞ seuil bas 10) {Mots-clé} -->
+		<!-- BOUCLE -->
+		<keyword>
+			<string>infographie</string>
+		</keyword>
+		<keyword>
+			<!-- l’indication de langue impacte la prononciation -->
+			<string>image</string>
+			<string language="http://id.loc.gov/vocabulary/iso639-1/en">image</string>
+		</keyword>
+		<!-- FIN BOUCLE -->
+		<!-- 1.6 Couverture (∞ seuil bas 10) {Couverture (en termes d’époque, de 
+			culture, de géographie...)} -->
+		<!-- BOUCLE -->
+		<!-- couverture temporelle -->
+		<coverage>
+			<!-- couverture temporelle, textuelle -->
+			<string>Belle Époque</string>
+		</coverage>
+		<!-- NOTE zxx = code de langue pour « non-linguistique » http://www.w3.org/International/questions/qa-no-language -->
+		<coverage>
+			<!-- couverture temporelle, formelle, ISO 8601 https://fr.wikipedia.org/wiki/ISO_8601#Intervalle_entre_deux_dates -->
+			<string language="http://id.loc.gov/vocabulary/iso639-2/zxx">1879/1914</string>
+		</coverage>
+		<coverage>
+			<!-- couverture temporelle, URI -->
+			<string language="http://id.loc.gov/vocabulary/iso639-2/zxx">http://dbpedia.org/data/Belle_%C3%89poque.xml
+			</string>
+		</coverage>
+		<!-- couverture administrative -->
+		<coverage>
+			<!-- juridiction -->
+			<string>département de Paris</string>
+		</coverage>
+		<!-- couverture spatiale -->
+		<coverage>
+			<!-- couverture spatiale, textuelle -->
+			<string>Paris</string>
+			<string language="http://id.loc.gov/vocabulary/iso639-1/en">Paris</string>
+		</coverage>
+		<coverage>
+			<!-- couverture spatiale, URI, Getty Thesaurus of Geographic Names -->
+			<string language="http://id.loc.gov/vocabulary/iso639-2/zxx">http://vocab.getty.edu/tgn/7008038</string>
+		</coverage>
+		<!-- http://dublincore.org/documents/dcmi-point/#sec4 -->
+		<coverage>
+			<!-- couverture spatiale, formelle, longitude et latitude -->
+			<string language="http://id.loc.gov/vocabulary/iso639-2/zxx">name=Paris; east=2.351828; north=48.856578
+			</string>
+		</coverage>
+		<!-- cf. http://dublincore.org/documents/dcmi-box/ -->
+		<coverage>
+			<!-- couverture spatiale, formelle, longitude et latitude -->
+			<string language="http://id.loc.gov/vocabulary/iso639-2/zxx">name=France;
+				northlimit=55;
+				eastlimit=10;
+				southlimit=44;
+				westlimit=-5;
+				projection=ESPXYZ;
+			</string>
+		</coverage>
+		<!-- voir http://stackoverflow.com/questions/25959608/geographical-identification-location-geolocation-geotag-in-svg -->
+		<!-- FIN BOUCLE -->
+		<!-- 1.7 Structure voc 007 (1) {Structure de l’OP} -->
+		<!-- BOUCLE -->
+		<structure>
+			<source>SCOLOMFRv2.0</source>
+			<value>http://data.education.fr/voc/scolomfr/concept/linear</value>
+			<label>linéaire</label>
+		</structure>
+		<!-- FIN BOUCLE -->
+		<!-- 1.8 Niveau d’agrégation voc 008 (1) {Niveau d’agrégation} -->
+		<aggregationLevel>
+			<source>SCOLOMFRv2.0</source>
+			<value>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-008-num-03
+			</value>
+			<label>cours</label>
+		</aggregationLevel>
+		<!-- 1.9 Type documentaire DC voc 004 (∞) -->
+		<!-- BOUCLE -->
+		<lomfr:documentType>
+			<lomfr:source>SCOLOMFRv2.0</lomfr:source>
+			<lomfr:value>http://purl.org/dc/dcmitype/StillImage</lomfr:value>
+			<lomfr:label>image fixe</lomfr:label>
+		</lomfr:documentType>
+		<lomfr:documentType>
+			<lomfr:source>SCOLOMFRv2.0</lomfr:source>
+			<lomfr:value>http://purl.org/dc/dcmitype/Text</lomfr:value>
+			<lomfr:label>texte</lomfr:label>
+		</lomfr:documentType>
+		<!-- FIN BOUCLE -->
+		<!-- 1.10 Typologie générale de document voc 005 (∞) -->
+		<!-- BOUCLE -->
+		<scolomfr:generalResourceType>
+			<scolomfr:source>SCOLOMFRv2.0</scolomfr:source>
+			<scolomfr:value>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-005-num-024
+			</scolomfr:value>
+			<scolomfr:label>livre numérique</scolomfr:label>
+		</scolomfr:generalResourceType>
+		<scolomfr:generalResourceType>
+			<scolomfr:source>SCOLOMFRv2.0</scolomfr:source>
+			<scolomfr:value>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-005-num-029
+			</scolomfr:value>
+			<scolomfr:label>ouvrage</scolomfr:label>
+		</scolomfr:generalResourceType>
+		<!-- FIN BOUCLE -->
+	</general>
+	<!-- /!\ 2. Cycle de vie (1) {Cycle de vie (Historique et état de l’OP)} -->
+	<lifeCycle>
+		<!-- 2.1 Version (1) {Version de l’OP} -->
+		<version>
+			<string language="http://id.loc.gov/vocabulary/iso639-2/fra">première version</string>
+		</version>
+		<!-- 2.2 État voc 002 (1) {Statut de l’OP} -->
+		<status>
+			<source>SCOLOMFRv2.0</source>
+			<value>http://data.education.fr/voc/scolomfr/concept/final</value>
+			<label>final</label>
+		</status>
+		<!-- /!\ 2.3 Contribution (ordonné ∞ seuil bas 30 ) {Contribution à l’évolution 
+			de l’OP} -->
+		<contribute>
+			<!-- /!\ 2.3.1 Rôle (contributeur) voc 003 (1) {Rôle de l’intervenant} -->
+			<role>
+				<source>SCOLOMFRv2.0</source>
+				<value>http://data.education.fr/voc/scolomfr/concept/author</value>
+				<label>auteur</label>
+			</role>
+			<!-- /!\ 2.3.2 Entité (ordonné ∞ seuil bas 40) {Identification de la personne 
+				ou de l’organisme} -->
+			<entity><![CDATA[BEGIN:VCARD
+VERSION:3.0
+N;ENCODING=8BIT;CHARSET=UTF-8;LANGUAGE=fr-FR:Martina;Julie
+FN;ENCODING=8BIT;CHARSET=UTF-8;LANGUAGE=fr-FR:Julie Martini
+EMAIL;TYPE=INTERNET:julie.martini@education.gouv.fr
+END:VCARD]]></entity>
+			<!-- /!\ 2.3.3 Date (1) {Date} -->
+			<date>
+				<dateTime>2008-03-20</dateTime>
+			</date>
+		</contribute>
+		<contribute>
+			<role>
+				<source>SCOLOMFRv2.0</source>
+				<value>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-003-num-005
+				</value>
+				<label>contributeur</label>
+			</role>
+			<entity><![CDATA[BEGIN:VCARD
+VERSION:3.0
+N;ENCODING=8BIT;CHARSET=UTF-8;LANGUAGE=fr-FR:Martinu;Julien
+FN;ENCODING=8BIT;CHARSET=UTF-8;LANGUAGE=fr-FR:Julien Martini
+EMAIL;TYPE=INTERNET:julien.martini@education.gouv.fr
+END:VCARD]]></entity>
+			<date>
+				<description>
+					<string>printemps 2008</string>
+					<string language="http://id.loc.gov/vocabulary/iso639-1/en">Spring 2008</string>
+				</description>
+			</date>
+		</contribute>
+		<contribute>
+			<role>
+				<source>SCOLOMFRv2.0</source>
+				<value>http://data.education.fr/voc/scolomfr/concept/publisher
+				</value>
+				<label>éditeur</label>
+			</role>
+			<entity><![CDATA[BEGIN:VCARD
+VERSION:3.0
+N;ENCODING=8BIT;CHARSET=UTF-8;LANGUAGE=fr-FR:Zone académique : Paris
+FN;ENCODING=8BIT;CHARSET=UTF-8;LANGUAGE=fr-FR:Zone académique : Paris
+END:VCARD]]></entity>
+			<date>
+				<dateTime>2008-03-20</dateTime>
+				<description>
+					<string>printemps 2008</string>
+					<string language="http://id.loc.gov/vocabulary/iso639-1/en">Spring 2008</string>
+				</description>
+			</date>
+		</contribute>
+	</lifeCycle>
+	<!-- 3. Méta-métadonnées : de cette fiche-ci (1) {Méta-métadonnées (Informations 
+		sur les métadonnées)} -->
+	<metaMetadata>
+		<!-- 3.1 Identifiant (∞ seuil bas 10) {Identifiant des métadonnées} -->
+		<identifier>
+			<!-- 3.1.1 Catalogue (1) {Nom du catalogue} -->
+			<catalog>EDU’bases langues vivantes</catalog>
+			<!-- 3.1.2 Entrée (1) {Entrée dans le catalogue} -->
+			<entry>http://eduscol.education.fr/bd/urtic/lv/?commande=aper&amp;id=9999
+			</entry>
+		</identifier>
+		<!-- 3.2 Contribution (ordonné ∞ seuil bas 10) {Contribution à l’évolution 
+			des métadonnées} -->
+		<!-- créateur de la fiche p. ex. -->
+		<contribute>
+			<!-- 3.2.1 Rôle (métadonnées) voc 013 (1) {Rôle de l’acteur} -->
+			<role>
+				<source>SCOLOMFRv2.0</source>
+				<value>http://data.education.fr/voc/scolomfr/concept/creator</value>
+				<label>créateur</label>
+			</role>
+			<!-- 3.2.2 Entité (ordonné ∞ seuil bas 10) {Identification de l’acteur 
+				(personne ou organisme)} -->
+			<entity><![CDATA[BEGIN:VCARD
+VERSION:3.0
+N;ENCODING=8BIT;CHARSET=UTF-8;LANGUAGE=fr-FR:Martine;Julie
+FN;ENCODING=8BIT;CHARSET=UTF-8;LANGUAGE=fr-FR:Julie Martini
+EMAIL;TYPE=INTERNET:julie.martini@education.gouv.fr
+END:VCARD]]></entity>
+			<!-- 3.2.3 Date (1) {Date} -->
+			<date>
+				<dateTime>2015-05-22T19:20:30</dateTime>
+				<description>
+					<string>printemps 2015</string>
+					<string language="http://id.loc.gov/vocabulary/iso639-1/en">Spring 2015</string>
+				</description>
+			</date>
+		</contribute>
+		<contribute>
+			<role>
+				<source>SCOLOMFRv2.0</source>
+				<value>http://data.education.fr/voc/scolomfr/concept/validator
+				</value>
+				<label>validateur</label>
+			</role>
+			<entity><![CDATA[BEGIN:VCARD
+VERSION:3.0
+N;ENCODING=8BIT;CHARSET=UTF-8;LANGUAGE=fr-FR:Zone nationale : Éduscol
+FN;ENCODING=8BIT;CHARSET=UTF-8;LANGUAGE=fr-FR:Zone nationale : Éduscol
+END:VCARD]]></entity>
+			<entity><![CDATA[BEGIN:VCARD
+VERSION:3.0
+N;ENCODING=8BIT;CHARSET=UTF-8;LANGUAGE=fr-FR:Administrateur langues vivantes
+FN;ENCODING=8BIT;CHARSET=UTF-8;LANGUAGE=fr-FR:Administrateur langues vivantes
+EMAIL;TYPE=INTERNET:julie.martini@education.gouv.fr\;edouard.kozklomwsky@education.gouv.fr
+END:VCARD]]></entity>
+			<date>
+				<dateTime>2015-05-22T19:20:30</dateTime>
+				<description>
+					<string>printemps</string>
+					<string language="http://id.loc.gov/vocabulary/iso639-1/en">Spring</string>
+				</description>
+			</date>
+		</contribute>
+		<!-- 3.3 Schéma de métadonnée (∞ seuil bas 10) {Schéma de métadonnées utilisé} -->
+		<!-- BOUCLE -->
+		<metadataSchema>SCOLOMFRv2.0</metadataSchema>
+		<!-- FIN BOUCLE -->
+		<!-- 3.4 Langue des métadonnées voc 001 (1) {Langue utilisée dans les métadonnées} -->
+		<!-- NB se propage à tous les libellés sans langue déclarée -->
+		<language>
+			http://id.loc.gov/vocabulary/iso639-1/fr<!-- français -->
+		</language>
+	</metaMetadata>
+	<!-- /!\ 4. Technique (1) {Informations techniques (Caractéristiques et 
+		exigences techniques)} -->
+	<technical>
+		<!-- 4.1 Format (technique) voc 006 (∞ seuil bas 40) {Format (type MIME)} -->
+		<format>
+			http://purl.org/NET/mediatypes/text/html<!-- text/html -->
+		</format>
+		<format>
+			http://purl.org/NET/mediatypes/text/xhtml<!-- text/xhtml -->
+		</format>
+		<!-- 4.2 Taille du fichier (1) {Taille de l’OP} -->
+		<size>
+			29841<!-- octets (ISO/IEC 646:1991 : 0 à 9 en ASCII 7 bits = Unicode) -->
+		</size>
+		<!-- /!\ 4.3 Localisation (ordonné ∞ seuil bas 10) {Localisation} -->
+
+		<location>http://www.laclassedemallory.com/theme-de-classe-harry-potter-a66059169
+		</location>
+		<!-- /!\ 4.3.1 Localisation étendue. Eléments pour accès via les plateformes 
+			de gestion des accès aux ressources {Localisation étendue} -->
+		<scolomfr:extendedLocation>
+			<scolomfr:location>http://www.monsite.com/montitre/page_acces_FARE.html
+			</scolomfr:location>
+			<scolomfr:platform>http://www.education.fr/FARE</scolomfr:platform>
+			<scolomfr:personalDataProcessType>
+				<scolomfr:source>SCOLOMFRv2.0</scolomfr:source>
+				<scolomfr:value>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-044-num-001
+				</scolomfr:value>
+				<scolomfr:label>personnalisation nulle : la seule donnée envoyée
+					attachée à l'utilisateur est le code établissement</scolomfr:label>
+			</scolomfr:personalDataProcessType>
+			<description uniqueElementName="description">
+				<string language="http://id.loc.gov/vocabulary/iso639-1/fr">Accès anonyme, sans suivi des actions
+					effectuées</string>
+			</description>
+		</scolomfr:extendedLocation>
+		<!-- 4.4 Exigences techniques (∞ seuil bas 40) {Exigences techniques} -->
+		<requirement>
+			<!-- 4.4.1 Exigences multiples (∞ seuil bas 40) {Composé OU} -->
+			<orComposite>
+				<!-- 4.4.1.1 Type (technique) voc 023 (1) {Type de technologie (système 
+					d’exploitation, navigateur)} -->
+				<type>
+					<source>SCOLOMFRv2.0</source>
+					<value>http://data.education.fr/voc/scolomfr/concept/browser
+					</value>
+					<label>navigateur</label>
+				</type>
+				<!-- 4.4.1.2 Nom (technique) voc 024 (1) {Nom de la technologie nécessaire} -->
+				<name>
+					<source>SCOLOMFRv2.0</source>
+					<value>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-024-num-010
+					</value>
+					<label>mozilla firefox</label>
+				</name>
+				<!-- 4.4.1.3 Version minimale (1) {Version minimale} -->
+				<minimumVersion>1.5</minimumVersion>
+				<!-- 4.4.1.4 Version maximale (1) {Version maximale} -->
+				<maximumVersion>42.0</maximumVersion>
+			</orComposite>
+			<orComposite>
+				<type>
+					<source>SCOLOMFRv2.0</source>
+					<value>http://data.education.fr/voc/scolomfr/concept/browser
+					</value>
+					<label>navigateur</label>
+				</type>
+				<name>
+					<source>SCOLOMFRv2.0</source>
+					<value>http://data.education.fr/voc/scolomfr/concept/ms-internet_explorer
+					</value>
+					<label>windows internet explorer</label>
+				</name>
+				<minimumVersion>6.0</minimumVersion>
+				<maximumVersion>9.0</maximumVersion>
+			</orComposite>
+		</requirement>
+		<!-- 4.5 Remarques d’installation (1) {Remarques sur l’installation de 
+			l’OP} -->
+		<installationRemarks>
+			<string>Espace numérique de travail Zoé</string>
+		</installationRemarks>
+		<!-- 4.6 Autres exigences (1) {Informations sur les autres logiciels et 
+			matériels nécessaires} -->
+		<otherPlatformRequirements>
+			<string>Plugin : Flash Player 7 et + Affichage 1024 x 768</string>
+		</otherPlatformRequirements>
+		<!-- 4.7 Durée d’exécution de la ressource (1) {Durée en utilisation continue} -->
+		<duration>
+			<!-- https://fr.wikipedia.org/wiki/ISO_8601#Dur.C3.A9e -->
+			<duration>PT0H</duration>
+			<description>
+				<string>ressource sans durée d’exécution définie</string>
+			</description>
+		</duration>
+	</technical>
+	<!-- 5. Pédagogique (∞ seuil bas 100) {Informations pédagogiques (Caractéristiques 
+		pédagogiques de l’OP)} -->
+	<educational>
+		<!-- 5.1 {Type d’interactivité} LOM seulement <interactivityType> </interactivityType> -->
+		<!-- 5.2 Type de pédagogique de la ressource voc 010 (ordonné ∞ seuil bas 
+			10) {Type de ressource pédagogique} -->
+		<!-- BOUCLE -->
+		<learningResourceType>
+			<source>SCOLOMFRv2.0</source>
+			<value>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-010-num-020
+			</value>
+			<label>scénario pédagogique</label>
+		</learningResourceType>
+		<!-- FIN BOUCLE -->
+		<!-- 5.3 {Niveau d’interactivité} LOM seulement <interactivityLevel> </interactivityLevel> -->
+		<!-- 5.4 {Densité sémantique par rapport à la taille ou à la durée} LOM 
+			seulement <semanticDensity> </semanticDensity> -->
+		<!-- 5.5 Public cible voc 011 (ordonné ∞ seuil bas 10) {Rôle présumé de 
+			l’utilisateur final} -->
+		<!-- première balise -->
+		<intendedEndUserRole>
+			<source>SCOLOMFRv2.0</source>
+			<value>http://data.education.fr/voc/scolomfr/concept/learner</value>
+			<label>apprenant</label>
+		</intendedEndUserRole>
+		<intendedEndUserRole>
+			<source>SCOLOMFRv2.0</source>
+			<value>http://data.education.fr/voc/scolomfr/concept/teacher</value>
+			<label>enseignant</label>
+		</intendedEndUserRole>
+		<!-- 5.6 Niveau (pédagogie) voc 012 (∞ seuil bas 10) {Contexte d’utilisation} -->
+		<!-- première balise -->
+		<context>
+			<source>SCOLOMFRv2.0</source>
+			<value>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-012-num-002
+			</value>
+			<label>enseignement primaire</label>
+		</context>
+		<description>
+		</description>
+		<!-- 5.7 Âge (∞ seuil bas 5) {Tranche d’âge type} -->
+		<typicalAgeRange>
+			<string>10-</string>
+		</typicalAgeRange>
+		<!-- 5.8 Difficulté (pédagogie) voc 025 (1) {Difficulté vis-à-vis du public 
+			type ciblé} -->
+		<difficulty>
+			<source>SCOLOMFRv2.0</source>
+			<value>http://data.education.fr/voc/scolomfr/concept/easy</value>
+			<label>facile</label>
+		</difficulty>
+		<!-- 5.9 Durée d’apprentissage (1) {Temps d’apprentissage type} -->
+		<typicalLearningTime>
+			<duration>PT1H</duration>
+			<description>
+				<string>une heure</string>
+			</description>
+		</typicalLearningTime>
+		<!-- 5.10 Proposition d’utilisation (∞ seuil bas 10) {Commentaires sur 
+			l’utilisation de l’OP} 5.14+5.15+5.16 -->
+		<description>
+			<string>en bibliothèque, médiathèque, travail en interdisciplinarité,
+				logiciel organiseur d’idées</string>
+		</description>
+		<!-- 5.11 Langue de l’utilisateur voc 001 (∞ seuil bas 10) {Langue de type 
+			ciblé} -->
+		<language>
+			http://id.loc.gov/vocabulary/iso639-1/fr<!-- français -->
+		</language>
+		<!-- 5.12 Activités induites voc 019 (∞) -->
+		<lomfr:activity>
+			<lomfr:source>SCOLOMFRv2.0</lomfr:source>
+			<lomfr:value>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-019-num-029
+			</lomfr:value>
+			<lomfr:label>visionner</lomfr:label>
+		</lomfr:activity>
+		<!-- 5.13 Validation des acquis (∞) -->
+		<lomfr:credit>3 crédits ECTS</lomfr:credit>
+		<!-- 5.14 Lieux voc 017 (∞) -->
+		<scolomfr:place>
+			<scolomfr:source>SCOLOMFRv2.0</scolomfr:source>
+			<scolomfr:value>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-017-num-009
+			</scolomfr:value>
+			<scolomfr:label>en bibliothèque, médiathèque </scolomfr:label>
+		</scolomfr:place>
+		<!-- 5.15 Modalité pédagogique voc 018 (∞) -->
+		<scolomfr:educationalMethod>
+			<scolomfr:source>SCOLOMFRv2.0</scolomfr:source>
+			<scolomfr:value>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-018-num-022
+			</scolomfr:value>
+			<scolomfr:label>travail en interdisciplinarité</scolomfr:label>
+		</scolomfr:educationalMethod>
+		<!-- 5.16 Outil voc 020 (∞) -->
+		<scolomfr:tool>
+			<scolomfr:source>SCOLOMFRv2.0</scolomfr:source>
+			<scolomfr:value>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-020-num-057
+			</scolomfr:value>
+			<scolomfr:label>logiciel organiseur d’idées</scolomfr:label>
+		</scolomfr:tool>
+	</educational>
+	<!-- 6. Droits (1) {Droits (Propriété intellectuelle et conditions d’usage)} -->
+	<rights>
+		<!-- 6.1 Coût voc 026 (1) {Coût d’utilisation} -->
+		<cost>
+			<source>SCOLOMFRv2.0</source>
+			<value>http://data.education.fr/voc/scolomfr/concept/no</value>
+			<label>non</label>
+		</cost>
+		<!-- 6.2 Droit d’auteur voc 027 (1) {Droit d’auteur et autres restrictions} -->
+		<copyrightAndOtherRestrictions>
+			<source>SCOLOMFRv2.0</source>
+			<value>http://data.education.fr/voc/scolomfr/concept/yes_2</value>
+			<label>oui</label>
+		</copyrightAndOtherRestrictions>
+		<!-- 6.3 Description (1) {Commentaires sur les conditions d’utilisation} -->
+		<description>
+			<string>http://creativecommons.org/licenses/by/2.0/fr/</string>
+		</description>
+	</rights>
+	<!-- 7. Relation (∞ seuil bas 100) {Relations (Liens entre l’OP et d’autres 
+		OPs)} -->
+	<!-- BOUCLE relations -->
+	<relation>
+		<!-- 7.1 Type (relation) voc 009 (1) {Type de la relation} -->
+		<kind>
+			<source>SCOLOMFRv2.0</source>
+			<value>http://purl.org/dc/terms/references</value>
+			<label>contient une référence à</label>
+		</kind>
+		<!-- 7.2 Ressource (1) {OP référencé} -->
+		<!-- BOUCLE -->
+		<resource>
+			<!-- 7.2.1 Identifiant (∞ seuil bas 10) {Identifiant de l’OP} -->
+			<identifier>
+				<!-- 7.2.1.1 Catalogue (1) {Nom du catalogue} -->
+				<catalog>EDU'base Lettres</catalog>
+				<!-- 7.2.1.2 Entrée (1) {Entrée dans le catalogue} -->
+				<entry>http://eduscol.education.fr/bd/urtic/lettres/?commande=aper&amp;id=1057
+				</entry>
+			</identifier>
+			<!-- 7.2.2 Description (∞ seuil bas 10) {Description de l’OP} -->
+			<description>
+				<string>Harry Potter à l'école des sorciers, J.K. Rowling</string>
+			</description>
+		</resource>
+		<!-- FIN BOUCLE -->
+	</relation>
+	<!-- FIN BOUCLE -->
+	<!-- 8. Annotation (∞ seuil bas 30) {Commentaires (Commentaires sur l’utilisation 
+		pédagogique)} -->
+	<!-- BOUCLE -->
+	<annotation>
+		<!-- 8.1 Entité (1) {Personne qui crée le commentaire} -->
+		<entity><![CDATA[BEGIN:VCARD
+VERSION:3.0
+N;ENCODING=8BIT;CHARSET=UTF-8;LANGUAGE=fr-FR:Martino;Julien
+FN;ENCODING=8BIT;CHARSET=UTF-8;LANGUAGE=fr-FR:Julien Martini
+EMAIL;TYPE=INTERNET:julien.martini@education.gouv.fr
+END:VCARD]]></entity>
+		<!-- 8.2 Date (1) {Date du commentaire} -->
+		<date>
+			<!-- Date format textuel -->
+			<description>
+				<string>été 2015</string>
+			</description>
+			<!-- Date format formel -->
+			<dateTime>2015-06</dateTime>
+		</date>
+		<!-- 8.3 Description (1) {Commentaire} -->
+		<description>
+			<string>ressource utilisée en classe de CM2 sans souci</string>
+		</description>
+	</annotation>
+	<!-- FIN BOUCLE -->
+	<!-- 9. Classification (∞ seuil bas 40) {Classification (Description des 
+		systèmes de classification dans lesquels peut figurer l’OP)} NB a minima 
+		une fois, p. ex. Dewey -->
+	<!-- BOUCLE objectif -->
+	<!-- 9.1 Objectif (classification) voc 028 : 9.1 Enseignement (classification) 
+		voc 015 9.1 Compétences du socle commun (classification) voc 016 9.1 Public 
+		cible détaillé (classification) voc 021 9.1 Niveau éducatif détaillé (classification) 
+		voc 022 9.1 Diplômes (classification) voc 029 9.1 Cadre pédagogique (classification) 
+		voc 040 9.1 Cadre européen commun de référence pour les langues voc 042 9.1 
+		Support voc 043 9.2 Types de déficiences voc 041 -->
+	<classification>
+		<!-- 9.1 Objectif voc 028 (1) {Objectif de la classification} -->
+		<purpose>
+			<source>SCOLOMFRv2.0</source>
+			<!-- NB difficulté métier (et d’interopérabilité) : choisir la bonne combinaison 
+				« objectif / système de classification » -->
+			<value>http://data.education.fr/voc/scolomfr/concept/competency
+			</value>
+			<label>compétence</label>
+		</purpose>
+		<!-- NB dans chaque système de classification, autant de chemins taxons 
+			que de chemins « racine -> ... -> feuille » -->
+		<!-- 9.2 Chemin taxon : (∞ seuil bas 15) {Chemin du taxon} -->
+		<!-- BOUCLE système de classification -->
+		<!-- BOUCLE chemin taxon -->
+		<!-- chemin taxon : CECRL -> activités de référence -> compétence -->
+		<taxonPath>
+			<!-- 9.2.1 Source (1) {Nom du système de classification} -->
+			<source>
+				<string>Cadre européen commun de référence pour les langues</string>
+			</source>
+			<!-- 9.2.2 Taxon (ordonné ∞ seuil bas 15) -->
+			<taxon>
+				<!-- 9.2.2.1 Id (1) {Identifiant du taxon} -->
+				<id>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-042-num-014
+				</id>
+				<entry>
+					<!-- 9.2.2.2 Entrée (1) {Entrée du taxon} -->
+					<string>activités de référence</string>
+				</entry>
+			</taxon>
+			<taxon>
+				<id>http://purl.org/net/inloc/cefr/cefr-understanding</id>
+				<entry>
+					<string>comprendre</string>
+				</entry>
+			</taxon>
+			<taxon>
+				<id>http://purl.org/net/inloc/cefr/cefr-understanding-listening</id>
+				<entry>
+					<string>écouter</string>
+				</entry>
+			</taxon>
+			<taxon>
+				<id>http://purl.org/net/inloc/cefr/cefr-understanding-listening-A1
+				</id>
+				<entry>
+					<string>comprendre (écouter) - A1</string>
+				</entry>
+			</taxon>
+		</taxonPath>
+		<!-- chemin taxon : CECRL -> niveaux communs de référence -> compétence -->
+		<taxonPath>
+			<source>
+				<string>Cadre européen commun de référence pour les langues</string>
+			</source>
+			<taxon>
+				<id>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-042-num-015
+				</id>
+				<entry>
+					<string>niveaux communs de référence</string>
+				</entry>
+			</taxon>
+			<taxon>
+				<id>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-042-num-001
+				</id>
+				<entry>
+					<string>A</string>
+				</entry>
+			</taxon>
+			<taxon>
+				<id>http://purl.org/net/inloc/cefr/cefr-A1</id>
+				<entry>
+					<string>A1</string>
+				</entry>
+			</taxon>
+			<taxon>
+				<id>http://purl.org/net/inloc/cefr/cefr-understanding-listening-A1
+				</id>
+				<entry>
+					<string>comprendre (écouter) - A1</string>
+				</entry>
+			</taxon>
+		</taxonPath>
+		<!-- FIN BOUCLE chemin taxon -->
+		<!-- FIN BOUCLE système de classification -->
+		<!-- 9.3 Description (1) {Description de l’OP vis-à-vis de l’objectif de 
+			la classification} -->
+		<description>
+			<string>Cadre européen commun de référence pour les langues</string>
+		</description>
+		<!-- 9.4 Descripteur (ordonné ∞ seuil bas 40) {Mots clé de l’OP vis-à-vis 
+			de l’objectif de la classification} -->
+		<!-- BOUCLE -->
+		<keyword>
+			<string>CECRL</string>
+		</keyword>
+		<keyword>
+			<string>Europe</string>
+		</keyword>
+		<keyword>
+			<string>Union européenne</string>
+		</keyword>
+		<!-- FIN BOUCLE -->
+	</classification>
+	<!-- FIN BOUCLE -->
+</lom>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<command-line>
+		<feature>
+			<option>check-xsd</option>
+			<method>checkXsd</method>
+			<message>Apply xsd validation</message>
+		</feature>
+	</command-line>
+	<schemas>
+		<schema>
+			<version>3.0</version>
+			<skos>/scolomfr/v30/scolomfr.skos</skos>
+			<xsd>/scolomfr/v30/scolomfr-schemas/scolomfr.xsd</xsd>
+		</schema>
+	</schemas>
+</configuration>

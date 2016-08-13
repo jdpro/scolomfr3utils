@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ltsc.ieee.org/xsd/LOM"
+	xmlns:lomfr="http://www.lom-fr.fr/xsd/LOMFR" xmlns:scolomfr="http://www.lom-fr.fr/xsd/SCOLOMFR"
+	xsi:schemaLocation="http://www.lom-fr.fr/scolomfr/outils/xsd/scolomfrv20/scolomfr.xsd">
+	<general>
+		<identifier>
+			<catalog />
+			<entry>https://notices.neteduc-cloud.fr/content/resource/877b0870-9299-431f-9900-11fe3ff58f75?format=xml
+			</entry>
+		</identifier>
+		<title>
+			<string language="http://id.loc.gov/vocabulary/iso639-2/fre">Échanges organes sang</string>
+		</title>
+		<language>http://id.loc.gov/vocabulary/iso639-2/fre</language>
+		<description>
+			<string language="http://id.loc.gov/vocabulary/iso639-2/fre">Un être vivant échange de la matière avec son
+				environnement. Pour de nombreux animaux, c'est le sang qui véhicule
+				ces éléments indispensables à la vie.</string>
+		</description>
+		<keyword>
+			<string language="http://id.loc.gov/vocabulary/iso639-2/fre">sang</string>
+		</keyword>
+		<keyword>
+			<string language="http://id.loc.gov/vocabulary/iso639-2/fre">coeur</string>
+		</keyword>
+		<keyword>
+			<string language="http://id.loc.gov/vocabulary/iso639-2/fre">circulation sanguine</string>
+		</keyword>
+		<keyword>
+			<string language="http://id.loc.gov/vocabulary/iso639-2/fre">organes</string>
+		</keyword>
+		<keyword>
+			<string language="http://id.loc.gov/vocabulary/iso639-2/fre">nutriments</string>
+		</keyword>
+		<keyword>
+			<string language="http://id.loc.gov/vocabulary/iso639-2/fre">respiration</string>
+		</keyword>
+		<keyword>
+			<string language="http://id.loc.gov/vocabulary/iso639-2/fre">intestins</string>
+		</keyword>
+		<keyword>
+			<string language="http://id.loc.gov/vocabulary/iso639-2/fre">digestion</string>
+		</keyword>
+		<coverage>
+			<string />
+		</coverage>
+	</general>
+	<lifeCycle>
+		<contribute>
+			<role>
+				<source>SCOLOMFRv2.1</source>
+				<value>http://data.education.fr/voc/scolomfr/concept/publisher
+				</value>
+				<label>éditeur</label>
+			</role>
+			<entity><![CDATA[BEGIN:VCARD VERSION:3.0 N:EDUMEDIA FN:EDUMEDIA END:VCARD]]></entity>
+			<date>
+				<dateTime>2015-12-02</dateTime>
+			</date>
+		</contribute>
+	</lifeCycle>
+	<technical>
+		<location>http://www.edumedia-sciences.com/docs/men-ao/echanges-organes-sang.html
+		</location>
+		<format>http://purl.org/NET/mediatypes/text/html</format>
+		<size>0</size>
+	</technical>
+	<educational>
+		<learningResourceType>
+			<source>SCOLOMFRv2.1</source>
+			<value>http://data.education.fr/voc/scolomfr/concept/simulation
+			</value>
+			<label>simulation</label>
+		</learningResourceType>
+		<intendedEndUserRole>
+			<source>SCOLOMFRv2.1</source>
+			<value>http://data.education.fr/voc/scolomfr/concept/learner</value>
+			<label>apprenant</label>
+		</intendedEndUserRole>
+	</educational>
+	<rights>
+		<copyrightAndOtherRestrictions>
+			<source>SCOLOMFRv2.1</source>
+			<value>http://data.education.fr/voc/scolomfr/concept/yes_2</value>
+			<label>oui</label>
+		</copyrightAndOtherRestrictions>
+	</rights>
+	<classification>
+		<purpose>
+			<source>SCOLOMFRv2.1</source>
+			<value>http://data.education.fr/voc/scolomfr/concept/competency
+			</value>
+			<label>compétence</label>
+		</purpose>
+		<taxonPath>
+			<source>
+				<string language="http://id.loc.gov/vocabulary/iso639-2/fre">scolomfr-voc-016</string>
+			</source>
+			<lom:taxon xmlns:lom="http://ltsc.ieee.org/xsd/LOM"
+				xmlns:lomfr="http://www.lom-fr.fr/xsd/LOMFR" xmlns:scolomfr="http://www.lom-fr.fr/xsd/SCOLOMFR">
+				<lom:id>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-003
+				</lom:id>
+				<lom:entry>
+					<lom:string language="http://id.loc.gov/vocabulary/iso639-2/fre">compétence 3 - les principaux
+						éléments de mathématiques et la culture scientifique et
+						technologique</lom:string>
+				</lom:entry>
+			</lom:taxon>
+			<lom:taxon xmlns:lom="http://ltsc.ieee.org/xsd/LOM"
+				xmlns:lomfr="http://www.lom-fr.fr/xsd/LOMFR" xmlns:scolomfr="http://www.lom-fr.fr/xsd/SCOLOMFR">
+				<lom:id>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-016-num-0031
+				</lom:id>
+				<lom:entry>
+					<lom:string language="http://id.loc.gov/vocabulary/iso639-2/fre">pratiquer une démarche scientifique
+						et technologique, résoudre des problèmes</lom:string>
+				</lom:entry>
+			</lom:taxon>
+		</taxonPath>
+	</classification>
+	<classification>
+		<purpose>
+			<source>SCOLOMFRv2.1</source>
+			<value>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-028-num-003
+			</value>
+			<label>domaine d'enseignement</label>
+		</purpose>
+		<taxonPath>
+			<source>
+				<string language="http://id.loc.gov/vocabulary/iso639-2/fre">scolomfr-voc-015</string>
+			</source>
+			<lom:taxon xmlns:lom="http://ltsc.ieee.org/xsd/LOM"
+				xmlns:lomfr="http://www.lom-fr.fr/xsd/LOMFR" xmlns:scolomfr="http://www.lom-fr.fr/xsd/SCOLOMFR">
+				<lom:id>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-015-num-007
+				</lom:id>
+				<lom:entry>
+					<lom:string language="http://id.loc.gov/vocabulary/iso639-2/fre">domaines d'enseignement du premier
+						degré</lom:string>
+				</lom:entry>
+			</lom:taxon>
+			<lom:taxon xmlns:lom="http://ltsc.ieee.org/xsd/LOM"
+				xmlns:lomfr="http://www.lom-fr.fr/xsd/LOMFR" xmlns:scolomfr="http://www.lom-fr.fr/xsd/SCOLOMFR">
+				<lom:id>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-015-num-107
+				</lom:id>
+				<lom:entry>
+					<lom:string language="http://id.loc.gov/vocabulary/iso639-2/fre">sciences expérimentales et
+						technologie</lom:string>
+				</lom:entry>
+			</lom:taxon>
+		</taxonPath>
+	</classification>
+	<classification>
+		<purpose>
+			<source>SCOLOMFRv2.1</source>
+			<value>http://data.education.fr/voc/scolomfr/concept/educational_level
+			</value>
+			<label>niveau éducatif détaillé</label>
+		</purpose>
+		<taxonPath>
+			<source>
+				<string language="http://id.loc.gov/vocabulary/iso639-2/fre">scolomfr-voc-022</string>
+			</source>
+			<lom:taxon xmlns:lom="http://ltsc.ieee.org/xsd/LOM"
+				xmlns:lomfr="http://www.lom-fr.fr/xsd/LOMFR" xmlns:scolomfr="http://www.lom-fr.fr/xsd/SCOLOMFR">
+				<lom:id>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-022-num-016
+				</lom:id>
+				<lom:entry>
+					<lom:string language="http://id.loc.gov/vocabulary/iso639-2/fre">collège</lom:string>
+				</lom:entry>
+			</lom:taxon>
+			<lom:taxon xmlns:lom="http://ltsc.ieee.org/xsd/LOM"
+				xmlns:lomfr="http://www.lom-fr.fr/xsd/LOMFR" xmlns:scolomfr="http://www.lom-fr.fr/xsd/SCOLOMFR">
+				<lom:id>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-022-num-018
+				</lom:id>
+				<lom:entry>
+					<lom:string language="http://id.loc.gov/vocabulary/iso639-2/fre">6e</lom:string>
+				</lom:entry>
+			</lom:taxon>
+		</taxonPath>
+	</classification>
+	<classification>
+		<purpose>
+			<source>SCOLOMFRv2.1</source>
+			<value>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-028-num-004
+			</value>
+			<label>enseignement</label>
+		</purpose>
+		<taxonPath>
+			<source>
+				<string language="http://id.loc.gov/vocabulary/iso639-2/fre">itop_programmes</string>
+			</source>
+			<taxon>
+				<id>itop_1</id>
+				<entry>
+					<string language="http://id.loc.gov/vocabulary/iso639-2/fre">Cycle 3</string>
+				</entry>
+			</taxon>
+			<taxon>
+				<id>itop_1.3</id>
+				<entry>
+					<string language="http://id.loc.gov/vocabulary/iso639-2/fre">Sciences et technologie</string>
+				</entry>
+			</taxon>
+			<taxon>
+				<id>itop_1.3.2</id>
+				<entry>
+					<string language="http://id.loc.gov/vocabulary/iso639-2/fre">Le vivant, sa diversité et les fonctions
+						qui le caractérisent</string>
+				</entry>
+			</taxon>
+			<taxon>
+				<id>itop_1.3.2.2</id>
+				<entry>
+					<string language="http://id.loc.gov/vocabulary/iso639-2/fre">Expliquer les besoins variables en aliments
+						de l'être humain ; l'origine et les techniques mises en œuvre pour
+						transformer et conserver les aliments</string>
+				</entry>
+			</taxon>
+		</taxonPath>
+	</classification>
+	<metaMetadata>
+		<identifier>
+			<catalog>Apiscol :apiscol_itop</catalog>
+			<entry>https://notices.neteduc-cloud.fr/meta/c963d757-744f-48b6-8829-87eea0562a6a
+			</entry>
+		</identifier>
+	</metaMetadata>
+	<relation>
+		<kind>
+			<source>SCOLOMFRv2.1</source>
+			<value>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-009-num-023
+			</value>
+			<label>a pour aperçu</label>
+		</kind>
+		<resource>
+			<identifier>
+				<catalog>URI</catalog>
+				<entry>https://notices.neteduc-cloud.fr/content/previews/8/7/7/b0870-9299-431f-9900-11fe3ff58f75/index.html
+				</entry>
+			</identifier>
+		</resource>
+	</relation>
+	<relation>
+		<kind>
+			<source>SCOLOMFRv2.1</source>
+			<value>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-009-num-021
+			</value>
+			<label>a pour vignette</label>
+		</kind>
+		<resource>
+			<identifier>
+				<catalog>URI</catalog>
+				<entry>https://notices.neteduc-cloud.fr/thumbs/files/f/4/2/33c21e2f56d9f4659d2dd94f51ee0.png
+				</entry>
+			</identifier>
+		</resource>
+	</relation>
+</lom>

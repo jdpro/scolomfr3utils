@@ -1,0 +1,42 @@
+Ce fichier est un élément de l'ensemble des schémas XSD nécessaires à la mise
+en oeuvre de ScoLOMFR 2.1 (mars 2016).
+ScoLOMFR est un profil d'application de LOM et LOMFR.
+La version 2.1 des schémas intègre la validation de l'ensemble des vocabulaires
+définis à cette date, et comprend les ajouts suivants :
+- intégration d'un élément complexe 4.3.1 "localisation étendue", destiné à
+ fournir les éléments nécessaires pour un accès à la ressource via des
+ plates-formes de gestion des accès ;
+- intégration des URI comme identifiants de tous les concepts utilisés, dans
+ une évolution vers le web sémantique ;
+- ajout d'un élémént "label" à tous les éléments déclinés du lom, et définis
+ comme des paires (source, value).
+   - Le champ "source" devient SCOLOMv2.1 ;
+   - le champ "value" porte l'URI du concept, tel que défini dans les
+      vocabulaires publiés ;
+   - le champ "label" permet de saisir un libellé (par défaut le libellé
+      du terme préférentiel du concept).
+Les présents schémas XSD présentent une compatibilité ascendante avec les
+ fichiers conformes à LOMv1.0, LOMFR et ScoLOMFRv1.x.
+Toutes les valeurs de termes ayant été valides dans les schémas et vocabulaires
+  publiés pour ces différentes version sont valides au sens des schémas ScoLOMFRv2.1.
+Toutefois, le présent package propose aussi un outil de migration permettant de
+  migrer les fichiers LOM, LOMFR et ScoLOMFRv1.x en un format "strict" ScoLOMFRv2.1,
+  dans lequel tous les éléments liés à des vocabulaires sont identifiés par
+  leurs URI de concepts.
+Une version ultérieure des schémas permettra de passer dans une version ScoLOMFR
+  dans laquelle tous les éléments liés à des vocabulaires seront identifiés par
+  les URI de concepts.
+L'ensemble des vocabulaires, de la documentation et des éléments de cyce de vie
+ de ScoLOMFR sont publiés sur le site http://www.lom-fr.fr/scolomfr/.
+
+
+ XSD ScoLOMFR 2.1 intégrant :
+
+- l'ajout de l'élément 4.3.1 extendedLocation
+- la modification des balises <lom:language> pour supporter une URL de langue
+- la modification de la balise <lom:format> pour supporter un contenu URL
+- l'ajout des balises <label> aux éléments <source>, <value>
+- la modification des balises de type LANGSTRING pour avoir des langues sous
+    forme d'URLs
+- la nouvelle structure du schéma XSD avec l'inclusion des valeurs de
+vocabulaire sous forme de fichiers distincts dans le dossier scolomfr/vocab

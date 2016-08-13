@@ -1,0 +1,7 @@
+*.class
+*.jar
+target/
+# Eclipse artifacts, including WTP generated manifests
+.classpath
+.project
+.settings
