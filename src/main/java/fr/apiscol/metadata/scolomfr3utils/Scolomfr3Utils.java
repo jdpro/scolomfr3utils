@@ -92,7 +92,7 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 	private boolean loadXsd(ICommand command) {
 		if (command.isXsdRequired()) {
 			if (null == validator) {
-				SchemaFactory factory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
+				SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
 				String xsdFilePath = Configuration.getInstance().getXsdFilePath(scolomfrVersion);
 				getLogger().info("Loading xsd file from " + xsdFilePath);
 				InputStream in = new ResourcesLoader().loadResource(xsdFilePath);
