@@ -3,6 +3,9 @@ package fr.apiscol.metadata.scolomfr3utils.command;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Thrown each time a command fails. Carries message to output
+ */
 public class CommandFailureException extends Exception {
 
 	/**

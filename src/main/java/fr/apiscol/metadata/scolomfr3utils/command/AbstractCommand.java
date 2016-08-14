@@ -10,7 +10,12 @@ import org.apache.log4j.Logger;
 import fr.apiscol.metadata.scolomfr3utils.command.ICommand;
 import fr.apiscol.metadata.scolomfr3utils.log.LoggerProvider;
 
-abstract public class AbstractCommand implements ICommand {
+/**
+ * 
+ * @{inheritDoc}
+ *
+ */
+public abstract class AbstractCommand implements ICommand {
 
 	private Validator xsdValidator;
 	private Model skosModel;

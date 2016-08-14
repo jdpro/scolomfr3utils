@@ -1,10 +1,9 @@
 package fr.apiscol.metadata.scolomfr3utils;
 
+/**
+ * Throw when scolomfrUtils or one of the invocated commands fails to initialize
+ */
 public class InitializationException extends Exception {
-
-	public InitializationException(String string) {
-		super(string);
-	}
 
 	/**
 	 * 

@@ -71,6 +71,9 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 				isValid = false;
 				messages.addAll(e.getMessages());
 			}
+		} else {
+			isValid = false;
+			messages.add("Command " + command.getClass().getName() + " failes to initialize.");
 		}
 
 	}

@@ -9,6 +9,9 @@ import org.apache.log4j.Logger;
 
 public class LoggerProvider {
 
+	private LoggerProvider(){
+		
+	}
 
 	public static Logger getLogger(Class<?> callingClass) {
 		if (!log4JisConfigured()) {
