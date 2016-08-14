@@ -1,6 +1,7 @@
 package fr.apiscol.metadata.scolomfr3utils.command.check;
 
 import fr.apiscol.metadata.scolomfr3utils.command.AbstractCommand;
+import fr.apiscol.metadata.scolomfr3utils.command.CommandFailureException;
 
 public class ClassificationCheckCommand extends AbstractCommand {
 	@Override

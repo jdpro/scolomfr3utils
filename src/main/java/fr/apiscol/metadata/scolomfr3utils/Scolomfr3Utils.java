@@ -18,9 +18,9 @@ import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.log4j.Logger;
 import org.xml.sax.SAXException;
 
+import fr.apiscol.metadata.scolomfr3utils.command.CommandFailureException;
 import fr.apiscol.metadata.scolomfr3utils.command.ICommand;
 import fr.apiscol.metadata.scolomfr3utils.command.check.ClassificationCheckCommand;
-import fr.apiscol.metadata.scolomfr3utils.command.check.CommandFailureException;
 import fr.apiscol.metadata.scolomfr3utils.command.check.XsdValidationCommand;
 import fr.apiscol.metadata.scolomfr3utils.log.LoggerProvider;
 import fr.apiscol.metadata.scolomfr3utils.resources.ResourcesLoader;

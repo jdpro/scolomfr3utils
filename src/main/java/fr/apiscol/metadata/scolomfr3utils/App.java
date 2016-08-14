@@ -58,7 +58,7 @@ public class App {
 		getLogger().info("Validation result");
 		getLogger().info("Status : " + (scolomfr3Utils.isValid() ? "success" : "failure"));
 		while (messagesIterator.hasNext()) {
-			String message = (String) messagesIterator.next();
+			String message = messagesIterator.next();
 			getLogger().info(message);
 		}
 
@@ -82,6 +82,7 @@ public class App {
 				getLogger().error(e1);
 			} catch (InvocationTargetException e2) {
 				getLogger().error(e2.getCause());
+				getLogger().error(e2);
 			}
 		}
 		getLogger().error("ScolomfrUtils invoked without any command. Use -h option to display help.");

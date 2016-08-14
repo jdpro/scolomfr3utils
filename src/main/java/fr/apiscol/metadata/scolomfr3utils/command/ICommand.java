@@ -6,8 +6,6 @@ import javax.xml.validation.Validator;
 
 import org.apache.jena.rdf.model.Model;
 
-import fr.apiscol.metadata.scolomfr3utils.command.check.CommandFailureException;
-
 public interface ICommand {
 
 	void execute() throws CommandFailureException;
