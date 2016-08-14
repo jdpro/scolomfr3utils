@@ -25,9 +25,14 @@ import fr.apiscol.metadata.scolomfr3utils.command.check.XsdValidationCommand;
 import fr.apiscol.metadata.scolomfr3utils.log.LoggerProvider;
 import fr.apiscol.metadata.scolomfr3utils.resources.ResourcesLoader;
 
+/**
+ * 
+ * {@inheritDoc}
+ *
+ */
 public class Scolomfr3Utils implements IScolomfr3Utils {
 
-	private static Logger logger;
+	private Logger logger;
 	private File scolomfrFile;
 	private List<String> messages = new ArrayList<>();
 	private String scolomfrVersion;
@@ -62,6 +67,7 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 			try {
 				command.execute();
 			} catch (CommandFailureException e) {
+				getLogger().info(e);
 				isValid = false;
 				messages.addAll(e.getMessages());
 			}
@@ -107,9 +113,10 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 					schema = factory.newSchema(schemaSource);
 
 					validator = schema.newValidator();
-				} catch (SAXException e1) {
+				} catch (SAXException e) {
 					getLogger()
 							.error("The scolomfr xsd files seems to be corrupted or not available on " + xsdFilePath);
+					getLogger().error(e);
 					return false;
 				}
 			}
@@ -145,8 +152,9 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 				messages.add("Please provide a scolomfr file before calling scolomfrutils methods.");
 				return false;
 			}
+			command.setScolomfrFile(scolomfrFile);
 		}
-		command.setScolomfrFile(scolomfrFile);
+
 		return true;
 	}
 

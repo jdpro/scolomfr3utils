@@ -55,10 +55,11 @@ public class App {
 	private static void displayResult() {
 		List<String> messages = scolomfr3Utils.getMessages();
 		Iterator<String> messagesIterator = messages.iterator();
-		System.out.println("Validation result");
+		getLogger().info("Validation result");
+		getLogger().info("Status : " + (scolomfr3Utils.isValid() ? "success" : "failure"));
 		while (messagesIterator.hasNext()) {
 			String message = (String) messagesIterator.next();
-			getLogger().error(message);
+			getLogger().info(message);
 		}
 
 	}
