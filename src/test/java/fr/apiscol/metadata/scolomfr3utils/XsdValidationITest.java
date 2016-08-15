@@ -9,13 +9,14 @@ import org.junit.Before;
 import org.junit.Test;
 
 import fr.apiscol.metadata.scolomfr3utils.Scolomfr3Utils;
+import fr.apiscol.metadata.scolomfr3utils.command.check.XsdValidationCommand;
+import fr.apiscol.metadata.scolomfr3utils.command.check.XsdValidationCommandTest;
 
 /**
  * Test xsd validation with different kinds of files
  */
 public class XsdValidationITest {
 	private static final String MISSING_SCOLOMFR_FILE_FAILURE_MESSAGE = "Please provide a scolomfr file before calling scolomfrutils methods.";
-	private static final String DUPLICATE_GENERAL_ELEMENT_FAILURE_MESSAGE = "cvc-identity-constraint.4.1: Duplicate unique value [general] declared for identity constraint \"lomUnique\" of element \"lom\".";
 	private Scolomfr3Utils scolomfrutils;
 
 	@Before
@@ -38,8 +39,8 @@ public class XsdValidationITest {
 		File scolomfrFile = new File("src/test/data/3.0/invalid/double-general.xml");
 		scolomfrutils.setScolomfrFile(scolomfrFile);
 		scolomfrutils.checkXsd();
-		assertTrue("The validation messages should contain : " + DUPLICATE_GENERAL_ELEMENT_FAILURE_MESSAGE,
-				scolomfrutils.getMessages().contains(DUPLICATE_GENERAL_ELEMENT_FAILURE_MESSAGE));
+		assertTrue("The validation messages should contain : " + XsdValidationCommandTest.DUPLICATE_GENERAL_ELEMENT_FAILURE_MESSAGE,
+				scolomfrutils.getMessages().contains(XsdValidationCommandTest.DUPLICATE_GENERAL_ELEMENT_FAILURE_MESSAGE));
 		assertFalse("Result of validation with duplicate general element should not be valid", scolomfrutils.isValid());
 	}
 
