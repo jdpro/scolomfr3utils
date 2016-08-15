@@ -16,10 +16,20 @@ import fr.apiscol.metadata.scolomfr3utils.Configuration;
 import fr.apiscol.metadata.scolomfr3utils.log.LoggerProvider;
 import fr.apiscol.metadata.scolomfr3utils.resources.ResourcesLoader;
 
+/**
+ * Utility class to create xsd validator from xsd file located in classpath
+ */
 public class ValidatorLoader {
 
 	private Logger logger;
 
+	/**
+	 * Load the xsd file corresponding to this scolomfr version. Matching
+	 * between version and files is in config file.
+	 * 
+	 * @param scolomfrVersion
+	 * @return Xsd Validator
+	 */
 	public Validator loadXsd(String scolomfrVersion) {
 		SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
 		String xsdFilePath = Configuration.getInstance().getXsdFilePath(scolomfrVersion);

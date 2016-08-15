@@ -8,8 +8,6 @@ import java.io.File;
 import org.junit.Before;
 import org.junit.Test;
 
-import fr.apiscol.metadata.scolomfr3utils.Scolomfr3Utils;
-import fr.apiscol.metadata.scolomfr3utils.command.check.XsdValidationCommand;
 import fr.apiscol.metadata.scolomfr3utils.command.check.XsdValidationCommandTest;
 
 /**

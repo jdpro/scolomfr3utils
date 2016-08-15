@@ -13,26 +13,50 @@ public class CommandFailureException extends Exception {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private List<String> messages;
+	private final List<String> messages = new ArrayList<>();
 
+	/**
+	 * Thrown when a command fails to perform its task. Carries message to be
+	 * displayed to final user.
+	 * 
+	 * @param message
+	 *            The messages
+	 */
 	public CommandFailureException(String message) {
 		super(message);
-		messages = new ArrayList<>();
 		this.messages.add(message);
 
 	}
 
+	/**
+	 * Thrown when a command fails to perform its task. Carries a list of
+	 * messages to be displayed to final user.
+	 * 
+	 * @param messages
+	 *            The messages
+	 */
 	public CommandFailureException(List<String> messages) {
 		super(messages.toString());
 		this.messages.addAll(messages);
 	}
 
+	/**
+	 * The reason(s) of failure
+	 * 
+	 * @return the messages
+	 */
 	public List<String> getMessages() {
 		return messages;
 	}
 
+	/**
+	 * Set reasons of validation failure
+	 * 
+	 * @param messages
+	 *            The reason(s) of failure
+	 */
 	public void setMessages(List<String> messages) {
-		this.messages = messages;
+		this.messages.addAll(messages);
 	}
 
 }
