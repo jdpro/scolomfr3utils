@@ -4,11 +4,10 @@ import java.io.File;
 
 import javax.xml.validation.Validator;
 
-import org.apache.jena.rdf.model.Model;
 import org.apache.log4j.Logger;
 
-import fr.apiscol.metadata.scolomfr3utils.command.ICommand;
 import fr.apiscol.metadata.scolomfr3utils.log.LoggerProvider;
+import fr.apiscol.metadata.scolomfr3utils.skos.ISkosApi;
 
 /**
  * 
@@ -18,7 +17,7 @@ import fr.apiscol.metadata.scolomfr3utils.log.LoggerProvider;
 public abstract class AbstractCommand implements ICommand {
 
 	private Validator xsdValidator;
-	private Model skosModel;
+	private ISkosApi skosApi;
 	private File scolomfrFile;
 	private Logger logger;
 
@@ -32,12 +31,12 @@ public abstract class AbstractCommand implements ICommand {
 	}
 
 	@Override
-	public void setSkosModel(Model skosModel) {
-		this.skosModel = skosModel;
+	public void setSkosApi(final ISkosApi skosApi) {
+		this.skosApi = skosApi;
 	}
 
-	protected Model getSkosModel() {
-		return skosModel;
+	protected ISkosApi getSkosApi() {
+		return skosApi;
 	}
 
 	@Override

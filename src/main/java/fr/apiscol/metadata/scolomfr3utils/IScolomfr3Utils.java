@@ -61,4 +61,11 @@ public interface IScolomfr3Utils {
 	 */
 	IScolomfr3Utils checkClassifications();
 
+	/**
+	 * Check taxon paths - consecutive elements must be connected by broader
+	 * relations in skos
+	 * 
+	 * @return
+	 */
+	IScolomfr3Utils checkTaxonPaths();
 }

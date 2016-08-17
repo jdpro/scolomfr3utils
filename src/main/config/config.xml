@@ -6,6 +6,11 @@
 			<method>checkXsd</method>
 			<message>Apply xsd validation</message>
 		</feature>
+		<feature>
+			<option>check-taxonpaths</option>
+			<method>checkTaxonPaths</method>
+			<message>Apply xsd validation</message>
+		</feature>
 	</command-line>
 	<schemas>
 		<schema>

@@ -13,8 +13,11 @@ import org.apache.log4j.Logger;
 import fr.apiscol.metadata.scolomfr3utils.command.CommandFailureException;
 import fr.apiscol.metadata.scolomfr3utils.command.ICommand;
 import fr.apiscol.metadata.scolomfr3utils.command.check.ClassificationCheckCommand;
+import fr.apiscol.metadata.scolomfr3utils.command.check.TaxonPathCheckCommand;
 import fr.apiscol.metadata.scolomfr3utils.command.check.XsdValidationCommand;
 import fr.apiscol.metadata.scolomfr3utils.log.LoggerProvider;
+import fr.apiscol.metadata.scolomfr3utils.skos.ISkosApi;
+import fr.apiscol.metadata.scolomfr3utils.skos.SkosApi;
 import fr.apiscol.metadata.scolomfr3utils.skos.SkosLoader;
 import fr.apiscol.metadata.scolomfr3utils.xsd.ValidatorLoader;
 
@@ -29,30 +32,13 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 	private File scolomfrFile;
 	private List<String> messages = new ArrayList<>();
 	private String scolomfrVersion;
-	private Model skosModel;
+	private final ISkosApi skosApi = new SkosApi();
 	private Validator validator;
 	private boolean isValid;
 
 	@Override
 	public void setScolomfrFile(final File scolomfrFile) {
 		this.scolomfrFile = scolomfrFile;
-	}
-
-	@Override
-	public IScolomfr3Utils checkAll() {
-		return checkXsd();
-	}
-
-	@Override
-	public IScolomfr3Utils checkXsd() {
-		execute(new XsdValidationCommand());
-		return this;
-	}
-
-	@Override
-	public IScolomfr3Utils checkClassifications() {
-		execute(new ClassificationCheckCommand());
-		return this;
 	}
 
 	private void execute(ICommand command) {
@@ -109,10 +95,11 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 
 	private boolean loadSkos(ICommand command) {
 		if (command.isSkosRequired()) {
-			if (null == skosModel) {
-				skosModel = new SkosLoader().loadSkos(scolomfrVersion);
+			if (null == skosApi.getSkosModel()) {
+				Model skosModel = new SkosLoader().loadSkos(scolomfrVersion);
+				skosApi.setSkosModel(skosModel);
 			}
-			command.setSkosModel(skosModel);
+			command.setSkosApi(skosApi);
 		}
 		return true;
 	}
@@ -139,7 +126,7 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 	public void setScolomfrVersion(String version) {
 		// If version has changed, unload the model
 		if (version != scolomfrVersion) {
-			skosModel = null;
+			skosApi.setSkosModel(null);
 		}
 		scolomfrVersion = version;
 	}
@@ -149,6 +136,29 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 			logger = LoggerProvider.getLogger(this.getClass());
 		}
 		return logger;
+	}
+
+	@Override
+	public IScolomfr3Utils checkAll() {
+		return checkXsd();
+	}
+
+	@Override
+	public IScolomfr3Utils checkXsd() {
+		execute(new XsdValidationCommand());
+		return this;
+	}
+
+	@Override
+	public IScolomfr3Utils checkClassifications() {
+		execute(new ClassificationCheckCommand());
+		return this;
+	}
+
+	@Override
+	public IScolomfr3Utils checkTaxonPaths() {
+		execute(new TaxonPathCheckCommand());
+		return this;
 	}
 
 }

@@ -6,6 +6,8 @@ import javax.xml.validation.Validator;
 
 import org.apache.jena.rdf.model.Model;
 
+import fr.apiscol.metadata.scolomfr3utils.skos.ISkosApi;
+
 public interface ICommand {
 
 	void execute() throws CommandFailureException;
@@ -16,7 +18,7 @@ public interface ICommand {
 
 	boolean isSkosRequired();
 
-	void setSkosModel(final Model skosModel);
+	void setSkosApi(final ISkosApi skosApi);
 
 	boolean isScolomfrFileRequired();
 
