@@ -11,7 +11,8 @@ public interface ISkosApi {
 	/**
 	 * 
 	 * @param URI
-	 * @return
+	 *            URI of subject resource
+	 * @return prefLabel or "NO_RESULT"
 	 */
 	String getPrefLabelForResource(String URI);
 
@@ -25,5 +26,14 @@ public interface ISkosApi {
 	 * @return true if a broader relation exists from subject to object
 	 */
 	boolean isBroaderThan(String subjectURI, String objectURI);
+
+	/**
+	 * 
+	 * @param URI
+	 *            URI of resource
+	 * @return true if this resource is the subject of an assertion in skos
+	 *         vocabulary
+	 */
+	boolean resourceExists(String Uri);
 
 }

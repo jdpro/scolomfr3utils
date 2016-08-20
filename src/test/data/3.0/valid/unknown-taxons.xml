@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ltsc.ieee.org/xsd/LOM"
+	xmlns:lomfr="http://www.lom-fr.fr/xsd/LOMFR" xmlns:scolomfr="http://www.lom-fr.fr/xsd/SCOLOMFR"
+	xsi:schemaLocation="http://www.lom-fr.fr/scolomfr/outils/xsd/scolomfrv20/scolomfr.xsd">
+	<general>
+		<identifier>
+			<catalog>URI</catalog>
+			<entry>https://my-system/content/resource/877b0870-9299-431f-9900-11fe3ff58f75?format=xml
+			</entry>
+		</identifier>
+		<title>
+			<string language="http://id.loc.gov/vocabulary/iso639-2/fre">Taxon non répertoriés</string>
+		</title>
+		<language>http://id.loc.gov/vocabulary/iso639-2/fre</language>
+		<description>
+			<string language="http://id.loc.gov/vocabulary/iso639-2/fre">Cette ressource présente des taxons non
+				répertoriés dans les vocabulaires officiels.
+			</string>
+		</description>
+	</general>
+	<lifeCycle>
+	</lifeCycle>
+	<technical>
+	</technical>
+	<educational>
+	</educational>
+	<rights>
+		<copyrightAndOtherRestrictions>
+			<source>SCOLOMFRv2.1</source>
+			<value>http://data.education.fr/voc/scolomfr/concept/yes_2</value>
+			<label>oui</label>
+		</copyrightAndOtherRestrictions>
+	</rights>
+	<classification>
+		<purpose>
+			<source>SCOLOMFRv2.1</source>
+			<value>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-028-num-004
+			</value>
+			<label>enseignement</label>
+		</purpose>
+		<taxonPath>
+			<source>
+				<string language="http://id.loc.gov/vocabulary/iso639-2/fre">mes_programmes</string>
+			</source>
+			<taxon>
+				<id>my-taxonomy_1</id>
+				<entry>
+					<string language="http://id.loc.gov/vocabulary/iso639-2/fre">Cycle 3</string>
+				</entry>
+			</taxon>
+			<taxon>
+				<id>my-taxonomy_1.3</id>
+				<entry>
+					<string language="http://id.loc.gov/vocabulary/iso639-2/fre">Sciences et technologie</string>
+				</entry>
+			</taxon>
+			<taxon>
+				<id>my-taxonomy_1.3.2</id>
+				<entry>
+					<string language="http://id.loc.gov/vocabulary/iso639-2/fre">Le vivant, sa diversité et les fonctions
+						qui le caractérisent
+					</string>
+				</entry>
+			</taxon>
+			<taxon>
+				<id>my-taxonomy_1.3.2.2</id>
+				<entry>
+					<string language="http://id.loc.gov/vocabulary/iso639-2/fre">Expliquer les besoins variables en aliments
+						de l'être humain ; l'origine et les techniques mises en œuvre pour
+						transformer et conserver les aliments
+					</string>
+				</entry>
+			</taxon>
+		</taxonPath>
+	</classification>
+	<metaMetadata>
+		<identifier>
+			<catalog>URI</catalog>
+			<entry>https://my-system/meta/c963d757-744f-48b6-8829-87eea0562a6a
+			</entry>
+		</identifier>
+	</metaMetadata>
+</lom>

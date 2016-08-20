@@ -66,7 +66,8 @@ public class TaxonPathCheckCommand extends AbstractCommand {
 		while (it.hasNext()) {
 			String taxonId = (String) it.next();
 			if (!StringUtils.isEmpty(previousTaxonId)) {
-				if (!getSkosApi().isBroaderThan(previousTaxonId, taxonId)) {
+				if (getSkosApi().resourceExists(taxonId) && getSkosApi().resourceExists(previousTaxonId)
+						&& !getSkosApi().isBroaderThan(previousTaxonId, taxonId)) {
 					String taxonPreflabel = getSkosApi().getPrefLabelForResource(taxonId);
 					String previousTaxonPreflabel = getSkosApi().getPrefLabelForResource(previousTaxonId);
 					messages.add(String.format(

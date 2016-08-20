@@ -48,4 +48,12 @@ public class SkosApi implements ISkosApi {
 		return NO_RESULT;
 	}
 
+	@Override
+	public boolean resourceExists(final String subjectUri) {
+		Resource subject = getSkosModel().getResource(subjectUri);
+		Selector selector = new SimpleSelector(subject, null, (RDFNode) null);
+		StmtIterator stmts = getSkosModel().listStatements(selector);
+		return stmts.hasNext();
+	}
+
 }
