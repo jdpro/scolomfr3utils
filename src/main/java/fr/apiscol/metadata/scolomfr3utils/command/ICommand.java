@@ -4,8 +4,6 @@ import java.io.File;
 
 import javax.xml.validation.Validator;
 
-import org.apache.jena.rdf.model.Model;
-
 import fr.apiscol.metadata.scolomfr3utils.skos.ISkosApi;
 
 public interface ICommand {

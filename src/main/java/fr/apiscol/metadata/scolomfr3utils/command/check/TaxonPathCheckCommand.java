@@ -15,14 +15,6 @@ import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.jena.rdf.model.Literal;
-import org.apache.jena.rdf.model.Property;
-import org.apache.jena.rdf.model.RDFNode;
-import org.apache.jena.rdf.model.Resource;
-import org.apache.jena.rdf.model.Selector;
-import org.apache.jena.rdf.model.SimpleSelector;
-import org.apache.jena.rdf.model.Statement;
-import org.apache.jena.rdf.model.StmtIterator;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -61,7 +53,6 @@ public class TaxonPathCheckCommand extends AbstractCommand {
 			throw new CommandFailureException(e.getMessage());
 		}
 		List<String> taxonIdList = null;
-		;
 		for (int i = 0; i < taxonIdsLists.size(); i++) {
 			taxonIdList = taxonIdsLists.get(i);
 			checkTaxonAreConsecutive(taxonIdList);
@@ -128,7 +119,5 @@ public class TaxonPathCheckCommand extends AbstractCommand {
 	public boolean isScolomfrFileRequired() {
 		return true;
 	}
-
-	
 
 }

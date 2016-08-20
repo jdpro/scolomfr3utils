@@ -2,9 +2,10 @@ package fr.apiscol.metadata.scolomfr3utils.skos;
 
 import java.io.InputStream;
 
-import org.apache.jena.rdf.model.Model;
-import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.log4j.Logger;
+
+import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
 
 import fr.apiscol.metadata.scolomfr3utils.Configuration;
 import fr.apiscol.metadata.scolomfr3utils.log.LoggerProvider;

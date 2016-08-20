@@ -3,6 +3,8 @@ package fr.apiscol.metadata.scolomfr3utils;
 import java.io.File;
 import java.util.List;
 
+import fr.apiscol.metadata.scolomfr3utils.skos.ISkosApi;
+
 /**
  * 
  * Main interface of the library
@@ -68,4 +70,11 @@ public interface IScolomfr3Utils {
 	 * @return
 	 */
 	IScolomfr3Utils checkTaxonPaths();
+
+	/**
+	 * Returns a wrapper for jena Model of Skos vocabulary
+	 * 
+	 * @return an API to skos vocabulary
+	 */
+	ISkosApi getSkosApi();
 }

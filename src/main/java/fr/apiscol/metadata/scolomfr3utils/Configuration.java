@@ -19,6 +19,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import fr.apiscol.metadata.scolomfr3utils.log.LoggerProvider;
+import fr.apiscol.metadata.scolomfr3utils.resources.ResourcesLoader;
 
 /**
  * 
@@ -26,7 +27,7 @@ import fr.apiscol.metadata.scolomfr3utils.log.LoggerProvider;
  *
  */
 public class Configuration implements IConfiguration {
-	private static final String XML_CONFIG_FILE = "config.xml";
+	private static final String XML_CONFIG_FILE = "/config.xml";
 	private Document xmlConfig;
 	private static Configuration instance = null;
 
@@ -45,13 +46,14 @@ public class Configuration implements IConfiguration {
 		InputStream configFile = null;
 
 		try {
-			configFile = ClassLoader.getSystemResourceAsStream(XML_CONFIG_FILE);
+			configFile = new ResourcesLoader().loadResource(XML_CONFIG_FILE);
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder builder = factory.newDocumentBuilder();
 			xmlConfig = builder.parse(configFile);
 
 		} catch (SAXException | IOException | ParserConfigurationException | IllegalArgumentException e) {
 			getLogger().error(e);
+			throw new RuntimeException(e);
 		} finally {
 			if (configFile != null) {
 				try {
@@ -101,7 +103,8 @@ public class Configuration implements IConfiguration {
 	}
 
 	private String getFilePath(final String scolomfrVersion, final String fileType) {
-		NodeList schemas = xmlConfig.getDocumentElement().getElementsByTagName("schemas");
+		Element configDocumentElement = xmlConfig.getDocumentElement();
+		NodeList schemas = configDocumentElement.getElementsByTagName("schemas");
 		for (int i = 0; i < schemas.getLength(); i++) {
 			Element schema = (Element) schemas.item(i);
 			Element version = (Element) schema.getElementsByTagName("version").item(0);

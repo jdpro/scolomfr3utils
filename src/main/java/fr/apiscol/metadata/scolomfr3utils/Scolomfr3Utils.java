@@ -7,8 +7,9 @@ import java.util.List;
 import javax.xml.validation.Validator;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.jena.rdf.model.Model;
 import org.apache.log4j.Logger;
+
+import com.hp.hpl.jena.rdf.model.Model;
 
 import fr.apiscol.metadata.scolomfr3utils.command.CommandFailureException;
 import fr.apiscol.metadata.scolomfr3utils.command.ICommand;
@@ -95,13 +96,17 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 
 	private boolean loadSkos(ICommand command) {
 		if (command.isSkosRequired()) {
-			if (null == skosApi.getSkosModel()) {
-				Model skosModel = new SkosLoader().loadSkos(scolomfrVersion);
-				skosApi.setSkosModel(skosModel);
-			}
+			loadSkos();
 			command.setSkosApi(skosApi);
 		}
 		return true;
+	}
+
+	private void loadSkos() {
+		if (null == skosApi.getSkosModel()) {
+			Model skosModel = new SkosLoader().loadSkos(scolomfrVersion);
+			skosApi.setSkosModel(skosModel);
+		}
 	}
 
 	private boolean checkScolomfrFile(ICommand command) {
@@ -140,7 +145,7 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 
 	@Override
 	public IScolomfr3Utils checkAll() {
-		return checkXsd();
+		return checkXsd().checkTaxonPaths();
 	}
 
 	@Override
@@ -159,6 +164,12 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 	public IScolomfr3Utils checkTaxonPaths() {
 		execute(new TaxonPathCheckCommand());
 		return this;
+	}
+
+	@Override
+	public ISkosApi getSkosApi() {
+		loadSkos();
+		return skosApi;
 	}
 
 }
