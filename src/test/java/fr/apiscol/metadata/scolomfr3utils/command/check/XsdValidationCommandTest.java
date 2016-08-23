@@ -1,6 +1,5 @@
 package fr.apiscol.metadata.scolomfr3utils.command.check;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
@@ -27,7 +26,7 @@ public class XsdValidationCommandTest {
 
 	@Test
 	public void testXsdValidationSuccess() throws Exception {
-		File scolomfrFile = new File("src/test/data/3.0/valid/exemple.xml");
+		File scolomfrFile = new File("src/test/data/3.0/any/valid/exemple.xml");
 		xsdValidationCommand.setScolomfrFile(scolomfrFile);
 		xsdValidationCommand.execute();
 
@@ -35,7 +34,7 @@ public class XsdValidationCommandTest {
 
 	@Test(expected = CommandFailureException.class)
 	public void testXsdValidationFailure() throws Exception {
-		File scolomfrFile = new File("src/test/data/3.0/invalid/double-general.xml");
+		File scolomfrFile = new File("src/test/data/3.0/1/invalid/double-general.xml");
 		xsdValidationCommand.setScolomfrFile(scolomfrFile);
 		try {
 			xsdValidationCommand.execute();

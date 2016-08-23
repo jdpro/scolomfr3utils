@@ -36,7 +36,7 @@ public class TaxonPathCheckCommandTest {
 
 	@Test
 	public void testXsdValidationSuccess() throws Exception {
-		File scolomfrFile = new File("src/test/data/3.0/valid/consecutive-taxons.xml");
+		File scolomfrFile = new File("src/test/data/3.0/9/valid/consecutive-taxons.xml");
 		taxonPathCheckCommand.setScolomfrFile(scolomfrFile);
 		taxonPathCheckCommand.execute();
 
@@ -44,7 +44,7 @@ public class TaxonPathCheckCommandTest {
 
 	@Test
 	public void testXsdValidationSuccessWithUnknownTaxons() throws Exception {
-		File scolomfrFile = new File("src/test/data/3.0/valid/unknown-taxons.xml");
+		File scolomfrFile = new File("src/test/data/3.0/9/valid/unknown-taxons.xml");
 		taxonPathCheckCommand.setScolomfrFile(scolomfrFile);
 		taxonPathCheckCommand.execute();
 
@@ -52,7 +52,7 @@ public class TaxonPathCheckCommandTest {
 
 	@Test(expected = CommandFailureException.class)
 	public void testXsdValidationFailureWithNonConsecutiveTaxons() throws Exception {
-		File scolomfrFile = new File("src/test/data/3.0/invalid/non-consecutive-taxons.xml");
+		File scolomfrFile = new File("src/test/data/3.0/9/invalid/non-consecutive-taxons.xml");
 		taxonPathCheckCommand.setScolomfrFile(scolomfrFile);
 		try {
 			taxonPathCheckCommand.execute();

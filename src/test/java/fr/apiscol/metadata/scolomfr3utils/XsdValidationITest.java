@@ -25,7 +25,7 @@ public class XsdValidationITest {
 
 	@Test
 	public void testXsdValidationSuccess() {
-		File scolomfrFile = new File("src/test/data/3.0/valid/exemple.xml");
+		File scolomfrFile = new File("src/test/data/3.0/any/valid/exemple.xml");
 		scolomfrutils.setScolomfrFile(scolomfrFile);
 		scolomfrutils.checkXsd();
 		assertTrue("There should be no validation messages", scolomfrutils.getMessages().isEmpty());
@@ -34,7 +34,7 @@ public class XsdValidationITest {
 
 	@Test
 	public void testXsdValidationFailure() {
-		File scolomfrFile = new File("src/test/data/3.0/invalid/double-general.xml");
+		File scolomfrFile = new File("src/test/data/3.0/1/invalid/double-general.xml");
 		scolomfrutils.setScolomfrFile(scolomfrFile);
 		scolomfrutils.checkXsd();
 		assertTrue("The validation messages should contain : " + XsdValidationCommandTest.DUPLICATE_GENERAL_ELEMENT_FAILURE_MESSAGE,

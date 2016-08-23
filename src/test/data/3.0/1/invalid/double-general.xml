@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ltsc.ieee.org/xsd/LOM"
+	xmlns:lomfr="http://www.lom-fr.fr/xsd/LOMFR" xmlns:scolomfr="http://www.lom-fr.fr/xsd/SCOLOMFR"
+	xsi:schemaLocation="http://www.lom-fr.fr/scolomfr/outils/xsd/scolomfrv20/scolomfr.xsd">
+
+
+
+	<general>
+		<identifier>
+			<catalog>URI</catalog>
+			<entry>http://www.laclassedemallory.com/theme-de-classe-harry-potter-a66059169
+			</entry>
+		</identifier>
+		<title>
+			<string language="http://id.loc.gov/vocabulary/iso639-1/en">Harry Potter</string>
+		</title>
+		<language>
+			http://id.loc.gov/vocabulary/iso639-1/fr
+		</language>
+		<description>
+			<string language="http://id.loc.gov/vocabulary/iso639-1/fr">Séquence pédagogique autour du film de Harry
+				Potter en édition bilingue.
+			</string>
+		</description>
+		<keyword>
+			<string>infographie</string>
+		</keyword>
+	</general>
+	<general>
+		<identifier>
+			<catalog>URI</catalog>
+			<entry>http://www.laclassedemallory.com/theme-de-classe-harry-potter-a66059169
+			</entry>
+		</identifier>
+		<title>
+			<string language="http://id.loc.gov/vocabulary/iso639-1/en">Harry Potter</string>
+		</title>
+		<language>
+			http://id.loc.gov/vocabulary/iso639-1/fr
+		</language>
+		<description>
+			<string language="http://id.loc.gov/vocabulary/iso639-1/fr">Séquence pédagogique autour du film de Harry
+				Potter en édition bilingue.
+			</string>
+		</description>
+		<keyword>
+			<string>infographie</string>
+		</keyword>
+	</general>
+	<lifeCycle>
+		<version>
+			<string language="http://id.loc.gov/vocabulary/iso639-2/fra">première version</string>
+		</version>
+		<status>
+			<source>SCOLOMFRv2.0</source>
+			<value>http://data.education.fr/voc/scolomfr/concept/final</value>
+			<label>final</label>
+		</status>
+		<contribute>
+			<role>
+				<source>SCOLOMFRv2.0</source>
+				<value>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-003-num-005
+				</value>
+				<label>contributeur</label>
+			</role>
+			<entity><![CDATA[BEGIN:VCARD
+VERSION:3.0
+N;ENCODING=8BIT;CHARSET=UTF-8;LANGUAGE=fr-FR:Martinu;Julien
+FN;ENCODING=8BIT;CHARSET=UTF-8;LANGUAGE=fr-FR:Julien Martini
+EMAIL;TYPE=INTERNET:julien.martini@education.gouv.fr
+END:VCARD]]></entity>
+			<date>
+				<description>
+					<string>printemps 2008</string>
+					<string language="http://id.loc.gov/vocabulary/iso639-1/en">Spring 2008</string>
+				</description>
+			</date>
+		</contribute>
+		<contribute>
+			<role>
+				<source>SCOLOMFRv2.0</source>
+				<value>http://data.education.fr/voc/scolomfr/concept/publisher
+				</value>
+				<label>éditeur</label>
+			</role>
+			<entity><![CDATA[BEGIN:VCARD
+VERSION:3.0
+N;ENCODING=8BIT;CHARSET=UTF-8;LANGUAGE=fr-FR:Zone académique : Paris
+FN;ENCODING=8BIT;CHARSET=UTF-8;LANGUAGE=fr-FR:Zone académique : Paris
+END:VCARD]]></entity>
+			<date>
+				<dateTime>2008-03-20</dateTime>
+				<description>
+					<string>printemps 2008</string>
+					<string language="http://id.loc.gov/vocabulary/iso639-1/en">Spring 2008</string>
+				</description>
+			</date>
+		</contribute>
+	</lifeCycle>
+	<metaMetadata>
+		<identifier>
+			<catalog>EDU’bases langues vivantes</catalog>
+			<entry>http://eduscol.education.fr/bd/urtic/lv/?commande=aper&amp;id=9999
+			</entry>
+		</identifier>
+		<contribute>
+			<role>
+				<source>SCOLOMFRv2.0</source>
+				<value>http://data.education.fr/voc/scolomfr/concept/creator</value>
+				<label>créateur</label>
+			</role>
+
+			<entity><![CDATA[BEGIN:VCARD
+VERSION:3.0
+N;ENCODING=8BIT;CHARSET=UTF-8;LANGUAGE=fr-FR:Martine;Julie
+FN;ENCODING=8BIT;CHARSET=UTF-8;LANGUAGE=fr-FR:Julie Martini
+EMAIL;TYPE=INTERNET:julie.martini@education.gouv.fr
+END:VCARD]]></entity>
+
+			<date>
+				<dateTime>2015-05-22T19:20:30</dateTime>
+				<description>
+					<string>printemps 2015</string>
+					<string language="http://id.loc.gov/vocabulary/iso639-1/en">Spring 2015</string>
+				</description>
+			</date>
+		</contribute>
+	</metaMetadata>
+
+	<technical>
+		<format>
+			http://purl.org/NET/mediatypes/text/html
+		</format>
+		<format>
+			http://purl.org/NET/mediatypes/text/xhtml
+		</format>
+		<size>
+			29841
+		</size>
+		<location>http://www.laclassedemallory.com/theme-de-classe-harry-potter-a66059169
+		</location>
+	</technical>
+	<educational>
+		<intendedEndUserRole>
+			<source>SCOLOMFRv2.0</source>
+			<value>http://data.education.fr/voc/scolomfr/concept/learner</value>
+			<label>apprenant</label>
+		</intendedEndUserRole>
+	</educational>
+	<rights>
+		<cost>
+			<source>SCOLOMFRv2.0</source>
+			<value>http://data.education.fr/voc/scolomfr/concept/no</value>
+			<label>non</label>
+		</cost>
+		<copyrightAndOtherRestrictions>
+			<source>SCOLOMFRv2.0</source>
+			<value>http://data.education.fr/voc/scolomfr/concept/yes_2</value>
+			<label>oui</label>
+		</copyrightAndOtherRestrictions>
+		<description>
+			<string>http://creativecommons.org/licenses/by/2.0/fr/</string>
+		</description>
+	</rights>
+
+</lom>

@@ -9,7 +9,7 @@
 		<feature>
 			<option>check-taxonpaths</option>
 			<method>checkTaxonPaths</method>
-			<message>Apply xsd validation</message>
+			<message>Check that consecutive taxon are in hierarchical relation</message>
 		</feature>
 	</command-line>
 	<schemas>
