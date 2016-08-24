@@ -5,10 +5,8 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
-import javax.xml.xpath.XPathFactory;
 
 import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Node;
@@ -16,12 +14,9 @@ import org.w3c.dom.NodeList;
 
 import fr.apiscol.metadata.scolomfr3utils.command.AbstractCommand;
 import fr.apiscol.metadata.scolomfr3utils.command.CommandFailureException;
+import fr.apiscol.metadata.scolomfr3utils.utils.xml.DomDocumentWithLineNumbersBuilder;
 
 public class TaxonPathCheckCommand extends AbstractCommand {
-
-	private final XPathFactory xpathFactory = XPathFactory.newInstance();
-
-	private final XPath xPath = xpathFactory.newXPath();
 
 	@Override
 	public void execute() throws CommandFailureException {
@@ -81,6 +76,8 @@ public class TaxonPathCheckCommand extends AbstractCommand {
 			Node taxonNodeId = null;
 			for (int j = 0; j < taxonNodeIds.getLength(); j++) {
 				taxonNodeId = taxonNodeIds.item(j);
+				System.out.println("There is a taxon id node line "
+						+ taxonNodeId.getUserData(DomDocumentWithLineNumbersBuilder.LINE_NUMBER_KEY));
 				taxonList.add(taxonNodeId.getTextContent().trim());
 			}
 			taxonLists.add(taxonList);

@@ -13,7 +13,7 @@ import com.hp.hpl.jena.rdf.model.Model;
 
 import fr.apiscol.metadata.scolomfr3utils.command.CommandFailureException;
 import fr.apiscol.metadata.scolomfr3utils.command.ICommand;
-import fr.apiscol.metadata.scolomfr3utils.command.check.ClassificationPurposeCheckCommand;
+import fr.apiscol.metadata.scolomfr3utils.command.check.ClassificationPurposesCheckCommand;
 import fr.apiscol.metadata.scolomfr3utils.command.check.TaxonPathCheckCommand;
 import fr.apiscol.metadata.scolomfr3utils.command.check.XsdValidationCommand;
 import fr.apiscol.metadata.scolomfr3utils.log.LoggerProvider;
@@ -173,7 +173,7 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 
 	@Override
 	public IScolomfr3Utils checkClassificationPurposes() {
-		execute(new ClassificationPurposeCheckCommand());
+		execute(new ClassificationPurposesCheckCommand());
 		return this;
 	}
 
