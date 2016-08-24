@@ -67,9 +67,16 @@ public interface IScolomfr3Utils {
 	 * Check taxon paths - consecutive elements must be connected by broader
 	 * relations in skos
 	 * 
-	 * @return
+	 * @return {@link IScolomfr3Utils} for concatenation
 	 */
 	IScolomfr3Utils checkTaxonPaths();
+	
+	/**
+	 * Check classification purposes - 
+	 * 
+	 * @return {@link IScolomfr3Utils} for concatenation
+	 */
+	IScolomfr3Utils checkClassificationPurposes();
 
 	/**
 	 * Returns a wrapper for jena Model of Skos vocabulary

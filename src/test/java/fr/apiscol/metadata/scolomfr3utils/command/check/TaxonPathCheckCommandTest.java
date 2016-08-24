@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import com.hp.hpl.jena.rdf.model.Model;
 
+import fr.apiscol.metadata.scolomfr3utils.command.AbstractCommand;
 import fr.apiscol.metadata.scolomfr3utils.command.CommandFailureException;
 import fr.apiscol.metadata.scolomfr3utils.skos.ISkosApi;
 import fr.apiscol.metadata.scolomfr3utils.skos.SkosApi;
@@ -23,7 +24,7 @@ public class TaxonPathCheckCommandTest {
 			"Taxon %s (%s) follows taxon %s (%s) but the latter is not connected to the former by a broader relation",
 			"http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-022-num-020", "5e",
 			"http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-022-num-021", "4e");
-	private TaxonPathCheckCommand taxonPathCheckCommand;
+	private AbstractCommand taxonPathCheckCommand;
 
 	@Before
 	public void setup() {

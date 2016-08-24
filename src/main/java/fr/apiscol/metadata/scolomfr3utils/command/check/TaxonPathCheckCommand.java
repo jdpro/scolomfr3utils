@@ -1,24 +1,18 @@
 package fr.apiscol.metadata.scolomfr3utils.command.check;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
 import org.apache.commons.lang3.StringUtils;
-import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
 import fr.apiscol.metadata.scolomfr3utils.command.AbstractCommand;
 import fr.apiscol.metadata.scolomfr3utils.command.CommandFailureException;
@@ -29,21 +23,9 @@ public class TaxonPathCheckCommand extends AbstractCommand {
 
 	private final XPath xPath = xpathFactory.newXPath();
 
-	private Document scolomfrDocument;
-
-	private static DocumentBuilder domDocumentBuilder;
-
 	@Override
 	public void execute() throws CommandFailureException {
-		try {
-			if (domDocumentBuilder == null) {
-				domDocumentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-			}
-			scolomfrDocument = domDocumentBuilder.parse(getScolomfrFile());
-		} catch (ParserConfigurationException | SAXException | IOException e) {
-			getLogger().error(e);
-			throw new CommandFailureException(e.getMessage());
-		}
+		buildScolomfrDocument();
 		List<List<String>> taxonIdsLists = null;
 		try {
 			taxonIdsLists = getTaxonLists();

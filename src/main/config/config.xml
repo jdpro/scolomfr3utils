@@ -9,7 +9,13 @@
 		<feature>
 			<option>check-taxonpaths</option>
 			<method>checkTaxonPaths</method>
-			<message>Check that consecutive taxon are in hierarchical relation</message>
+			<message>Check that consecutive taxon are in hierarchical relation
+			</message>
+		</feature>
+		<feature>
+			<option>check-classification-purposes</option>
+			<method>checkClassificationPurposes</method>
+			<message>Check that taxonpaths are under the right purpose</message>
 		</feature>
 	</command-line>
 	<schemas>
