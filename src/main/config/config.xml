@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 	<command-line>
+	<feature>
+			<option>check-all</option>
+			<method>checkAll</method>
+			<message>Apply all available validations</message>
+		</feature>
 		<feature>
 			<option>check-xsd</option>
 			<method>checkXsd</method>

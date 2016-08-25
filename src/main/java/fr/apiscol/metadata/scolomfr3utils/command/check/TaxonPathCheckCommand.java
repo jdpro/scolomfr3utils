@@ -18,6 +18,8 @@ import fr.apiscol.metadata.scolomfr3utils.utils.xml.DomDocumentWithLineNumbersBu
 
 public class TaxonPathCheckCommand extends AbstractCommand {
 
+	static final String NON_CONSECUTIVE_TAXONS_FAILURE_MESSAGE_PATTERN = "Taxon %s (%s) line %s follows taxon %s (%s) but the latter is not connected to the former by a broader relation";
+
 	@Override
 	public void execute() throws CommandFailureException {
 		buildScolomfrDocument();
@@ -52,7 +54,7 @@ public class TaxonPathCheckCommand extends AbstractCommand {
 					String lineNumber = taxonId.getUserData(DomDocumentWithLineNumbersBuilder.LINE_NUMBER_KEY)
 							.toString();
 					messages.add(String.format(
-							"Taxon %s (%s) line %s follows taxon %s (%s) but the latter is not connected to the former by a broader relation",
+							NON_CONSECUTIVE_TAXONS_FAILURE_MESSAGE_PATTERN,
 							taxonIdUri, taxonPreflabel, lineNumber, previousTaxonIdUri, previousTaxonPreflabel));
 				}
 			}
