@@ -21,53 +21,57 @@ public class TaxonPathCheckCommand extends AbstractCommand {
 	@Override
 	public void execute() throws CommandFailureException {
 		buildScolomfrDocument();
-		List<List<String>> taxonIdsLists = null;
+		List<List<Node>> taxonNodesLists = null;
 		try {
-			taxonIdsLists = getTaxonLists();
+			taxonNodesLists = getTaxonLists();
 
 		} catch (XPathExpressionException e) {
 			getLogger().error(e);
 			throw new CommandFailureException(e.getMessage());
 		}
-		List<String> taxonIdList = null;
-		for (int i = 0; i < taxonIdsLists.size(); i++) {
-			taxonIdList = taxonIdsLists.get(i);
-			checkTaxonAreConsecutive(taxonIdList);
+		List<Node> taxonNodesList = null;
+		for (int i = 0; i < taxonNodesLists.size(); i++) {
+			taxonNodesList = taxonNodesLists.get(i);
+			checkTaxonAreConsecutive(taxonNodesList);
 		}
 	}
 
-	private void checkTaxonAreConsecutive(List<String> taxonIdsList) throws CommandFailureException {
-		Iterator<String> it = taxonIdsList.iterator();
-		String previousTaxonId = null;
+	private void checkTaxonAreConsecutive(List<Node> taxonNodesList) throws CommandFailureException {
+		Iterator<Node> it = taxonNodesList.iterator();
+		String previousTaxonIdUri = null;
+		String taxonIdUri;
 		ArrayList<String> messages = new ArrayList<>();
 		while (it.hasNext()) {
-			String taxonId = (String) it.next();
-			if (!StringUtils.isEmpty(previousTaxonId)) {
-				if (getSkosApi().resourceExists(taxonId) && getSkosApi().resourceExists(previousTaxonId)
-						&& !getSkosApi().isBroaderThan(previousTaxonId, taxonId)) {
-					String taxonPreflabel = getSkosApi().getPrefLabelForResource(taxonId);
-					String previousTaxonPreflabel = getSkosApi().getPrefLabelForResource(previousTaxonId);
+			Node taxonId = (Node) it.next();
+			taxonIdUri = taxonId.getTextContent().trim();
+			if (!StringUtils.isEmpty(previousTaxonIdUri)) {
+				if (getSkosApi().resourceExists(taxonIdUri) && getSkosApi().resourceExists(previousTaxonIdUri)
+						&& !getSkosApi().isBroaderThan(previousTaxonIdUri, taxonIdUri)) {
+					String taxonPreflabel = getSkosApi().getPrefLabelForResource(taxonIdUri);
+					String previousTaxonPreflabel = getSkosApi().getPrefLabelForResource(previousTaxonIdUri);
+					String lineNumber = taxonId.getUserData(DomDocumentWithLineNumbersBuilder.LINE_NUMBER_KEY)
+							.toString();
 					messages.add(String.format(
-							"Taxon %s (%s) follows taxon %s (%s) but the latter is not connected to the former by a broader relation",
-							taxonId, taxonPreflabel, previousTaxonId, previousTaxonPreflabel));
+							"Taxon %s (%s) line %s follows taxon %s (%s) but the latter is not connected to the former by a broader relation",
+							taxonIdUri, taxonPreflabel, lineNumber, previousTaxonIdUri, previousTaxonPreflabel));
 				}
 			}
-			previousTaxonId = taxonId;
+			previousTaxonIdUri = taxonIdUri;
 		}
 		if (!messages.isEmpty()) {
 			throw new CommandFailureException(messages);
 		}
 	}
 
-	private List<List<String>> getTaxonLists() throws XPathExpressionException {
-		List<List<String>> taxonLists = new ArrayList<>();
+	private List<List<Node>> getTaxonLists() throws XPathExpressionException {
+		List<List<Node>> taxonLists = new ArrayList<>();
 		NodeList taxonPathNodes = null;
 		taxonPathNodes = (NodeList) xPath.evaluate("/lom/classification/taxonPath", scolomfrDocument,
 				XPathConstants.NODESET);
 		Node taxonPathNode = null;
 		NodeList taxonNodeIds = null;
 		for (int i = 0; i < taxonPathNodes.getLength(); i++) {
-			List<String> taxonList = new LinkedList<>();
+			List<Node> taxonList = new LinkedList<>();
 			taxonPathNode = taxonPathNodes.item(i);
 			taxonNodeIds = (NodeList) xPath.evaluate("taxon/id", taxonPathNode, XPathConstants.NODESET);
 			if (taxonNodeIds.getLength() == 0) {
@@ -76,9 +80,7 @@ public class TaxonPathCheckCommand extends AbstractCommand {
 			Node taxonNodeId = null;
 			for (int j = 0; j < taxonNodeIds.getLength(); j++) {
 				taxonNodeId = taxonNodeIds.item(j);
-				System.out.println("There is a taxon id node line "
-						+ taxonNodeId.getUserData(DomDocumentWithLineNumbersBuilder.LINE_NUMBER_KEY));
-				taxonList.add(taxonNodeId.getTextContent().trim());
+				taxonList.add(taxonNodeId);
 			}
 			taxonLists.add(taxonList);
 		}

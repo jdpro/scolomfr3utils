@@ -16,13 +16,14 @@ import fr.apiscol.metadata.scolomfr3utils.skos.SkosApi;
 import fr.apiscol.metadata.scolomfr3utils.skos.SkosLoader;
 
 /**
- * Test that consecutive taxons refers to entries related by broder/narrower in Skos file
+ * Test that consecutive taxons refers to entries related by broder/narrower in
+ * Skos file
  */
 public class TaxonPathCheckCommandTest {
 
 	private static final String NON_CONSECUTIVE_TAXONS_FAILURE_MESSAGE = String.format(
-			"Taxon %s (%s) follows taxon %s (%s) but the latter is not connected to the former by a broader relation",
-			"http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-022-num-020", "5e",
+			"Taxon %s (%s) line %s follows taxon %s (%s) but the latter is not connected to the former by a broader relation",
+			"http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-022-num-020", "5e", "186",
 			"http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-022-num-021", "4e");
 	private AbstractCommand taxonPathCheckCommand;
 
