@@ -8,6 +8,7 @@ import java.io.File;
 import org.junit.Before;
 import org.junit.Test;
 
+import fr.apiscol.metadata.scolomfr3utils.command.MessageStatus;
 import fr.apiscol.metadata.scolomfr3utils.command.check.XsdValidationCommandTest;
 
 /**
@@ -28,7 +29,8 @@ public class XsdValidationITest {
 		File scolomfrFile = new File("src/test/data/3.0/any/valid/exemple.xml");
 		scolomfrutils.setScolomfrFile(scolomfrFile);
 		scolomfrutils.checkXsd();
-		assertTrue("There should be no validation messages", scolomfrutils.getMessages().isEmpty());
+		assertTrue("There should be no failure messages", scolomfrutils.getMessages(MessageStatus.FAILURE).isEmpty());
+		assertTrue("There should be no warning messages", scolomfrutils.getMessages(MessageStatus.WARNING).isEmpty());
 		assertTrue("Result of validation with the official exemple file should be valid", scolomfrutils.isValid());
 	}
 
@@ -37,8 +39,11 @@ public class XsdValidationITest {
 		File scolomfrFile = new File("src/test/data/3.0/1/invalid/double-general.xml");
 		scolomfrutils.setScolomfrFile(scolomfrFile);
 		scolomfrutils.checkXsd();
-		assertTrue("The validation messages should contain : " + XsdValidationCommandTest.DUPLICATE_GENERAL_ELEMENT_FAILURE_MESSAGE,
-				scolomfrutils.getMessages().contains(XsdValidationCommandTest.DUPLICATE_GENERAL_ELEMENT_FAILURE_MESSAGE));
+		assertTrue(
+				"The validation messages should contain : "
+						+ XsdValidationCommandTest.DUPLICATE_GENERAL_ELEMENT_FAILURE_MESSAGE,
+				scolomfrutils.getMessages(MessageStatus.FAILURE)
+						.contains(XsdValidationCommandTest.DUPLICATE_GENERAL_ELEMENT_FAILURE_MESSAGE));
 		assertFalse("Result of validation with duplicate general element should not be valid", scolomfrutils.isValid());
 	}
 
@@ -46,7 +51,7 @@ public class XsdValidationITest {
 	public void testXsdWithoutFile() {
 		scolomfrutils.checkXsd();
 		assertTrue("The validation messages should contain : " + MISSING_SCOLOMFR_FILE_FAILURE_MESSAGE,
-				scolomfrutils.getMessages().contains(MISSING_SCOLOMFR_FILE_FAILURE_MESSAGE));
+				scolomfrutils.getMessages(MessageStatus.FAILURE).contains(MISSING_SCOLOMFR_FILE_FAILURE_MESSAGE));
 		assertFalse("Result of validation is valid", scolomfrutils.isValid());
 	}
 }

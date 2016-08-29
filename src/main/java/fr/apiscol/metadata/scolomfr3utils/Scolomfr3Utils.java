@@ -2,7 +2,9 @@ package fr.apiscol.metadata.scolomfr3utils;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.xml.validation.Validator;
 
@@ -11,8 +13,10 @@ import org.apache.log4j.Logger;
 
 import com.hp.hpl.jena.rdf.model.Model;
 
+import fr.apiscol.metadata.scolomfr3utils.command.CommandException;
 import fr.apiscol.metadata.scolomfr3utils.command.CommandFailureException;
 import fr.apiscol.metadata.scolomfr3utils.command.ICommand;
+import fr.apiscol.metadata.scolomfr3utils.command.MessageStatus;
 import fr.apiscol.metadata.scolomfr3utils.command.check.ClassificationPurposesCheckCommand;
 import fr.apiscol.metadata.scolomfr3utils.command.check.TaxonPathCheckCommand;
 import fr.apiscol.metadata.scolomfr3utils.command.check.XsdValidationCommand;
@@ -31,15 +35,27 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 
 	private Logger logger;
 	private File scolomfrFile;
-	private List<String> messages = new ArrayList<>();
+	private Map<MessageStatus, List<String>> messages = new HashMap<>();
 	private String scolomfrVersion;
 	private final ISkosApi skosApi = new SkosApi();
 	private Validator validator;
 	private boolean isValid;
 
+	public Scolomfr3Utils() {
+		resetStatus();
+	}
+
 	@Override
 	public void setScolomfrFile(final File scolomfrFile) {
+		resetStatus();
 		this.scolomfrFile = scolomfrFile;
+	}
+
+	@Override
+	public void resetStatus() {
+		isValid = true;
+		initMessages(MessageStatus.FAILURE);
+		initMessages(MessageStatus.WARNING);
 	}
 
 	private void execute(ICommand command) {
@@ -47,20 +63,30 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 			try {
 				command.execute();
 			} catch (CommandFailureException e) {
-				getLogger().info(e);
+				getLogger().debug(e);
 				isValid = false;
-				messages.addAll(e.getMessages());
+				messages.get(MessageStatus.FAILURE).addAll(e.getMessages());
+			} catch (CommandException e) {
+				getLogger().debug(e);
+				messages.get(MessageStatus.WARNING).addAll(e.getMessages());
 			}
 		} else {
 			isValid = false;
-			messages.add("Command " + command.getClass().getName() + " failed to initialize.");
+			messages.get(MessageStatus.FAILURE)
+					.add("Command " + command.getClass().getName() + " failed to initialize.");
 		}
 
 	}
 
+	private void initMessages(MessageStatus status) {
+		ArrayList<String> messagesList = new ArrayList<>();
+		messages.put(status, messagesList);
+
+	}
+
 	@Override
-	public List<String> getMessages() {
-		return messages;
+	public List<String> getMessages(MessageStatus status) {
+		return messages.get(status);
 	}
 
 	@Override
@@ -69,12 +95,11 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 	}
 
 	private boolean init(ICommand command) {
-		isValid = true;
-		messages = new ArrayList<>();
 		if (StringUtils.isEmpty(scolomfrVersion)) {
-			messages.add("Please specify the scolomfr major.minor version.");
+			messages.get(MessageStatus.FAILURE).add("Please specify the scolomfr major.minor version.");
 			return false;
 		}
+		command.setScolomfrVersion(scolomfrVersion);
 		return checkScolomfrFile(command) && loadSkos(command) && loadXsd(command);
 	}
 
@@ -112,7 +137,8 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 	private boolean checkScolomfrFile(ICommand command) {
 		if (command.isScolomfrFileRequired()) {
 			if (null == scolomfrFile) {
-				messages.add("Please provide a scolomfr file before calling scolomfrutils methods.");
+				messages.get(MessageStatus.FAILURE)
+						.add("Please provide a scolomfr file before calling scolomfrutils methods.");
 				return false;
 			}
 			command.setScolomfrFile(scolomfrFile);

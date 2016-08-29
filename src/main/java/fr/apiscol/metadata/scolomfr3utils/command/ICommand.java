@@ -8,7 +8,7 @@ import fr.apiscol.metadata.scolomfr3utils.skos.ISkosApi;
 
 public interface ICommand {
 
-	void execute() throws CommandFailureException;
+	void execute() throws CommandException;
 
 	boolean isXsdRequired();
 
@@ -21,5 +21,9 @@ public interface ICommand {
 	boolean isScolomfrFileRequired();
 
 	void setScolomfrFile(final File scolomfrFile);
+
+	void setScolomfrVersion(final String scolomfrVersion);
+
+	String getScolomfrVersion();
 
 }

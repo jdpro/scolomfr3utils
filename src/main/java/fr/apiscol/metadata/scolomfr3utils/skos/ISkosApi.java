@@ -36,4 +36,12 @@ public interface ISkosApi {
 	 */
 	boolean resourceExists(String Uri);
 
+	/**
+	 * 
+	 * @param URI
+	 *            URI of vocabulary
+	 * @return true if this vocabulary is referenced in skos
+	 */
+	boolean vocabularyExists(String Uri);
+
 }

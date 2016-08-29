@@ -13,6 +13,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import fr.apiscol.metadata.scolomfr3utils.command.AbstractCommand;
+import fr.apiscol.metadata.scolomfr3utils.command.CommandException;
 import fr.apiscol.metadata.scolomfr3utils.command.CommandFailureException;
 import fr.apiscol.metadata.scolomfr3utils.utils.xml.DomDocumentWithLineNumbersBuilder;
 
@@ -21,7 +22,7 @@ public class TaxonPathCheckCommand extends AbstractCommand {
 	static final String NON_CONSECUTIVE_TAXONS_FAILURE_MESSAGE_PATTERN = "Taxon %s (%s) line %s follows taxon %s (%s) but the latter is not connected to the former by a broader relation";
 
 	@Override
-	public void execute() throws CommandFailureException {
+	public void execute() throws CommandException {
 		buildScolomfrDocument();
 		List<List<Node>> taxonNodesLists = null;
 		try {

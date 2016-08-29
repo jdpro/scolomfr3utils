@@ -12,6 +12,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.apache.log4j.Logger;
 import org.w3c.dom.DOMException;
 
+import fr.apiscol.metadata.scolomfr3utils.command.MessageStatus;
 import fr.apiscol.metadata.scolomfr3utils.log.LoggerProvider;
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
@@ -53,15 +54,31 @@ public class App {
 	}
 
 	private static void displayResult() {
-		List<String> messages = scolomfr3Utils.getMessages();
+		separator();
+		getLogger().info(("Validation result : " + (scolomfr3Utils.isValid() ? "success" : "failure").toUpperCase()));
+		if (!scolomfr3Utils.isValid()) {
+			displayMessages(MessageStatus.FAILURE);
+		}
+		displayMessages(MessageStatus.WARNING);
+	}
+
+	private static void separator() {
+		getLogger().info("-------------------------------------------------------");
+	}
+
+	private static void displayMessages(MessageStatus status) {
+		List<String> messages = scolomfr3Utils.getMessages(status);
+		if (messages.isEmpty()) {
+			return;
+		}
+		separator();
+		getLogger().info((status.toString() + " messages").toUpperCase());
+		separator();
 		Iterator<String> messagesIterator = messages.iterator();
-		getLogger().info("Validation result");
-		getLogger().info("Status : " + (scolomfr3Utils.isValid() ? "success" : "failure"));
 		while (messagesIterator.hasNext()) {
 			String message = messagesIterator.next();
 			getLogger().info(message);
 		}
-
 	}
 
 	private static void launchCommand() {

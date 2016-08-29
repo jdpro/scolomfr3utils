@@ -8,6 +8,7 @@ import javax.xml.transform.stream.StreamSource;
 import org.xml.sax.SAXException;
 
 import fr.apiscol.metadata.scolomfr3utils.command.AbstractCommand;
+import fr.apiscol.metadata.scolomfr3utils.command.CommandException;
 import fr.apiscol.metadata.scolomfr3utils.command.CommandFailureException;
 
 /**
@@ -18,7 +19,7 @@ import fr.apiscol.metadata.scolomfr3utils.command.CommandFailureException;
 public class XsdValidationCommand extends AbstractCommand {
 
 	@Override
-	public void execute() throws CommandFailureException {
+	public void execute() throws CommandException {
 		Source source = new StreamSource(getScolomfrFile());
 		try {
 			getLogger().info("Xsd validation of file " + getScolomfrFile().getAbsolutePath());

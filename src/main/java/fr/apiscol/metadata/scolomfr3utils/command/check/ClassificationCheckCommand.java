@@ -1,11 +1,11 @@
 package fr.apiscol.metadata.scolomfr3utils.command.check;
 
 import fr.apiscol.metadata.scolomfr3utils.command.AbstractCommand;
-import fr.apiscol.metadata.scolomfr3utils.command.CommandFailureException;
+import fr.apiscol.metadata.scolomfr3utils.command.CommandException;
 
 public class ClassificationCheckCommand extends AbstractCommand {
 	@Override
-	public void execute() throws CommandFailureException {
+	public void execute() throws CommandException {
 		// TODO Auto-generated method stub
 
 	}

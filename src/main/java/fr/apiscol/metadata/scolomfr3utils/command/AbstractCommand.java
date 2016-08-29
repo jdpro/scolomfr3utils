@@ -31,6 +31,17 @@ public abstract class AbstractCommand implements ICommand {
 	private Logger logger;
 	private final XPathFactory xpathFactory = XPathFactory.newInstance();
 	protected final XPath xPath = xpathFactory.newXPath();
+	private String scolomfrVersion;
+
+	@Override
+	public String getScolomfrVersion() {
+		return scolomfrVersion;
+	}
+
+	@Override
+	public void setScolomfrVersion(final String scolomfrVersion) {
+		this.scolomfrVersion = scolomfrVersion;
+	}
 
 	@Override
 	public void setXsdValidator(Validator xsdValidator) {
