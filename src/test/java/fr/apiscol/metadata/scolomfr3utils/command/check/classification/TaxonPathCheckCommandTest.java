@@ -1,4 +1,4 @@
-package fr.apiscol.metadata.scolomfr3utils.command.check;
+package fr.apiscol.metadata.scolomfr3utils.command.check.classification;
 
 import static org.junit.Assert.assertTrue;
 
@@ -11,6 +11,7 @@ import com.hp.hpl.jena.rdf.model.Model;
 
 import fr.apiscol.metadata.scolomfr3utils.command.AbstractCommand;
 import fr.apiscol.metadata.scolomfr3utils.command.CommandFailureException;
+import fr.apiscol.metadata.scolomfr3utils.command.check.classification.TaxonPathCheckCommand;
 import fr.apiscol.metadata.scolomfr3utils.skos.ISkosApi;
 import fr.apiscol.metadata.scolomfr3utils.skos.SkosApi;
 import fr.apiscol.metadata.scolomfr3utils.skos.SkosLoader;

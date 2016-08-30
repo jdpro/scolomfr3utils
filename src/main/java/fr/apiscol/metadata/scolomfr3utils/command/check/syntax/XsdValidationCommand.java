@@ -1,4 +1,4 @@
-package fr.apiscol.metadata.scolomfr3utils.command.check;
+package fr.apiscol.metadata.scolomfr3utils.command.check.syntax;
 
 import java.io.IOException;
 

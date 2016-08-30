@@ -9,7 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import fr.apiscol.metadata.scolomfr3utils.command.MessageStatus;
-import fr.apiscol.metadata.scolomfr3utils.command.check.XsdValidationCommandTest;
+import fr.apiscol.metadata.scolomfr3utils.command.check.syntax.XsdValidationCommandTest;
 
 /**
  * Test xsd validation with different kinds of files

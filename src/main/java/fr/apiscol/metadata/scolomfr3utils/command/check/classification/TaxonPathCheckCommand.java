@@ -1,4 +1,4 @@
-package fr.apiscol.metadata.scolomfr3utils.command.check;
+package fr.apiscol.metadata.scolomfr3utils.command.check.classification;
 
 import java.util.ArrayList;
 import java.util.Iterator;

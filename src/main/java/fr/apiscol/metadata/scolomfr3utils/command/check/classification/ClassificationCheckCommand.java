@@ -1,4 +1,4 @@
-package fr.apiscol.metadata.scolomfr3utils.command.check;
+package fr.apiscol.metadata.scolomfr3utils.command.check.classification;
 
 import fr.apiscol.metadata.scolomfr3utils.command.AbstractCommand;
 import fr.apiscol.metadata.scolomfr3utils.command.CommandException;

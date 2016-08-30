@@ -1,4 +1,4 @@
-package fr.apiscol.metadata.scolomfr3utils.command.check;
+package fr.apiscol.metadata.scolomfr3utils.command.check.classification;
 
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
@@ -11,7 +11,6 @@ import fr.apiscol.metadata.scolomfr3utils.command.AbstractCommand;
 import fr.apiscol.metadata.scolomfr3utils.command.CommandException;
 import fr.apiscol.metadata.scolomfr3utils.command.CommandFailureException;
 import fr.apiscol.metadata.scolomfr3utils.command.CommandWarningException;
-import fr.apiscol.metadata.scolomfr3utils.command.check.classification.ClassificationPurposeAndVocapularyMatcherFactory;
 import fr.apiscol.metadata.scolomfr3utils.utils.xml.DomDocumentWithLineNumbersBuilder;
 
 public class ClassificationPurposesCheckCommand extends AbstractCommand {

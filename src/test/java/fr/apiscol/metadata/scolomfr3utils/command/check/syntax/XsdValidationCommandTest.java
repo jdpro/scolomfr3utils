@@ -1,4 +1,4 @@
-package fr.apiscol.metadata.scolomfr3utils.command.check;
+package fr.apiscol.metadata.scolomfr3utils.command.check.syntax;
 
 import static org.junit.Assert.assertTrue;
 
@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import fr.apiscol.metadata.scolomfr3utils.command.CommandFailureException;
+import fr.apiscol.metadata.scolomfr3utils.command.check.syntax.XsdValidationCommand;
 import fr.apiscol.metadata.scolomfr3utils.xsd.ValidatorLoader;
 
 /**

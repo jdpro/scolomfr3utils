@@ -1,7 +1,6 @@
 package fr.apiscol.metadata.scolomfr3utils;
 
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 
@@ -9,7 +8,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import fr.apiscol.metadata.scolomfr3utils.command.MessageStatus;
-import fr.apiscol.metadata.scolomfr3utils.command.check.XsdValidationCommandTest;
 
 /**
  * Test xsd validation with different kinds of files
