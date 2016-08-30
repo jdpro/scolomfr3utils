@@ -3,26 +3,20 @@
 	xmlns="http://ltsc.ieee.org/xsd/LOM">
 	<general>
 		<identifier>
-			<catalog>URI</catalog>
-			<entry>https://any-uri</entry>
+			<catalog>ARK</catalog>
+			<entry>https://neteduc-cloud.deventeduc.fr/ark://uri-test-sca</entry>
 		</identifier>
 		<title>
-			<string language="http://id.loc.gov/vocabulary/iso639-2/fre">Taxon consécutifs invalides</string>
+			<string language="http://id.loc.gov/vocabulary/iso639-2/fre">Classification sans purpose</string>
 		</title>
 		<language>fr</language>
 		<description>
-			<string language="http://id.loc.gov/vocabulary/iso639-2/fre">Cette ressource présente des taxons
-				consécutifs qui ne sont pas reliés par une relation narrower/broader
+			<string language="http://id.loc.gov/vocabulary/iso639-2/fre">Cette ressource présente une classification
+				sans élément purpose
 			</string>
 		</description>
 	</general>
 	<classification>
-		<purpose>
-			<source>SCOLOMFRv2.1</source>
-			<value>http://data.education.fr/voc/scolomfr/concept/educational_level
-			</value>
-			<label>niveau éducatif détaillé</label>
-		</purpose>
 		<taxonPath>
 			<source>
 				<string language="http://id.loc.gov/vocabulary/iso639-2/fre">http://data.education.fr/voc/scolomfr/scolomfr-voc-022
@@ -47,28 +41,6 @@
 				</id>
 				<entry>
 					<string language="http://id.loc.gov/vocabulary/iso639-2/fre">4e</string>
-				</entry>
-			</taxon>
-			<taxon>
-				<id>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-022-num-020
-				</id>
-				<entry>
-					<string language="http://id.loc.gov/vocabulary/iso639-2/fre">5e</string>
-				</entry>
-			</taxon>
-			<taxon>
-				<id>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-022-num-121
-				</id>
-				<entry>
-					<string language="http://id.loc.gov/vocabulary/iso639-2/fre">tranches d'âge de l'enseignement scolaire
-					</string>
-				</entry>
-			</taxon>
-			<taxon>
-				<id>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-022-num-239
-				</id>
-				<entry>
-					<string language="http://id.loc.gov/vocabulary/iso639-2/fre">11-15 ans</string>
 				</entry>
 			</taxon>
 		</taxonPath>

@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<lom xmlns:lomfr="http://www.lom-fr.fr/xsd/LOMFR" xmlns:scolomfr="http://www.lom-fr.fr/xsd/SCOLOMFR"
+	xmlns="http://ltsc.ieee.org/xsd/LOM">
+	<general>
+		<identifier>
+			<catalog>URI</catalog>
+			<entry>https://any-uri</entry>
+		</identifier>
+		<title>
+			<string language="http://id.loc.gov/vocabulary/iso639-2/fre">Classification sous un objectif inadapté au
+				vocabulaire
+			</string>
+		</title>
+		<language>fr</language>
+		<description>
+			<string language="http://id.loc.gov/vocabulary/iso639-2/fre">Cette ressource est indexée avec le voc 22
+				sous le purpose "domaine d'enseignement"
+			</string>
+		</description>
+	</general>
+	<classification>
+		<purpose>
+			<source>SCOLOMFRv2.1</source>
+			<value>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-028-num-003
+			</value>
+			<label>domaine d'enseignement</label>
+		</purpose>
+		<taxonPath>
+			<source>
+				<!-- Invalid purpose. should be http://data.education.fr/voc/scolomfr/scolomfr-voc-015 -->
+				<string language="http://id.loc.gov/vocabulary/iso639-2/fre">http://data.education.fr/voc/scolomfr/scolomfr-voc-022
+				</string>
+			</source>
+			<taxon>
+				<id>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-015-num-1830
+				</id>
+				<entry>
+					<string language="http://id.loc.gov/vocabulary/iso639-2/fre">Domaine d'enseignement (2015-)</string>
+				</entry>
+			</taxon>
+			<taxon>
+				<id>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-015-num-1273
+				</id>
+				<entry>
+					<string language="http://id.loc.gov/vocabulary/iso639-2/fre">enseignements du collège</string>
+				</entry>
+			</taxon>
+			<taxon>
+				<id>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-015-num-1229
+				</id>
+				<entry>
+					<string language="http://id.loc.gov/vocabulary/iso639-2/fre">histoire des arts (cycle 4)</string>
+				</entry>
+			</taxon>
+			<taxon>
+				<id>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-015-num-1230
+				</id>
+				<entry>
+					<string language="http://id.loc.gov/vocabulary/iso639-2/fre">arts et société à l'époque antique et au
+						Haut Moyen Age (histoire des arts cycle 4)
+					</string>
+				</entry>
+			</taxon>
+		</taxonPath>
+	</classification>
+</lom>

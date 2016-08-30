@@ -3,8 +3,8 @@
 	xmlns="http://ltsc.ieee.org/xsd/LOM">
 	<general>
 		<identifier>
-			<catalog>ARK</catalog>
-			<entry>https://neteduc-cloud.deventeduc.fr/ark://uri-test-sca</entry>
+			<catalog>URI</catalog>
+			<entry>https://any.uri</entry>
 		</identifier>
 		<title>
 			<string language="http://id.loc.gov/vocabulary/iso639-2/fre">Classification sous un objectif inadapté au
@@ -13,8 +13,8 @@
 		</title>
 		<language>fr</language>
 		<description>
-			<string language="http://id.loc.gov/vocabulary/iso639-2/fre">Cette ressource présente des taxons
-				consécutifs qui ne sont pas reliés par une relation narrower/broader
+			<string language="http://id.loc.gov/vocabulary/iso639-2/fre">Cette ressource est indexée avec le voc 22
+				sous le purpose "domaine d'enseignement"
 			</string>
 		</description>
 		<aggregationLevel>
@@ -105,8 +105,8 @@ END:VCARD]]>
 		</purpose>
 		<taxonPath>
 			<source>
-				<!-- Invalid purpose. should be http://data.education.fr/voc/scolomfr/scolomfr-voc-015 -->
-				<string language="http://id.loc.gov/vocabulary/iso639-2/fre">http://data.education.fr/voc/scolomfr/scolomfr-voc-022
+				<!-- Valid purpose -->
+				<string language="http://id.loc.gov/vocabulary/iso639-2/fre">http://data.education.fr/voc/scolomfr/scolomfr-voc-015
 				</string>
 			</source>
 			<taxon>

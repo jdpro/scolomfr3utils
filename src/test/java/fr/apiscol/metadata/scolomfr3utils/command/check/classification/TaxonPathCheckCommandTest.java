@@ -24,7 +24,7 @@ public class TaxonPathCheckCommandTest {
 
 	private static final String NON_CONSECUTIVE_TAXONS_FAILURE_MESSAGE = String.format(
 			TaxonPathCheckCommand.NON_CONSECUTIVE_TAXONS_FAILURE_MESSAGE_PATTERN,
-			"http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-022-num-020", "5e", "186",
+			"http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-022-num-020", "5e", "53",
 			"http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-022-num-021", "4e");
 	private AbstractCommand taxonPathCheckCommand;
 
@@ -38,7 +38,7 @@ public class TaxonPathCheckCommandTest {
 	}
 
 	@Test
-	public void testXsdValidationSuccess() throws Exception {
+	public void testValidationSuccessWithConsecutiveTaxons() throws Exception {
 		File scolomfrFile = new File("src/test/data/3.0/9/valid/consecutive-taxons.xml");
 		taxonPathCheckCommand.setScolomfrFile(scolomfrFile);
 		taxonPathCheckCommand.execute();
@@ -46,7 +46,7 @@ public class TaxonPathCheckCommandTest {
 	}
 
 	@Test
-	public void testXsdValidationSuccessWithUnknownTaxons() throws Exception {
+	public void testValidationSuccessWithUnknownTaxons() throws Exception {
 		File scolomfrFile = new File("src/test/data/3.0/9/valid/unknown-taxons.xml");
 		taxonPathCheckCommand.setScolomfrFile(scolomfrFile);
 		taxonPathCheckCommand.execute();
@@ -54,7 +54,7 @@ public class TaxonPathCheckCommandTest {
 	}
 
 	@Test(expected = CommandFailureException.class)
-	public void testXsdValidationFailureWithNonConsecutiveTaxons() throws Exception {
+	public void testValidationFailureWithNonConsecutiveTaxons() throws Exception {
 		File scolomfrFile = new File("src/test/data/3.0/9/invalid/non-consecutive-taxons.xml");
 		taxonPathCheckCommand.setScolomfrFile(scolomfrFile);
 		try {

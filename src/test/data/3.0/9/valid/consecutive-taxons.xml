@@ -3,8 +3,8 @@
 	xmlns="http://ltsc.ieee.org/xsd/LOM">
 	<general>
 		<identifier>
-			<catalog>ARK</catalog>
-			<entry>https://neteduc-cloud.deventeduc.fr/ark://uri-test-sca</entry>
+			<catalog>URI</catalog>
+			<entry>https://uri.net</entry>
 		</identifier>
 		<title>
 			<string language="http://id.loc.gov/vocabulary/iso639-2/fre">Taxon consécutifs invalides</string>
