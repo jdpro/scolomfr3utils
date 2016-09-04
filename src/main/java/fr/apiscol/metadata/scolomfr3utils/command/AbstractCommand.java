@@ -3,6 +3,7 @@ package fr.apiscol.metadata.scolomfr3utils.command;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,7 +37,7 @@ abstract public class AbstractCommand implements ICommand {
 	private final XPathFactory xpathFactory = XPathFactory.newInstance();
 	protected final XPath xPath = xpathFactory.newXPath();
 	private String scolomfrVersion;
-	private Map<MessageStatus, List<String>> messages = new HashMap<>();
+	private Map<MessageStatus, List<String>> messages = new EnumMap<>(MessageStatus.class);
 
 	public AbstractCommand() {
 		initMessages(MessageStatus.FAILURE);
