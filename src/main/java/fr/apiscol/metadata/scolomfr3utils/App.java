@@ -84,13 +84,14 @@ public class App {
 	private static void launchCommand() {
 		Map<String, Pair<String, String>> commandLineOptions = Configuration.getInstance().commandLineOptions();
 		Iterator<String> it = commandLineOptions.keySet().iterator();
+		String methodName = null;
 		while (it.hasNext()) {
 			String option = it.next();
 			if (!options.has(option)) {
 				continue;
 			}
 			Pair<String, String> pair = commandLineOptions.get(option);
-			String methodName = pair.getLeft();
+			methodName = pair.getLeft();
 			try {
 				Method methodToCall = scolomfr3Utils.getClass().getDeclaredMethod(methodName, new Class[0]);
 				methodToCall.invoke(scolomfr3Utils);
@@ -102,7 +103,11 @@ public class App {
 				getLogger().error(e2);
 			}
 		}
-		getLogger().error("ScolomfrUtils invoked without any command. Use -h option to display help.");
+		if (null == methodName) {
+			getLogger().error(
+					"ScolomfrUtils invoked without any command or with unrecognized command. Use -h option to display help.");
+		}
+
 	}
 
 	private static void loadXmlFile() {

@@ -44,4 +44,6 @@ public interface ISkosApi {
 	 */
 	boolean vocabularyExists(String Uri);
 
+	boolean resourceIsMemberOfVocabulary(String resourceUri, String vocabUri);
+
 }

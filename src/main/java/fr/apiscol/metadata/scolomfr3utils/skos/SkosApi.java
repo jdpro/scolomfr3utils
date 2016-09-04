@@ -77,4 +77,14 @@ public class SkosApi implements ISkosApi {
 		return StringUtils.equalsIgnoreCase(typeStr, HTTP_WWW_W3_ORG_2004_02_SKOS_CORE + "Collection");
 	}
 
+	@Override
+	public boolean resourceIsMemberOfVocabulary(String resourceUri, String vocabUri) {
+		Resource subject = getSkosModel().getResource(vocabUri);
+		Resource object = getSkosModel().getResource(vocabUri);
+		Property memberProperty = getSkosModel().getProperty(HTTP_WWW_W3_ORG_2004_02_SKOS_CORE, "member");
+		Selector memberPropertySelector = new SimpleSelector(subject, memberProperty, object);
+		StmtIterator stmts = getSkosModel().listStatements(memberPropertySelector);
+		return stmts.hasNext();
+	}
+
 }
