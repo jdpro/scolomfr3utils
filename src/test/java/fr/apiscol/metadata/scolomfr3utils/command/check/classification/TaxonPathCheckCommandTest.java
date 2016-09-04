@@ -43,7 +43,7 @@ public class TaxonPathCheckCommandTest {
 		File scolomfrFile = new File("src/test/data/3.0/9/valid/consecutive-taxons.xml");
 		taxonPathCheckCommand.setScolomfrFile(scolomfrFile);
 		boolean result = taxonPathCheckCommand.execute();
-		assertTrue("Classification purpose check command should be successfull.", result);
+		assertTrue("Classification purpose check command should be successful.", result);
 
 	}
 
@@ -52,7 +52,7 @@ public class TaxonPathCheckCommandTest {
 		File scolomfrFile = new File("src/test/data/3.0/9/valid/unknown-taxons.xml");
 		taxonPathCheckCommand.setScolomfrFile(scolomfrFile);
 		boolean result = taxonPathCheckCommand.execute();
-		assertTrue("Taxonpaths check command should be successfull.", result);
+		assertTrue("Taxonpaths check command should be successful.", result);
 	}
 
 	@Test

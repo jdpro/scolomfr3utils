@@ -31,7 +31,7 @@ public class XsdValidationCommandTest {
 		File scolomfrFile = new File("src/test/data/3.0/any/valid/exemple.xml");
 		xsdValidationCommand.setScolomfrFile(scolomfrFile);
 		boolean result = xsdValidationCommand.execute();
-		assertTrue("Classification purpose check command should be successfull.", result);
+		assertTrue("Classification purpose check command should be successful.", result);
 	}
 
 	@Test
