@@ -1,9 +1,9 @@
 package fr.apiscol.metadata.scolomfr3utils.command.check.classification;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
-import java.util.Iterator;
 import java.util.List;
 
 import org.junit.Before;
@@ -12,7 +12,7 @@ import org.junit.Test;
 import com.hp.hpl.jena.rdf.model.Model;
 
 import fr.apiscol.metadata.scolomfr3utils.command.AbstractCommand;
-import fr.apiscol.metadata.scolomfr3utils.command.CommandFailureException;
+import fr.apiscol.metadata.scolomfr3utils.command.MessageStatus;
 import fr.apiscol.metadata.scolomfr3utils.skos.ISkosApi;
 import fr.apiscol.metadata.scolomfr3utils.skos.SkosApi;
 import fr.apiscol.metadata.scolomfr3utils.skos.SkosLoader;
@@ -38,25 +38,16 @@ public class ClassificationPurposeCheckCommandTest {
 		classificationPurposesCheckCommand.setScolomfrVersion("3.0");
 	}
 
-	@Test(expected = CommandFailureException.class)
+	@Test
 	public void testValidationFailureWithWrongPurpose() throws Exception {
 		File scolomfrFile = new File("src/test/data/3.0/9/invalid/classification-with-wrong-purpose.xml");
 		classificationPurposesCheckCommand.setScolomfrFile(scolomfrFile);
-		try {
-			classificationPurposesCheckCommand.execute();
-		} catch (CommandFailureException e) {
-			List<String> mes = e.getMessages();
-			Iterator<String> it = mes.iterator();
-			while (it.hasNext()) {
-				String string = (String) it.next();
-				System.out.println(string);
-			}
-			assertTrue("The validation messages should contain : " + VOCABULARY_NOT_ALLOWED_UNDER_PURPOSE_MESSAGE,
-					e.getMessages().contains(VOCABULARY_NOT_ALLOWED_UNDER_PURPOSE_MESSAGE));
-			throw (e);
-		}
-	}
+		boolean result = classificationPurposesCheckCommand.execute();
+		assertFalse("Classification purpose check command should have failed.", result);
+		List<String> failureMessages = classificationPurposesCheckCommand.getMessages(MessageStatus.FAILURE);
+		assertTrue("The validation messages should contain : " + VOCABULARY_NOT_ALLOWED_UNDER_PURPOSE_MESSAGE,
+				failureMessages.contains(VOCABULARY_NOT_ALLOWED_UNDER_PURPOSE_MESSAGE));
 
-	
+	}
 
 }

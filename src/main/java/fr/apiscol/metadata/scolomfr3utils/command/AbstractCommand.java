@@ -2,6 +2,10 @@ package fr.apiscol.metadata.scolomfr3utils.command;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.validation.Validator;
@@ -21,7 +25,7 @@ import fr.apiscol.metadata.scolomfr3utils.utils.xml.DomDocumentWithLineNumbersBu
  * @{inheritDoc}
  *
  */
-public abstract class AbstractCommand implements ICommand {
+abstract public class AbstractCommand implements ICommand {
 
 	private static DomDocumentWithLineNumbersBuilder domDocumentBuilder;
 	private Validator xsdValidator;
@@ -32,6 +36,17 @@ public abstract class AbstractCommand implements ICommand {
 	private final XPathFactory xpathFactory = XPathFactory.newInstance();
 	protected final XPath xPath = xpathFactory.newXPath();
 	private String scolomfrVersion;
+	private Map<MessageStatus, List<String>> messages = new HashMap<>();
+
+	public AbstractCommand() {
+		initMessages(MessageStatus.FAILURE);
+		initMessages(MessageStatus.WARNING);
+	}
+
+	private void initMessages(MessageStatus status) {
+		ArrayList<String> messagesList = new ArrayList<>();
+		messages.put(status, messagesList);
+	}
 
 	@Override
 	public String getScolomfrVersion() {
@@ -77,7 +92,7 @@ public abstract class AbstractCommand implements ICommand {
 		return logger;
 	}
 
-	protected void buildScolomfrDocument() throws CommandFailureException {
+	protected boolean buildScolomfrDocument() {
 		if (domDocumentBuilder == null) {
 			domDocumentBuilder = new DomDocumentWithLineNumbersBuilder();
 		}
@@ -85,9 +100,18 @@ public abstract class AbstractCommand implements ICommand {
 			scolomfrDocument = domDocumentBuilder.parse(getScolomfrFile());
 		} catch (IOException | SAXException | ParserConfigurationException e) {
 			getLogger().error(e);
-			throw new CommandFailureException(e.getMessage());
+			return false;
 		}
+		return true;
+	}
 
+	@Override
+	public List<String> getMessages(MessageStatus status) {
+		return messages.get(status);
+	}
+
+	protected void addMessage(MessageStatus status, String message) {
+		messages.get(status).add(message);
 	}
 
 }

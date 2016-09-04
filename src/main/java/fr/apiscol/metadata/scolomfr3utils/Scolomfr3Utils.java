@@ -13,8 +13,6 @@ import org.apache.log4j.Logger;
 
 import com.hp.hpl.jena.rdf.model.Model;
 
-import fr.apiscol.metadata.scolomfr3utils.command.CommandException;
-import fr.apiscol.metadata.scolomfr3utils.command.CommandFailureException;
 import fr.apiscol.metadata.scolomfr3utils.command.ICommand;
 import fr.apiscol.metadata.scolomfr3utils.command.MessageStatus;
 import fr.apiscol.metadata.scolomfr3utils.command.check.classification.ClassificationPurposesCheckCommand;
@@ -60,17 +58,10 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 	}
 
 	private void execute(ICommand command) {
-		if (init(command)) {
-			try {
-				command.execute();
-			} catch (CommandFailureException e) {
-				getLogger().debug(e);
-				isValid = false;
-				messages.get(MessageStatus.FAILURE).addAll(e.getMessages());
-			} catch (CommandException e) {
-				getLogger().debug(e);
-				messages.get(MessageStatus.WARNING).addAll(e.getMessages());
-			}
+		if (init(command)) {				
+				isValid = isValid && command.execute();
+				messages.get(MessageStatus.FAILURE).addAll(command.getMessages(MessageStatus.FAILURE));
+				messages.get(MessageStatus.WARNING).addAll(command.getMessages(MessageStatus.WARNING));			
 		} else {
 			isValid = false;
 			messages.get(MessageStatus.FAILURE)
@@ -82,7 +73,6 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 	private void initMessages(MessageStatus status) {
 		ArrayList<String> messagesList = new ArrayList<>();
 		messages.put(status, messagesList);
-
 	}
 
 	@Override

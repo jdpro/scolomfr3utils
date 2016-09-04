@@ -13,8 +13,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import fr.apiscol.metadata.scolomfr3utils.command.AbstractCommand;
-import fr.apiscol.metadata.scolomfr3utils.command.CommandException;
-import fr.apiscol.metadata.scolomfr3utils.command.CommandFailureException;
+import fr.apiscol.metadata.scolomfr3utils.command.MessageStatus;
 import fr.apiscol.metadata.scolomfr3utils.utils.xml.DomDocumentWithLineNumbersBuilder;
 
 public class TaxonPathCheckCommand extends AbstractCommand {
@@ -22,7 +21,7 @@ public class TaxonPathCheckCommand extends AbstractCommand {
 	static final String NON_CONSECUTIVE_TAXONS_FAILURE_MESSAGE_PATTERN = "Taxon %s (%s) line %s follows taxon %s (%s) but the latter is not connected to the former by a broader relation";
 
 	@Override
-	public void execute() throws CommandException {
+	public boolean execute() {
 		buildScolomfrDocument();
 		List<List<Node>> taxonNodesLists = null;
 		try {
@@ -30,20 +29,23 @@ public class TaxonPathCheckCommand extends AbstractCommand {
 
 		} catch (XPathExpressionException e) {
 			getLogger().error(e);
-			throw new CommandFailureException(e.getMessage());
+			addMessage(MessageStatus.FAILURE, e.getMessage());
+			return false;
 		}
 		List<Node> taxonNodesList = null;
+		boolean valid = true;
 		for (int i = 0; i < taxonNodesLists.size(); i++) {
 			taxonNodesList = taxonNodesLists.get(i);
-			checkTaxonAreConsecutive(taxonNodesList);
+			valid &= checkTaxonAreConsecutive(taxonNodesList);
 		}
+		return valid;
 	}
 
-	private void checkTaxonAreConsecutive(List<Node> taxonNodesList) throws CommandFailureException {
+	private boolean checkTaxonAreConsecutive(List<Node> taxonNodesList) {
 		Iterator<Node> it = taxonNodesList.iterator();
 		String previousTaxonIdUri = null;
 		String taxonIdUri;
-		ArrayList<String> messages = new ArrayList<>();
+		boolean valid = true;
 		while (it.hasNext()) {
 			Node taxonId = (Node) it.next();
 			taxonIdUri = taxonId.getTextContent().trim();
@@ -54,16 +56,14 @@ public class TaxonPathCheckCommand extends AbstractCommand {
 					String previousTaxonPreflabel = getSkosApi().getPrefLabelForResource(previousTaxonIdUri);
 					String lineNumber = taxonId.getUserData(DomDocumentWithLineNumbersBuilder.LINE_NUMBER_KEY)
 							.toString();
-					messages.add(String.format(
-							NON_CONSECUTIVE_TAXONS_FAILURE_MESSAGE_PATTERN,
+					addMessage(MessageStatus.FAILURE, String.format(NON_CONSECUTIVE_TAXONS_FAILURE_MESSAGE_PATTERN,
 							taxonIdUri, taxonPreflabel, lineNumber, previousTaxonIdUri, previousTaxonPreflabel));
+					valid = false;
 				}
 			}
 			previousTaxonIdUri = taxonIdUri;
 		}
-		if (!messages.isEmpty()) {
-			throw new CommandFailureException(messages);
-		}
+		return valid;
 	}
 
 	private List<List<Node>> getTaxonLists() throws XPathExpressionException {

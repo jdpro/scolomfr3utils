@@ -1,8 +1,10 @@
 package fr.apiscol.metadata.scolomfr3utils.command.check.classification;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -10,8 +12,7 @@ import org.junit.Test;
 import com.hp.hpl.jena.rdf.model.Model;
 
 import fr.apiscol.metadata.scolomfr3utils.command.AbstractCommand;
-import fr.apiscol.metadata.scolomfr3utils.command.CommandFailureException;
-import fr.apiscol.metadata.scolomfr3utils.command.check.classification.TaxonPathCheckCommand;
+import fr.apiscol.metadata.scolomfr3utils.command.MessageStatus;
 import fr.apiscol.metadata.scolomfr3utils.skos.ISkosApi;
 import fr.apiscol.metadata.scolomfr3utils.skos.SkosApi;
 import fr.apiscol.metadata.scolomfr3utils.skos.SkosLoader;
@@ -41,7 +42,8 @@ public class TaxonPathCheckCommandTest {
 	public void testValidationSuccessWithConsecutiveTaxons() throws Exception {
 		File scolomfrFile = new File("src/test/data/3.0/9/valid/consecutive-taxons.xml");
 		taxonPathCheckCommand.setScolomfrFile(scolomfrFile);
-		taxonPathCheckCommand.execute();
+		boolean result = taxonPathCheckCommand.execute();
+		assertTrue("Classification purpose check command should be successfull.", result);
 
 	}
 
@@ -49,21 +51,20 @@ public class TaxonPathCheckCommandTest {
 	public void testValidationSuccessWithUnknownTaxons() throws Exception {
 		File scolomfrFile = new File("src/test/data/3.0/9/valid/unknown-taxons.xml");
 		taxonPathCheckCommand.setScolomfrFile(scolomfrFile);
-		taxonPathCheckCommand.execute();
-
+		boolean result = taxonPathCheckCommand.execute();
+		assertTrue("Taxonpaths check command should be successfull.", result);
 	}
 
-	@Test(expected = CommandFailureException.class)
+	@Test
 	public void testValidationFailureWithNonConsecutiveTaxons() throws Exception {
 		File scolomfrFile = new File("src/test/data/3.0/9/invalid/non-consecutive-taxons.xml");
 		taxonPathCheckCommand.setScolomfrFile(scolomfrFile);
-		try {
-			taxonPathCheckCommand.execute();
-		} catch (CommandFailureException e) {
-			assertTrue("The validation messages should contain : " + NON_CONSECUTIVE_TAXONS_FAILURE_MESSAGE,
-					e.getMessages().contains(NON_CONSECUTIVE_TAXONS_FAILURE_MESSAGE));
-			throw (e);
-		}
+		boolean result = taxonPathCheckCommand.execute();
+		assertFalse("TaxonPath check command should have failed.", result);
+		List<String> failureMessages = taxonPathCheckCommand.getMessages(MessageStatus.FAILURE);
+		assertTrue("The validation messages should contain : " + NON_CONSECUTIVE_TAXONS_FAILURE_MESSAGE,
+				failureMessages.contains(NON_CONSECUTIVE_TAXONS_FAILURE_MESSAGE));
+
 	}
 
 }

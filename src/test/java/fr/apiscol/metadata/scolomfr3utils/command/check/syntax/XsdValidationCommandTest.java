@@ -1,14 +1,15 @@
 package fr.apiscol.metadata.scolomfr3utils.command.check.syntax;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import fr.apiscol.metadata.scolomfr3utils.command.CommandFailureException;
-import fr.apiscol.metadata.scolomfr3utils.command.check.syntax.XsdValidationCommand;
+import fr.apiscol.metadata.scolomfr3utils.command.MessageStatus;
 import fr.apiscol.metadata.scolomfr3utils.xsd.ValidatorLoader;
 
 /**
@@ -29,21 +30,20 @@ public class XsdValidationCommandTest {
 	public void testXsdValidationSuccess() throws Exception {
 		File scolomfrFile = new File("src/test/data/3.0/any/valid/exemple.xml");
 		xsdValidationCommand.setScolomfrFile(scolomfrFile);
-		xsdValidationCommand.execute();
-
+		boolean result = xsdValidationCommand.execute();
+		assertTrue("Classification purpose check command should be successfull.", result);
 	}
 
-	@Test(expected = CommandFailureException.class)
+	@Test
 	public void testXsdValidationFailure() throws Exception {
 		File scolomfrFile = new File("src/test/data/3.0/1/invalid/double-general.xml");
 		xsdValidationCommand.setScolomfrFile(scolomfrFile);
-		try {
-			xsdValidationCommand.execute();
-		} catch (CommandFailureException e) {
-			assertTrue("The validation messages should contain : " + DUPLICATE_GENERAL_ELEMENT_FAILURE_MESSAGE,
-					e.getMessages().contains(DUPLICATE_GENERAL_ELEMENT_FAILURE_MESSAGE));
-			throw (e);
-		}
+		boolean result = xsdValidationCommand.execute();
+		assertFalse("Classification purpose check command should have failed.", result);
+		List<String> failureMessages = xsdValidationCommand.getMessages(MessageStatus.FAILURE);
+		assertTrue("The validation messages should contain : " + DUPLICATE_GENERAL_ELEMENT_FAILURE_MESSAGE,
+				failureMessages.contains(DUPLICATE_GENERAL_ELEMENT_FAILURE_MESSAGE));
+
 	}
 
 }

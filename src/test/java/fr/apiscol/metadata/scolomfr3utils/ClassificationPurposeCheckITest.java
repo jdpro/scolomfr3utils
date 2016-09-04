@@ -35,7 +35,9 @@ public class ClassificationPurposeCheckITest {
 		File scolomfrFile = new File("src/test/data/3.0/9/valid/classification-with-right-purpose.xml");
 		scolomfrutils.setScolomfrFile(scolomfrFile);
 		scolomfrutils.checkAll();
-		assertTrue("There should not be failure messages", scolomfrutils.getMessages(MessageStatus.FAILURE).isEmpty());
+		assertTrue(
+				"There should not be failure messages " + scolomfrutils.getMessages(MessageStatus.FAILURE).toString(),
+				scolomfrutils.getMessages(MessageStatus.FAILURE).isEmpty());
 		assertTrue("Result of validation with the official exemple file should be valid", scolomfrutils.isValid());
 	}
 

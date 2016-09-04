@@ -8,8 +8,7 @@ import javax.xml.transform.stream.StreamSource;
 import org.xml.sax.SAXException;
 
 import fr.apiscol.metadata.scolomfr3utils.command.AbstractCommand;
-import fr.apiscol.metadata.scolomfr3utils.command.CommandException;
-import fr.apiscol.metadata.scolomfr3utils.command.CommandFailureException;
+import fr.apiscol.metadata.scolomfr3utils.command.MessageStatus;
 
 /**
  * 
@@ -19,7 +18,7 @@ import fr.apiscol.metadata.scolomfr3utils.command.CommandFailureException;
 public class XsdValidationCommand extends AbstractCommand {
 
 	@Override
-	public void execute() throws CommandException {
+	public boolean execute() {
 		Source source = new StreamSource(getScolomfrFile());
 		try {
 			getLogger().info("Xsd validation of file " + getScolomfrFile().getAbsolutePath());
@@ -28,13 +27,16 @@ public class XsdValidationCommand extends AbstractCommand {
 		} catch (SAXException e) {
 			getLogger().error("XSD validation failure");
 			getLogger().error(e);
-			throw new CommandFailureException(e.getMessage());
+			addMessage(MessageStatus.FAILURE, e.getMessage());
+			return false;
 		} catch (IOException e) {
 			String message = "Unable to open scolomfr file " + getScolomfrFile().getAbsolutePath()
 					+ " for xsd validation : " + e.getMessage();
 			getLogger().error(e);
-			throw new CommandFailureException(message);
+			addMessage(MessageStatus.FAILURE, message);
+			return false;
 		}
+		return true;
 	}
 
 	@Override

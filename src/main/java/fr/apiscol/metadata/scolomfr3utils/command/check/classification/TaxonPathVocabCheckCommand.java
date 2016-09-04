@@ -1,6 +1,5 @@
 package fr.apiscol.metadata.scolomfr3utils.command.check.classification;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -15,59 +14,51 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import fr.apiscol.metadata.scolomfr3utils.command.AbstractCommand;
-import fr.apiscol.metadata.scolomfr3utils.command.CommandException;
-import fr.apiscol.metadata.scolomfr3utils.command.CommandFailureException;
-import fr.apiscol.metadata.scolomfr3utils.command.CommandWarningException;
+import fr.apiscol.metadata.scolomfr3utils.command.MessageStatus;
 import fr.apiscol.metadata.scolomfr3utils.utils.xml.DomDocumentWithLineNumbersBuilder;
 
 public class TaxonPathVocabCheckCommand extends AbstractCommand {
 
 	private static final String TAXON_DOES_NOT_BELONG_TO_VOCABULARY_MESSAGE_TEMPLATE = "Taxon %s line %s does not belong to vocabulary %s";
 	private static final String MISSING_SOURCE_ELEMENT_MESSAGE_TEMPLATE = "Classification node line %s is missing a source child élément.";
-	private ArrayList<String> warningMessages;
-	private ArrayList<String> failureMessages;
 
 	@Override
-	public void execute() throws CommandException {
+	public boolean execute() {
 		buildScolomfrDocument();
-		warningMessages = new ArrayList<>();
-		failureMessages = new ArrayList<>();
 		Map<String, List<Node>> taxonNodesListsBySource = null;
 		try {
 			taxonNodesListsBySource = getTaxonNodesListsBySource();
 
 		} catch (XPathExpressionException e) {
 			getLogger().error(e);
-			throw new CommandFailureException(e.getMessage());
+			addMessage(MessageStatus.FAILURE, e.getMessage());
+			return false;
 		}
 		Iterator<String> it = taxonNodesListsBySource.keySet().iterator();
+		boolean valid = true;
 		while (it.hasNext()) {
 			String vocabUri = (String) it.next();
 			if (!getSkosApi().vocabularyExists(vocabUri)) {
 				continue;
 			}
-			checkTaxonsBelongToVocabulary(vocabUri, taxonNodesListsBySource.get(vocabUri));
+			valid &= checkTaxonsBelongToVocabulary(vocabUri, taxonNodesListsBySource.get(vocabUri));
 		}
-		if (!failureMessages.isEmpty()) {
-			throw new CommandFailureException(failureMessages);
-		}
-		if (!warningMessages.isEmpty()) {
-			throw new CommandWarningException(failureMessages);
-		}
+		return valid;
 	}
 
-	private void checkTaxonsBelongToVocabulary(String vocabUri, List<Node> taxonNodesList)
-			throws CommandFailureException {
+	private boolean checkTaxonsBelongToVocabulary(String vocabUri, List<Node> taxonNodesList) {
 		Node taxonNode;
+		boolean valid = true;
 		for (int i = 0; i < taxonNodesList.size(); i++) {
 			taxonNode = taxonNodesList.get(i);
 			String taxonuri = taxonNode.getTextContent().trim();
 			if (!getSkosApi().resourceIsMemberOfVocabulary(taxonuri, vocabUri)) {
-				failureMessages.add(String.format(TAXON_DOES_NOT_BELONG_TO_VOCABULARY_MESSAGE_TEMPLATE, taxonuri,
-						taxonNode.getUserData(DomDocumentWithLineNumbersBuilder.LINE_NUMBER_KEY), vocabUri));
+				addMessage(MessageStatus.FAILURE, String.format(TAXON_DOES_NOT_BELONG_TO_VOCABULARY_MESSAGE_TEMPLATE,
+						taxonuri, taxonNode.getUserData(DomDocumentWithLineNumbersBuilder.LINE_NUMBER_KEY), vocabUri));
+				valid = false;
 			}
 		}
-
+		return valid;
 	}
 
 	private Map<String, List<Node>> getTaxonNodesListsBySource() throws XPathExpressionException {
@@ -83,13 +74,13 @@ public class TaxonPathVocabCheckCommand extends AbstractCommand {
 			Node taxonPathSourceNode = (Node) xPath.evaluate("taxonPath/source/string", classificationNode,
 					XPathConstants.NODE);
 			if (null == taxonPathSourceNode) {
-				warningMessages.add(String.format(MISSING_SOURCE_ELEMENT_MESSAGE_TEMPLATE,
+				addMessage(MessageStatus.WARNING, String.format(MISSING_SOURCE_ELEMENT_MESSAGE_TEMPLATE,
 						classificationNode.getUserData(DomDocumentWithLineNumbersBuilder.LINE_NUMBER_KEY)));
 				continue;
 			}
 			String taxonPathSourceId = taxonPathSourceNode.getTextContent().trim();
 			if (StringUtils.isEmpty(taxonPathSourceId)) {
-				warningMessages.add(String.format(MISSING_SOURCE_ELEMENT_MESSAGE_TEMPLATE,
+				addMessage(MessageStatus.WARNING, String.format(MISSING_SOURCE_ELEMENT_MESSAGE_TEMPLATE,
 						taxonPathSourceNode.getUserData(DomDocumentWithLineNumbersBuilder.LINE_NUMBER_KEY)));
 				continue;
 			}

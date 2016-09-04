@@ -1,6 +1,7 @@
 package fr.apiscol.metadata.scolomfr3utils.command;
 
 import java.io.File;
+import java.util.List;
 
 import javax.xml.validation.Validator;
 
@@ -8,7 +9,7 @@ import fr.apiscol.metadata.scolomfr3utils.skos.ISkosApi;
 
 public interface ICommand {
 
-	void execute() throws CommandException;
+	boolean execute();
 
 	boolean isXsdRequired();
 
@@ -25,5 +26,7 @@ public interface ICommand {
 	void setScolomfrVersion(final String scolomfrVersion);
 
 	String getScolomfrVersion();
+
+	List<String> getMessages(MessageStatus status);
 
 }
