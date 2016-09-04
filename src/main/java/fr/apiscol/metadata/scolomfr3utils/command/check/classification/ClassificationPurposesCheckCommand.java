@@ -43,15 +43,15 @@ public class ClassificationPurposesCheckCommand extends AbstractCommand {
 
 	private boolean checkTaxonPathsAreInTheRightPurpose(final Node classificationNode) {
 		String purpose = getClassificationPurpose(classificationNode);
-		String vocabularyId;
+		String expectedVocabularyId;
 		try {
-			vocabularyId = new ClassificationPurposeAndVocapularyMatcherFactory().getMatcher(getScolomfrVersion())
-					.getVocabularyId(purpose);
+			expectedVocabularyId = new ClassificationPurposeAndVocapularyMatcherFactory()
+					.getMatcher(getScolomfrVersion()).getVocabularyId(purpose);
 		} catch (Exception e) {
 			addMessage(MessageStatus.FAILURE, e.getMessage());
 			return false;
 		}
-		if (null == vocabularyId) {
+		if (null == expectedVocabularyId) {
 			// This purpose has no associated vocabulary, there's nothing to
 			// check
 			return true;
@@ -62,33 +62,33 @@ public class ClassificationPurposesCheckCommand extends AbstractCommand {
 			// There's nothing to check
 			return true;
 		}
-		Node taxonPathSource;
-		String taxonPathSourceId;
 		// TODO : warnings for taxonpaths without sources
 		boolean valid = true;
 		for (int i = 0; i < taxonPathSources.getLength(); i++) {
-			taxonPathSource = taxonPathSources.item(i);
-			taxonPathSourceId = taxonPathSource.getTextContent().trim();
-			if (!getSkosApi().vocabularyExists(taxonPathSourceId)) {
-				if (getSkosApi().resourceExists(taxonPathSourceId)) {
-					addMessage(MessageStatus.FAILURE,
-							String.format(INVALID_RESOURCE_USED_AS_VOCABULARY_MESSAGE_PATTERN, taxonPathSourceId,
-									taxonPathSource.getUserData(DomDocumentWithLineNumbersBuilder.LINE_NUMBER_KEY)));
-					valid = false;
-				}
-				// This vocabulary doesn't belong to official vocabularies
-				// referenced in Skos file
-				// You can index your resource with custom vocabularies
-				// under any purpose
-				continue;
-			}
-			if (!StringUtils.equalsIgnoreCase(taxonPathSourceId, vocabularyId)) {
+			valid &= taxonPathSoureMatchesPurpose(purpose, expectedVocabularyId, taxonPathSources.item(i), valid);
+		}
+		return valid;
+	}
+
+	private boolean taxonPathSoureMatchesPurpose(String purpose, String expectedVocabularyId, Node taxonPathSource,
+			boolean valid) {
+		String taxonPathSourceId;
+		taxonPathSourceId = taxonPathSource.getTextContent().trim();
+		if (!getSkosApi().vocabularyExists(taxonPathSourceId)) {
+			if (getSkosApi().resourceExists(taxonPathSourceId)) {
 				addMessage(MessageStatus.FAILURE,
-						String.format(VOCABULARY_NOT_ALLOWED_UNDER_PURPOSE_MESSAGE_PATTERN,
-								taxonPathSource.getUserData(DomDocumentWithLineNumbersBuilder.LINE_NUMBER_KEY),
-								vocabularyId, purpose));
+						String.format(INVALID_RESOURCE_USED_AS_VOCABULARY_MESSAGE_PATTERN, taxonPathSourceId,
+								taxonPathSource.getUserData(DomDocumentWithLineNumbersBuilder.LINE_NUMBER_KEY)));
 				valid = false;
 			}
+			return valid;
+		}
+		if (!StringUtils.equalsIgnoreCase(taxonPathSourceId, expectedVocabularyId)) {
+			addMessage(MessageStatus.FAILURE,
+					String.format(VOCABULARY_NOT_ALLOWED_UNDER_PURPOSE_MESSAGE_PATTERN,
+							taxonPathSource.getUserData(DomDocumentWithLineNumbersBuilder.LINE_NUMBER_KEY),
+							expectedVocabularyId, purpose));
+			valid = false;
 		}
 		return valid;
 	}
