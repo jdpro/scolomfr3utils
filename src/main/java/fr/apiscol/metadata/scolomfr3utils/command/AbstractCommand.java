@@ -26,9 +26,8 @@ import fr.apiscol.metadata.scolomfr3utils.utils.xml.DomDocumentWithLineNumbersBu
  * @{inheritDoc}
  *
  */
-abstract public class AbstractCommand implements ICommand {
+public abstract class AbstractCommand implements ICommand {
 
-	private static DomDocumentWithLineNumbersBuilder domDocumentBuilder;
 	private Validator xsdValidator;
 	private ISkosApi skosApi;
 	private File scolomfrFile;
@@ -94,11 +93,8 @@ abstract public class AbstractCommand implements ICommand {
 	}
 
 	protected boolean buildScolomfrDocument() {
-		if (domDocumentBuilder == null) {
-			domDocumentBuilder = new DomDocumentWithLineNumbersBuilder();
-		}
 		try {
-			scolomfrDocument = domDocumentBuilder.parse(getScolomfrFile());
+			scolomfrDocument = DomDocumentWithLineNumbersBuilder.getInstance().parse(getScolomfrFile());
 		} catch (IOException | SAXException | ParserConfigurationException e) {
 			getLogger().error(e);
 			return false;

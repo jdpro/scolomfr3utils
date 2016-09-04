@@ -23,6 +23,11 @@ import org.xml.sax.helpers.DefaultHandler;
 public class DomDocumentWithLineNumbersBuilder {
 
 	public static final String LINE_NUMBER_KEY = "LINE_NUMBER_KEY";
+	private static DomDocumentWithLineNumbersBuilder instance;
+
+	private DomDocumentWithLineNumbersBuilder() {
+		// prevent instanciation from outside
+	}
 
 	/**
 	 * Build a document from xml file and adds line numbers as user data from
@@ -98,6 +103,13 @@ public class DomDocumentWithLineNumbersBuilder {
 		parser.parse(is, handler);
 
 		return doc;
+	}
+
+	public static DomDocumentWithLineNumbersBuilder getInstance() {
+		if (instance == null) {
+			instance = new DomDocumentWithLineNumbersBuilder();
+		}
+		return instance;
 	}
 
 }
