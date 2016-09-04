@@ -1,5 +1,6 @@
 package fr.apiscol.metadata.scolomfr3utils.command.check.classification;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -17,6 +18,12 @@ import fr.apiscol.metadata.scolomfr3utils.command.AbstractCommand;
 import fr.apiscol.metadata.scolomfr3utils.command.MessageStatus;
 import fr.apiscol.metadata.scolomfr3utils.utils.xml.DomDocumentWithLineNumbersBuilder;
 
+/**
+ * Checks that all taxons listed in taxonPaths belong to the source vocabulary
+ * of their taxonPath. If the vocabulary is a custom one (i.e. not described by
+ * scolomfr skos file) nothing happens. If source is not specified, a warning is
+ * emitted.
+ */
 public class TaxonPathVocabCheckCommand extends AbstractCommand {
 
 	static final String TAXON_DOES_NOT_BELONG_TO_VOCABULARY_MESSAGE_TEMPLATE = "Taxon %s line %s does not belong to vocabulary %s";
@@ -37,7 +44,7 @@ public class TaxonPathVocabCheckCommand extends AbstractCommand {
 		Iterator<String> it = taxonNodesListsBySource.keySet().iterator();
 		boolean valid = true;
 		while (it.hasNext()) {
-			String vocabUri = (String) it.next();
+			String vocabUri = it.next();
 			if (!getSkosApi().vocabularyExists(vocabUri)) {
 				continue;
 			}
@@ -63,12 +70,12 @@ public class TaxonPathVocabCheckCommand extends AbstractCommand {
 
 	private Map<String, List<Node>> getTaxonNodesListsBySource() throws XPathExpressionException {
 		Map<String, List<Node>> taxonLists = new HashMap<>();
-		NodeList classificationNodes = null;
+		NodeList classificationNodes;
 
 		classificationNodes = (NodeList) xPath.evaluate("/lom/classification", scolomfrDocument,
 				XPathConstants.NODESET);
-		Node classificationNode = null;
-		NodeList taxonNodeIds = null;
+		Node classificationNode;
+
 		for (int i = 0; i < classificationNodes.getLength(); i++) {
 			classificationNode = classificationNodes.item(i);
 			Node taxonPathSourceNode = (Node) xPath.evaluate("taxonPath/source/string", classificationNode,
@@ -76,28 +83,41 @@ public class TaxonPathVocabCheckCommand extends AbstractCommand {
 			if (null == taxonPathSourceNode) {
 				addMessage(MessageStatus.WARNING, String.format(MISSING_SOURCE_ELEMENT_MESSAGE_TEMPLATE,
 						classificationNode.getUserData(DomDocumentWithLineNumbersBuilder.LINE_NUMBER_KEY)));
-				continue;
+			} else {
+				String taxonPathSourceId = taxonPathSourceNode.getTextContent().trim();
+				if (StringUtils.isEmpty(taxonPathSourceId)) {
+					addMessage(MessageStatus.WARNING, String.format(MISSING_SOURCE_ELEMENT_MESSAGE_TEMPLATE,
+							taxonPathSourceNode.getUserData(DomDocumentWithLineNumbersBuilder.LINE_NUMBER_KEY)));
+					continue;
+				} else if (null == taxonLists.get(taxonPathSourceId)) {
+					taxonLists.put(taxonPathSourceId, new LinkedList<Node>());
+				}
+				taxonLists.get(taxonPathSourceId).addAll(extractTaxons(classificationNode));
 			}
-			String taxonPathSourceId = taxonPathSourceNode.getTextContent().trim();
-			if (StringUtils.isEmpty(taxonPathSourceId)) {
-				addMessage(MessageStatus.WARNING, String.format(MISSING_SOURCE_ELEMENT_MESSAGE_TEMPLATE,
-						taxonPathSourceNode.getUserData(DomDocumentWithLineNumbersBuilder.LINE_NUMBER_KEY)));
-				continue;
-			}
-			List<Node> taxonList = new LinkedList<>();
 
+		}
+		return taxonLists;
+
+	}
+
+	private List<Node> extractTaxons(Node classificationNode) {
+		List<Node> taxonList = new LinkedList<>();
+		NodeList taxonNodeIds = null;
+		try {
 			taxonNodeIds = (NodeList) xPath.evaluate("taxonPath/taxon/id", classificationNode, XPathConstants.NODESET);
-			if (taxonNodeIds.getLength() == 0) {
-				continue;
-			}
-			Node taxonNodeId = null;
+			Node taxonNodeId;
 			for (int j = 0; j < taxonNodeIds.getLength(); j++) {
 				taxonNodeId = taxonNodeIds.item(j);
 				taxonList.add(taxonNodeId);
 			}
-			taxonLists.put(taxonPathSourceId, taxonList);
+
+		} catch (XPathExpressionException e) {
+			getLogger().error(e);
+			addMessage(MessageStatus.WARNING, "Error while getting the list ot taxons ids : " + e.getMessage());
+			return Collections.emptyList();
 		}
-		return taxonLists;
+
+		return taxonList;
 	}
 
 	@Override
