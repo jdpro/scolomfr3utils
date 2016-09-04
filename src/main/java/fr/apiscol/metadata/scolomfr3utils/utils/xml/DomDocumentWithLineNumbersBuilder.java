@@ -4,7 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Stack;
+import java.util.Deque;
+import java.util.LinkedList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -50,7 +51,7 @@ public class DomDocumentWithLineNumbersBuilder {
 		DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
 		doc = docBuilder.newDocument();
 
-		final Stack<Element> elementStack = new Stack<Element>();
+		final Deque<Element> elementStack = new LinkedList<>();
 		final StringBuilder textBuffer = new StringBuilder();
 		DefaultHandler handler = new DefaultHandler() {
 			private Locator locator;

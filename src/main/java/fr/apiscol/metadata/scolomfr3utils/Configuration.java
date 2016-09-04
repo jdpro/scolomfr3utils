@@ -31,18 +31,23 @@ public class Configuration implements IConfiguration {
 	private Document xmlConfig;
 	private static Configuration instance = null;
 
-	private Configuration() {
+	private Configuration() throws ConfigurationException {
 		loadXMLConfigurationFile();
 	}
 
 	public static IConfiguration getInstance() {
 		if (instance == null) {
-			instance = new Configuration();
+			try {
+				instance = new Configuration();
+			} catch (ConfigurationException e) {
+				getLogger().error("Configuration loading error : ");
+				getLogger().error(e);
+			}
 		}
 		return instance;
 	}
 
-	private void loadXMLConfigurationFile() {
+	private void loadXMLConfigurationFile() throws ConfigurationException {
 		InputStream configFile = null;
 
 		try {
@@ -53,7 +58,7 @@ public class Configuration implements IConfiguration {
 
 		} catch (SAXException | IOException | ParserConfigurationException | IllegalArgumentException e) {
 			getLogger().error(e);
-			throw new RuntimeException(e);
+			throw new ConfigurationException(e);
 		} finally {
 			if (configFile != null) {
 				try {
@@ -70,7 +75,7 @@ public class Configuration implements IConfiguration {
 		}
 	}
 
-	private Logger getLogger() {
+	private static Logger getLogger() {
 		return LoggerProvider.getLogger(Configuration.class);
 	}
 

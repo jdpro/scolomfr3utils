@@ -48,6 +48,7 @@ public class ClassificationPurposesCheckCommand extends AbstractCommand {
 			expectedVocabularyId = new ClassificationPurposeAndVocapularyMatcherFactory()
 					.getMatcher(getScolomfrVersion()).getVocabularyId(purpose);
 		} catch (Exception e) {
+			getLogger().error(e);
 			addMessage(MessageStatus.FAILURE, e.getMessage());
 			return false;
 		}
@@ -65,13 +66,13 @@ public class ClassificationPurposesCheckCommand extends AbstractCommand {
 		// TODO : warnings for taxonpaths without sources
 		boolean valid = true;
 		for (int i = 0; i < taxonPathSources.getLength(); i++) {
-			valid &= taxonPathSoureMatchesPurpose(purpose, expectedVocabularyId, taxonPathSources.item(i), valid);
+			valid &= taxonPathSourceMatchesPurpose(purpose, expectedVocabularyId, taxonPathSources.item(i));
 		}
 		return valid;
 	}
 
-	private boolean taxonPathSoureMatchesPurpose(String purpose, String expectedVocabularyId, Node taxonPathSource,
-			boolean valid) {
+	private boolean taxonPathSourceMatchesPurpose(String purpose, String expectedVocabularyId, Node taxonPathSource) {
+		boolean valid = true;
 		String taxonPathSourceId;
 		taxonPathSourceId = taxonPathSource.getTextContent().trim();
 		if (!getSkosApi().vocabularyExists(taxonPathSourceId)) {
