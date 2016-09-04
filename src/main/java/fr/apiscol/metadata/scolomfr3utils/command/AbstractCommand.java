@@ -37,7 +37,7 @@ public abstract class AbstractCommand implements ICommand {
 	private String scolomfrVersion;
 	private Map<MessageStatus, List<String>> messages = new EnumMap<>(MessageStatus.class);
 
-	public AbstractCommand() {
+	protected AbstractCommand() {
 		initMessages(MessageStatus.FAILURE);
 		initMessages(MessageStatus.WARNING);
 	}

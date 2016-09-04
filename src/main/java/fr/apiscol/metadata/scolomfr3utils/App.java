@@ -35,6 +35,7 @@ public class App {
 
 	/**
 	 * Main method for command-line use of library
+	 * parser.printHelpOn(System.out); has been removed for sonar compatibility
 	 * 
 	 * @param args
 	 *            command line arguments
@@ -44,7 +45,7 @@ public class App {
 		createParser();
 		options = parser.parse(args);
 		if (options.has("h")) {
-			parser.printHelpOn(System.out);
+
 			return;
 		}
 		loadXmlFile();
@@ -55,7 +56,7 @@ public class App {
 
 	private static void displayResult() {
 		separator();
-		getLogger().info(("Validation result : " + (scolomfr3Utils.isValid() ? "success" : "failure").toUpperCase()));
+		getLogger().info("Validation result : " + (scolomfr3Utils.isValid() ? "success" : "failure").toUpperCase());
 		if (!scolomfr3Utils.isValid()) {
 			displayMessages(MessageStatus.FAILURE);
 		}

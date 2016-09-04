@@ -2,7 +2,7 @@ package fr.apiscol.metadata.scolomfr3utils;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
@@ -34,34 +34,37 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 
 	private Logger logger;
 	private File scolomfrFile;
-	private Map<MessageStatus, List<String>> messages = new HashMap<>();
+	private Map<MessageStatus, List<String>> messages = new EnumMap<>(MessageStatus.class);
 	private String scolomfrVersion;
 	private final ISkosApi skosApi = new SkosApi();
 	private Validator validator;
 	private boolean isValid;
 
+	/**
+	 * Main class constructor
+	 */
 	public Scolomfr3Utils() {
-		resetStatus();
+		reset();
 	}
 
 	@Override
 	public void setScolomfrFile(final File scolomfrFile) {
-		resetStatus();
+		reset();
 		this.scolomfrFile = scolomfrFile;
 	}
 
 	@Override
-	public void resetStatus() {
+	public void reset() {
 		isValid = true;
 		initMessages(MessageStatus.FAILURE);
 		initMessages(MessageStatus.WARNING);
 	}
 
 	private void execute(ICommand command) {
-		if (init(command)) {				
-				isValid = isValid && command.execute();
-				messages.get(MessageStatus.FAILURE).addAll(command.getMessages(MessageStatus.FAILURE));
-				messages.get(MessageStatus.WARNING).addAll(command.getMessages(MessageStatus.WARNING));			
+		if (init(command)) {
+			isValid = isValid && command.execute();
+			messages.get(MessageStatus.FAILURE).addAll(command.getMessages(MessageStatus.FAILURE));
+			messages.get(MessageStatus.WARNING).addAll(command.getMessages(MessageStatus.WARNING));
 		} else {
 			isValid = false;
 			messages.get(MessageStatus.FAILURE)
