@@ -19,8 +19,8 @@ import fr.apiscol.metadata.scolomfr3utils.utils.xml.DomDocumentWithLineNumbersBu
 
 public class TaxonPathVocabCheckCommand extends AbstractCommand {
 
-	private static final String TAXON_DOES_NOT_BELONG_TO_VOCABULARY_MESSAGE_TEMPLATE = "Taxon %s line %s does not belong to vocabulary %s";
-	private static final String MISSING_SOURCE_ELEMENT_MESSAGE_TEMPLATE = "Classification node line %s is missing a source child élément.";
+	static final String TAXON_DOES_NOT_BELONG_TO_VOCABULARY_MESSAGE_TEMPLATE = "Taxon %s line %s does not belong to vocabulary %s";
+	static final String MISSING_SOURCE_ELEMENT_MESSAGE_TEMPLATE = "Classification node line %s is missing a source child élément.";
 
 	@Override
 	public boolean execute() {
