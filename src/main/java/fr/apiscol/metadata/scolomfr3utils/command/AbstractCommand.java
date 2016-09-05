@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.EnumMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -104,6 +105,15 @@ public abstract class AbstractCommand implements ICommand {
 	@Override
 	public List<String> getMessages(MessageStatus status) {
 		return messages.get(status);
+	}
+
+	@Override
+	public List<String> getMessages() {
+		List<String> allMessages = new ArrayList<>();
+		for (MessageStatus status : MessageStatus.values()) {
+			allMessages.addAll(getMessages(status));
+		}
+		return allMessages;
 	}
 
 	protected void addMessage(MessageStatus status, String message) {

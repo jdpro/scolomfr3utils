@@ -28,5 +28,7 @@ public interface ICommand {
 	String getScolomfrVersion();
 
 	List<String> getMessages(MessageStatus status);
+	
+	List<String> getMessages();
 
 }

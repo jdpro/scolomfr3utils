@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<lom xmlns:lomfr="http://www.lom-fr.fr/xsd/LOMFR" xmlns:scolomfr="http://www.lom-fr.fr/xsd/SCOLOMFR"
+	xmlns="http://ltsc.ieee.org/xsd/LOM">
+	<general>
+		<identifier>
+			<catalog>URI</catalog>
+			<entry>https://any-uri</entry>
+		</identifier>
+		<title>
+			<string language="http://id.loc.gov/vocabulary/iso639-2/fre">Taxon consécutifs invalides</string>
+		</title>
+		<language>fr</language>
+		<description>
+			<string language="http://id.loc.gov/vocabulary/iso639-2/fre">Cette ressource présente des taxons
+				consécutifs qui ne sont pas reliés par une relation narrower/broader
+			</string>
+		</description>
+	</general>
+	<classification>
+		<purpose>
+			<source>SCOLOMFRv2.1</source>
+			<value>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-028-num-003
+			</value>
+			<label>niveau éducatif détaillé</label>
+		</purpose>
+		<taxonPath>
+			<taxon>
+				<id>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-022-num-626
+				</id>
+				<entry>
+					<string language="http://id.loc.gov/vocabulary/iso639-2/fre">Niveau éducatif détaillé (2015-)</string>
+				</entry>
+			</taxon>
+			<taxon>
+				<id>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-022-num-016
+				</id>
+				<entry>
+					<string language="http://id.loc.gov/vocabulary/iso639-2/fre">collège</string>
+				</entry>
+			</taxon>
+			<taxon>
+				<id>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-022-num-021
+				</id>
+				<entry>
+					<string language="http://id.loc.gov/vocabulary/iso639-2/fre">4e</string>
+				</entry>
+			</taxon>
+		</taxonPath>
+	</classification>
+
+</lom>

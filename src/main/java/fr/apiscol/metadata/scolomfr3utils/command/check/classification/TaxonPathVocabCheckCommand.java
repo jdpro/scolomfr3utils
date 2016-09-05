@@ -110,7 +110,6 @@ public class TaxonPathVocabCheckCommand extends AbstractCommand {
 				taxonNodeId = taxonNodeIds.item(j);
 				taxonList.add(taxonNodeId);
 			}
-
 		} catch (XPathExpressionException e) {
 			getLogger().error(e);
 			addMessage(MessageStatus.WARNING, "Error while getting the list ot taxons ids : " + e.getMessage());
