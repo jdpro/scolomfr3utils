@@ -18,6 +18,10 @@ import org.xml.sax.SAXException;
 import com.hp.hpl.jena.rdf.model.Model;
 
 import fr.apiscol.metadata.scolomfr3utils.command.ICommand;
+import fr.apiscol.metadata.scolomfr3utils.command.IScolomfrDomDocumentRequired;
+import fr.apiscol.metadata.scolomfr3utils.command.IScolomfrFileRequired;
+import fr.apiscol.metadata.scolomfr3utils.command.ISkosApiRequired;
+import fr.apiscol.metadata.scolomfr3utils.command.IXsdValidatorRequired;
 import fr.apiscol.metadata.scolomfr3utils.command.MessageStatus;
 import fr.apiscol.metadata.scolomfr3utils.command.check.classification.ClassificationPurposesCheckCommand;
 import fr.apiscol.metadata.scolomfr3utils.command.check.classification.TaxonPathCheckCommand;
@@ -105,7 +109,7 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 	}
 
 	private boolean loadXsd(ICommand command) {
-		if (command.isXsdRequired()) {
+		if (command instanceof IXsdValidatorRequired) {
 			if (null == validator) {
 				validator = new ValidatorLoader().loadXsd(scolomfrVersion);
 			}
@@ -113,16 +117,16 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 				getLogger().error("Unable to load xsd file for version " + scolomfrVersion);
 				return false;
 			}
-			command.setXsdValidator(validator);
+			((IXsdValidatorRequired) command).setXsdValidator(validator);
 		}
 
 		return true;
 	}
 
 	private boolean loadSkos(ICommand command) {
-		if (command.isSkosRequired()) {
+		if (command instanceof ISkosApiRequired) {
 			loadSkos();
-			command.setSkosApi(skosApi);
+			((ISkosApiRequired) command).setSkosApi(skosApi);
 		}
 		return true;
 	}
@@ -135,19 +139,19 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 	}
 
 	private boolean checkScolomfrFile(ICommand command) {
-		if (command.isScolomfrFileRequired()) {
+		if (command instanceof IScolomfrFileRequired) {
 			if (null == scolomfrFile) {
 				messages.get(MessageStatus.FAILURE)
 						.add("Please provide a scolomfr file before calling scolomfrutils methods.");
 				return false;
 			}
-			command.setScolomfrFile(scolomfrFile);
+			((IScolomfrFileRequired) command).setScolomfrFile(scolomfrFile);
 		}
 		return true;
 	}
 
 	private boolean checkScolomfrDomDocument(ICommand command) {
-		if (command.isScolomfrDomDocumentRequired()) {
+		if (command instanceof IScolomfrDomDocumentRequired) {
 			if (null == scolomfrFile) {
 				messages.get(MessageStatus.FAILURE)
 						.add("Please provide a scolomfr file before calling scolomfrutils methods.");
@@ -157,7 +161,7 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 				messages.get(MessageStatus.FAILURE).add("Unable to build Dom document from provided xml file..");
 				return false;
 			}
-			command.setScolomfrDocument(scolomfrDocument);
+			((IScolomfrDomDocumentRequired) command).setScolomfrDocument(scolomfrDocument);
 		}
 		return true;
 

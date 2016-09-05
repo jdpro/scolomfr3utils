@@ -15,6 +15,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import fr.apiscol.metadata.scolomfr3utils.command.AbstractCommand;
+import fr.apiscol.metadata.scolomfr3utils.command.IScolomfrDomDocumentRequired;
+import fr.apiscol.metadata.scolomfr3utils.command.ISkosApiRequired;
 import fr.apiscol.metadata.scolomfr3utils.command.MessageStatus;
 import fr.apiscol.metadata.scolomfr3utils.utils.xml.DomDocumentWithLineNumbersBuilder;
 
@@ -24,7 +26,8 @@ import fr.apiscol.metadata.scolomfr3utils.utils.xml.DomDocumentWithLineNumbersBu
  * scolomfr skos file) nothing happens. If source is not specified, a warning is
  * emitted.
  */
-public class TaxonPathVocabCheckCommand extends AbstractCommand {
+public class TaxonPathVocabCheckCommand extends AbstractCommand
+		implements IScolomfrDomDocumentRequired, ISkosApiRequired {
 
 	static final String TAXON_DOES_NOT_BELONG_TO_VOCABULARY_MESSAGE_TEMPLATE = "Taxon %s line %s does not belong to vocabulary %s";
 	static final String MISSING_SOURCE_ELEMENT_MESSAGE_TEMPLATE = "Classification node line %s is missing a source child élément.";
@@ -116,26 +119,6 @@ public class TaxonPathVocabCheckCommand extends AbstractCommand {
 		}
 
 		return taxonList;
-	}
-
-	@Override
-	public boolean isXsdRequired() {
-		return false;
-	}
-
-	@Override
-	public boolean isSkosRequired() {
-		return true;
-	}
-
-	@Override
-	public boolean isScolomfrFileRequired() {
-		return false;
-	}
-
-	@Override
-	public boolean isScolomfrDomDocumentRequired() {
-		return true;
 	}
 
 }

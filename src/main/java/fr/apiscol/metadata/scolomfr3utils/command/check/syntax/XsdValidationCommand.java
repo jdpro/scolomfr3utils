@@ -8,6 +8,8 @@ import javax.xml.transform.stream.StreamSource;
 import org.xml.sax.SAXException;
 
 import fr.apiscol.metadata.scolomfr3utils.command.AbstractCommand;
+import fr.apiscol.metadata.scolomfr3utils.command.IScolomfrFileRequired;
+import fr.apiscol.metadata.scolomfr3utils.command.IXsdValidatorRequired;
 import fr.apiscol.metadata.scolomfr3utils.command.MessageStatus;
 
 /**
@@ -15,7 +17,7 @@ import fr.apiscol.metadata.scolomfr3utils.command.MessageStatus;
  * Command that applies xsd validation to provided scolomfr file
  *
  */
-public class XsdValidationCommand extends AbstractCommand {
+public class XsdValidationCommand extends AbstractCommand implements IScolomfrFileRequired, IXsdValidatorRequired {
 
 	@Override
 	public boolean execute() {
@@ -37,26 +39,6 @@ public class XsdValidationCommand extends AbstractCommand {
 			return false;
 		}
 		return true;
-	}
-
-	@Override
-	public boolean isXsdRequired() {
-		return true;
-	}
-
-	@Override
-	public boolean isSkosRequired() {
-		return false;
-	}
-
-	@Override
-	public boolean isScolomfrFileRequired() {
-		return true;
-	}
-
-	@Override
-	public boolean isScolomfrDomDocumentRequired() {
-		return false;
 	}
 
 }

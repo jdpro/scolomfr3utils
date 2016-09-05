@@ -1,25 +1,20 @@
 package fr.apiscol.metadata.scolomfr3utils.command;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.EnumMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.validation.Validator;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathFactory;
 
 import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
-import org.xml.sax.SAXException;
 
 import fr.apiscol.metadata.scolomfr3utils.log.LoggerProvider;
 import fr.apiscol.metadata.scolomfr3utils.skos.ISkosApi;
-import fr.apiscol.metadata.scolomfr3utils.utils.xml.DomDocumentWithLineNumbersBuilder;
 
 /**
  * 
@@ -59,7 +54,6 @@ public abstract class AbstractCommand implements ICommand {
 		this.scolomfrVersion = scolomfrVersion;
 	}
 
-	@Override
 	public void setXsdValidator(Validator xsdValidator) {
 		this.xsdValidator = xsdValidator;
 	}
@@ -68,7 +62,6 @@ public abstract class AbstractCommand implements ICommand {
 		return xsdValidator;
 	}
 
-	@Override
 	public void setSkosApi(final ISkosApi skosApi) {
 		this.skosApi = skosApi;
 	}
@@ -77,7 +70,6 @@ public abstract class AbstractCommand implements ICommand {
 		return skosApi;
 	}
 
-	@Override
 	public void setScolomfrFile(File scolomfrFile) {
 		this.scolomfrFile = scolomfrFile;
 	}
@@ -111,7 +103,6 @@ public abstract class AbstractCommand implements ICommand {
 		messages.get(status).add(message);
 	}
 
-	@Override
 	public void setScolomfrDocument(Document scolomfrDocument) {
 		this.scolomfrDocument = scolomfrDocument;
 	}

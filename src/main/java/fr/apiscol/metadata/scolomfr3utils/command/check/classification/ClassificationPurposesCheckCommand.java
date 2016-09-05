@@ -8,10 +8,12 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import fr.apiscol.metadata.scolomfr3utils.command.AbstractCommand;
+import fr.apiscol.metadata.scolomfr3utils.command.IScolomfrDomDocumentRequired;
+import fr.apiscol.metadata.scolomfr3utils.command.ISkosApiRequired;
 import fr.apiscol.metadata.scolomfr3utils.command.MessageStatus;
 import fr.apiscol.metadata.scolomfr3utils.utils.xml.DomDocumentWithLineNumbersBuilder;
 
-public class ClassificationPurposesCheckCommand extends AbstractCommand {
+public class ClassificationPurposesCheckCommand extends AbstractCommand implements IScolomfrDomDocumentRequired, ISkosApiRequired {
 	private static final String MISSING_SCO_LO_MFR_SCHEMA_VERSION_MESSAGE = "Please provide the ScoLOMfr schema version to check classification purposes.";
 	static final String CLASSIFICATION_WITHOUT_PURPOSE_MESSAGE_PATTERN = "Classification element line %s node has no associated purpose";
 	static final String VOCABULARY_NOT_ALLOWED_UNDER_PURPOSE_MESSAGE_PATTERN = "Invalid element source line %s : you can't use vocabulary %s under purpose %s";
@@ -121,26 +123,6 @@ public class ClassificationPurposesCheckCommand extends AbstractCommand {
 			return null;
 		}
 		return purposeNode.getTextContent().trim();
-	}
-
-	@Override
-	public boolean isXsdRequired() {
-		return false;
-	}
-
-	@Override
-	public boolean isSkosRequired() {
-		return true;
-	}
-
-	@Override
-	public boolean isScolomfrFileRequired() {
-		return false;
-	}
-
-	@Override
-	public boolean isScolomfrDomDocumentRequired() {
-		return true;
 	}
 
 }

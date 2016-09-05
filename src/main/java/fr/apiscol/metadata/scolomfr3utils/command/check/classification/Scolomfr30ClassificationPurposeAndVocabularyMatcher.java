@@ -3,8 +3,6 @@ package fr.apiscol.metadata.scolomfr3utils.command.check.classification;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.jena.atlas.lib.MultiMap;
-
 public class Scolomfr30ClassificationPurposeAndVocabularyMatcher implements IClassificationPurposeAndVocabularyMatcher {
 
 	private static final Map<String, String> purposeVocabularyCorrespondency;

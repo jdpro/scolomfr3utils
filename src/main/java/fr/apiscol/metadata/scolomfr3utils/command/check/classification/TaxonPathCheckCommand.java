@@ -13,10 +13,12 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import fr.apiscol.metadata.scolomfr3utils.command.AbstractCommand;
+import fr.apiscol.metadata.scolomfr3utils.command.IScolomfrDomDocumentRequired;
+import fr.apiscol.metadata.scolomfr3utils.command.ISkosApiRequired;
 import fr.apiscol.metadata.scolomfr3utils.command.MessageStatus;
 import fr.apiscol.metadata.scolomfr3utils.utils.xml.DomDocumentWithLineNumbersBuilder;
 
-public class TaxonPathCheckCommand extends AbstractCommand {
+public class TaxonPathCheckCommand extends AbstractCommand implements IScolomfrDomDocumentRequired, ISkosApiRequired {
 
 	static final String NON_CONSECUTIVE_TAXONS_FAILURE_MESSAGE_PATTERN = "Taxon %s (%s) line %s follows taxon %s (%s) but the latter is not connected to the former by a broader relation";
 
@@ -87,26 +89,6 @@ public class TaxonPathCheckCommand extends AbstractCommand {
 			taxonLists.add(taxonList);
 		}
 		return taxonLists;
-	}
-
-	@Override
-	public boolean isXsdRequired() {
-		return false;
-	}
-
-	@Override
-	public boolean isSkosRequired() {
-		return true;
-	}
-
-	@Override
-	public boolean isScolomfrFileRequired() {
-		return false;
-	}
-
-	@Override
-	public boolean isScolomfrDomDocumentRequired() {
-		return true;
 	}
 
 }
