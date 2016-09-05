@@ -23,7 +23,6 @@ public class ClassificationPurposesCheckCommand extends AbstractCommand {
 			addMessage(MessageStatus.FAILURE, MISSING_SCO_LO_MFR_SCHEMA_VERSION_MESSAGE);
 			return false;
 		}
-		buildScolomfrDocument();
 		NodeList classificationNodes = null;
 		try {
 			classificationNodes = (NodeList) xPath.evaluate("/lom/classification", scolomfrDocument,
@@ -136,6 +135,11 @@ public class ClassificationPurposesCheckCommand extends AbstractCommand {
 
 	@Override
 	public boolean isScolomfrFileRequired() {
+		return false;
+	}
+
+	@Override
+	public boolean isScolomfrDomDocumentRequired() {
 		return true;
 	}
 

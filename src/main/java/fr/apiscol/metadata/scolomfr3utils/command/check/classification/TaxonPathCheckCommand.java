@@ -22,7 +22,6 @@ public class TaxonPathCheckCommand extends AbstractCommand {
 
 	@Override
 	public boolean execute() {
-		buildScolomfrDocument();
 		List<List<Node>> taxonNodesLists = null;
 		try {
 			taxonNodesLists = getTaxonLists();
@@ -102,6 +101,11 @@ public class TaxonPathCheckCommand extends AbstractCommand {
 
 	@Override
 	public boolean isScolomfrFileRequired() {
+		return false;
+	}
+
+	@Override
+	public boolean isScolomfrDomDocumentRequired() {
 		return true;
 	}
 

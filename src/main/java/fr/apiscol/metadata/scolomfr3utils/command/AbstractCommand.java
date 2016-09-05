@@ -32,6 +32,7 @@ public abstract class AbstractCommand implements ICommand {
 	private ISkosApi skosApi;
 	private File scolomfrFile;
 	protected Document scolomfrDocument;
+
 	private Logger logger;
 	private final XPathFactory xpathFactory = XPathFactory.newInstance();
 	protected final XPath xPath = xpathFactory.newXPath();
@@ -92,16 +93,6 @@ public abstract class AbstractCommand implements ICommand {
 		return logger;
 	}
 
-	protected boolean buildScolomfrDocument() {
-		try {
-			scolomfrDocument = DomDocumentWithLineNumbersBuilder.getInstance().parse(getScolomfrFile());
-		} catch (IOException | SAXException | ParserConfigurationException e) {
-			getLogger().error(e);
-			return false;
-		}
-		return true;
-	}
-
 	@Override
 	public List<String> getMessages(MessageStatus status) {
 		return messages.get(status);
@@ -118,6 +109,11 @@ public abstract class AbstractCommand implements ICommand {
 
 	protected void addMessage(MessageStatus status, String message) {
 		messages.get(status).add(message);
+	}
+
+	@Override
+	public void setScolomfrDocument(Document scolomfrDocument) {
+		this.scolomfrDocument = scolomfrDocument;
 	}
 
 }

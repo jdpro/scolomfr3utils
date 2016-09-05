@@ -1,15 +1,19 @@
 package fr.apiscol.metadata.scolomfr3utils;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.validation.Validator;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
+import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
 
 import com.hp.hpl.jena.rdf.model.Model;
 
@@ -23,6 +27,7 @@ import fr.apiscol.metadata.scolomfr3utils.log.LoggerProvider;
 import fr.apiscol.metadata.scolomfr3utils.skos.ISkosApi;
 import fr.apiscol.metadata.scolomfr3utils.skos.SkosApi;
 import fr.apiscol.metadata.scolomfr3utils.skos.SkosLoader;
+import fr.apiscol.metadata.scolomfr3utils.utils.xml.DomDocumentWithLineNumbersBuilder;
 import fr.apiscol.metadata.scolomfr3utils.xsd.ValidatorLoader;
 
 /**
@@ -39,6 +44,7 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 	private final ISkosApi skosApi = new SkosApi();
 	private Validator validator;
 	private boolean isValid;
+	private Document scolomfrDocument;
 
 	/**
 	 * Main class constructor
@@ -51,6 +57,7 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 	public void setScolomfrFile(final File scolomfrFile) {
 		reset();
 		this.scolomfrFile = scolomfrFile;
+		this.scolomfrDocument = null;
 	}
 
 	@Override
@@ -94,7 +101,7 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 			return false;
 		}
 		command.setScolomfrVersion(scolomfrVersion);
-		return checkScolomfrFile(command) && loadSkos(command) && loadXsd(command);
+		return checkScolomfrFile(command) && checkScolomfrDomDocument(command) && loadSkos(command) && loadXsd(command);
 	}
 
 	private boolean loadXsd(ICommand command) {
@@ -105,7 +112,6 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 			if (null == validator) {
 				getLogger().error("Unable to load xsd file for version " + scolomfrVersion);
 				return false;
-
 			}
 			command.setXsdValidator(validator);
 		}
@@ -137,7 +143,36 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 			}
 			command.setScolomfrFile(scolomfrFile);
 		}
+		return true;
+	}
 
+	private boolean checkScolomfrDomDocument(ICommand command) {
+		if (command.isScolomfrDomDocumentRequired()) {
+			if (null == scolomfrFile) {
+				messages.get(MessageStatus.FAILURE)
+						.add("Please provide a scolomfr file before calling scolomfrutils methods.");
+				return false;
+			}
+			if (!buildScolomfrDocument()) {
+				messages.get(MessageStatus.FAILURE).add("Unable to build Dom document from provided xml file..");
+				return false;
+			}
+			command.setScolomfrDocument(scolomfrDocument);
+		}
+		return true;
+
+	}
+
+	protected boolean buildScolomfrDocument() {
+		if (scolomfrDocument != null) {
+			return true;
+		}
+		try {
+			scolomfrDocument = DomDocumentWithLineNumbersBuilder.getInstance().parse(scolomfrFile);
+		} catch (IOException | SAXException | ParserConfigurationException e) {
+			getLogger().error(e);
+			return false;
+		}
 		return true;
 	}
 

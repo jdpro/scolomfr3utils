@@ -16,6 +16,7 @@ import fr.apiscol.metadata.scolomfr3utils.command.MessageStatus;
 import fr.apiscol.metadata.scolomfr3utils.skos.ISkosApi;
 import fr.apiscol.metadata.scolomfr3utils.skos.SkosApi;
 import fr.apiscol.metadata.scolomfr3utils.skos.SkosLoader;
+import fr.apiscol.metadata.scolomfr3utils.utils.xml.DomDocumentWithLineNumbersBuilder;
 
 /**
  * Test that consecutive taxons refers to entries related by broder/narrower in
@@ -41,7 +42,7 @@ public class TaxonPathCheckCommandTest {
 	@Test
 	public void testValidationSuccessWithConsecutiveTaxons() throws Exception {
 		File scolomfrFile = new File("src/test/data/3.0/9/valid/consecutive-taxons.xml");
-		taxonPathCheckCommand.setScolomfrFile(scolomfrFile);
+		taxonPathCheckCommand.setScolomfrDocument(DomDocumentWithLineNumbersBuilder.getInstance().parse(scolomfrFile));
 		boolean result = taxonPathCheckCommand.execute();
 		assertTrue("Classification purpose check command should be successful.", result);
 
@@ -50,7 +51,7 @@ public class TaxonPathCheckCommandTest {
 	@Test
 	public void testValidationSuccessWithUnknownTaxons() throws Exception {
 		File scolomfrFile = new File("src/test/data/3.0/9/valid/unknown-taxons.xml");
-		taxonPathCheckCommand.setScolomfrFile(scolomfrFile);
+		taxonPathCheckCommand.setScolomfrDocument(DomDocumentWithLineNumbersBuilder.getInstance().parse(scolomfrFile));
 		boolean result = taxonPathCheckCommand.execute();
 		assertTrue("Taxonpaths check command should be successful.", result);
 	}
@@ -58,7 +59,7 @@ public class TaxonPathCheckCommandTest {
 	@Test
 	public void testValidationFailureWithNonConsecutiveTaxons() throws Exception {
 		File scolomfrFile = new File("src/test/data/3.0/9/invalid/non-consecutive-taxons.xml");
-		taxonPathCheckCommand.setScolomfrFile(scolomfrFile);
+		taxonPathCheckCommand.setScolomfrDocument(DomDocumentWithLineNumbersBuilder.getInstance().parse(scolomfrFile));
 		boolean result = taxonPathCheckCommand.execute();
 		assertFalse("TaxonPath check command should have failed.", result);
 		List<String> failureMessages = taxonPathCheckCommand.getMessages(MessageStatus.FAILURE);

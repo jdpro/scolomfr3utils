@@ -54,4 +54,9 @@ public class XsdValidationCommand extends AbstractCommand {
 		return true;
 	}
 
+	@Override
+	public boolean isScolomfrDomDocumentRequired() {
+		return false;
+	}
+
 }

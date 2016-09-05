@@ -16,6 +16,7 @@ import fr.apiscol.metadata.scolomfr3utils.command.MessageStatus;
 import fr.apiscol.metadata.scolomfr3utils.skos.ISkosApi;
 import fr.apiscol.metadata.scolomfr3utils.skos.SkosApi;
 import fr.apiscol.metadata.scolomfr3utils.skos.SkosLoader;
+import fr.apiscol.metadata.scolomfr3utils.utils.xml.DomDocumentWithLineNumbersBuilder;
 
 /**
  * Test that each vocabulary is located under the right purpose
@@ -41,7 +42,8 @@ public class ClassificationPurposeCheckCommandTest {
 	@Test
 	public void testValidationFailureWithWrongPurpose() throws Exception {
 		File scolomfrFile = new File("src/test/data/3.0/9/invalid/classification-with-wrong-purpose.xml");
-		classificationPurposesCheckCommand.setScolomfrFile(scolomfrFile);
+		classificationPurposesCheckCommand
+				.setScolomfrDocument(DomDocumentWithLineNumbersBuilder.getInstance().parse(scolomfrFile));
 		boolean result = classificationPurposesCheckCommand.execute();
 		assertFalse("Classification purpose check command should have failed.", result);
 		List<String> failureMessages = classificationPurposesCheckCommand.getMessages(MessageStatus.FAILURE);

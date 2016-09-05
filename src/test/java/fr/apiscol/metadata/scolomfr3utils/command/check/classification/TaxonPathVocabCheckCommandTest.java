@@ -16,6 +16,7 @@ import fr.apiscol.metadata.scolomfr3utils.command.MessageStatus;
 import fr.apiscol.metadata.scolomfr3utils.skos.ISkosApi;
 import fr.apiscol.metadata.scolomfr3utils.skos.SkosApi;
 import fr.apiscol.metadata.scolomfr3utils.skos.SkosLoader;
+import fr.apiscol.metadata.scolomfr3utils.utils.xml.DomDocumentWithLineNumbersBuilder;
 
 /**
  * Test that consecutive taxons refers to entries related by broder/narrower in
@@ -43,7 +44,7 @@ public class TaxonPathVocabCheckCommandTest {
 	@Test
 	public void testValidationSuccessWithRightVocabulary() throws Exception {
 		File scolomfrFile = new File("src/test/data/3.0/9/valid/taxon-member-of-vocabulary.xml");
-		taxonPathVocabCheckCommand.setScolomfrFile(scolomfrFile);
+		taxonPathVocabCheckCommand.setScolomfrDocument(DomDocumentWithLineNumbersBuilder.getInstance().parse(scolomfrFile));
 		boolean result = taxonPathVocabCheckCommand.execute();
 		assertTrue("TaxonPath check command should not have failed.", result);
 		List<String> messages = taxonPathVocabCheckCommand.getMessages();
@@ -54,7 +55,7 @@ public class TaxonPathVocabCheckCommandTest {
 	@Test
 	public void testValidationSuccessWithTaxonPathWithoutSource() throws Exception {
 		File scolomfrFile = new File("src/test/data/3.0/9/valid/taxonpath-without-source.xml");
-		taxonPathVocabCheckCommand.setScolomfrFile(scolomfrFile);
+		taxonPathVocabCheckCommand.setScolomfrDocument(DomDocumentWithLineNumbersBuilder.getInstance().parse(scolomfrFile));
 		boolean result = taxonPathVocabCheckCommand.execute();
 		assertTrue("TaxonPath check command should not have failed.", result);
 		List<String> messages = taxonPathVocabCheckCommand.getMessages(MessageStatus.WARNING);
@@ -66,7 +67,7 @@ public class TaxonPathVocabCheckCommandTest {
 	@Test
 	public void testValidationFailureWithWrongVocabulary() throws Exception {
 		File scolomfrFile = new File("src/test/data/3.0/9/invalid/taxon-non-member-of-vocabulary.xml");
-		taxonPathVocabCheckCommand.setScolomfrFile(scolomfrFile);
+		taxonPathVocabCheckCommand.setScolomfrDocument(DomDocumentWithLineNumbersBuilder.getInstance().parse(scolomfrFile));
 		boolean result = taxonPathVocabCheckCommand.execute();
 		assertFalse("TaxonPath check command should have failed.", result);
 		List<String> failureMessages = taxonPathVocabCheckCommand.getMessages(MessageStatus.FAILURE);

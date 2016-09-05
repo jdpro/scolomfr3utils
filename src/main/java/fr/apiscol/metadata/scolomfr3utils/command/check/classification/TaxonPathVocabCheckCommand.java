@@ -31,7 +31,6 @@ public class TaxonPathVocabCheckCommand extends AbstractCommand {
 
 	@Override
 	public boolean execute() {
-		buildScolomfrDocument();
 		Map<String, List<Node>> taxonNodesListsBySource = null;
 		try {
 			taxonNodesListsBySource = getTaxonNodesListsBySource();
@@ -131,6 +130,11 @@ public class TaxonPathVocabCheckCommand extends AbstractCommand {
 
 	@Override
 	public boolean isScolomfrFileRequired() {
+		return false;
+	}
+
+	@Override
+	public boolean isScolomfrDomDocumentRequired() {
 		return true;
 	}
 
