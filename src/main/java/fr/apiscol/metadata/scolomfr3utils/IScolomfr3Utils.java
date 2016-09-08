@@ -101,4 +101,11 @@ public interface IScolomfr3Utils {
 	 * @return {@link IScolomfr3Utils} for concatenation
 	 */
 	IScolomfr3Utils checkTaxonPathVocab();
+
+	/**
+	 * Check that all labels math provided URI in skos vocabulary
+	 * 
+	 * @return {@link IScolomfr3Utils} for concatenation
+	 */
+	IScolomfr3Utils checkLabels();
 }

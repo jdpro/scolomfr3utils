@@ -26,6 +26,7 @@ import fr.apiscol.metadata.scolomfr3utils.command.MessageStatus;
 import fr.apiscol.metadata.scolomfr3utils.command.check.classification.ClassificationPurposesCheckCommand;
 import fr.apiscol.metadata.scolomfr3utils.command.check.classification.TaxonPathCheckCommand;
 import fr.apiscol.metadata.scolomfr3utils.command.check.classification.TaxonPathVocabCheckCommand;
+import fr.apiscol.metadata.scolomfr3utils.command.check.label.LabelCheckCommand;
 import fr.apiscol.metadata.scolomfr3utils.command.check.syntax.XsdValidationCommand;
 import fr.apiscol.metadata.scolomfr3utils.log.LoggerProvider;
 import fr.apiscol.metadata.scolomfr3utils.skos.ISkosApi;
@@ -239,6 +240,12 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 	@Override
 	public IScolomfr3Utils checkTaxonPathVocab() {
 		execute(new TaxonPathVocabCheckCommand());
+		return this;
+	}
+
+	@Override
+	public IScolomfr3Utils checkLabels() {
+		execute(new LabelCheckCommand());
 		return this;
 	}
 

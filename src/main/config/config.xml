@@ -22,6 +22,11 @@
 			<method>checkClassificationPurposes</method>
 			<message>Check that taxonpaths are under the right purpose</message>
 		</feature>
+		<feature>
+			<option>check-labels</option>
+			<method>checkLabels</method>
+			<message>Check that labels are preflabels or altLabels of provided URIs.</message>
+		</feature>
 	</command-line>
 	<schemas>
 		<schema>
