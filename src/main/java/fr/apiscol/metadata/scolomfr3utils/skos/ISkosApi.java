@@ -44,6 +44,25 @@ public interface ISkosApi {
 	 */
 	boolean vocabularyExists(String Uri);
 
+	/**
+	 * 
+	 * @param resourceUri
+	 *            URI of the resource
+	 * @param vocabUri
+	 *            URI of vocabulary
+	 * @return true if the resource belongs to the vocabulary
+	 */
 	boolean resourceIsMemberOfVocabulary(String resourceUri, String vocabUri);
+
+	/**
+	 * 
+	 * @param resourceUri
+	 *            URI of the resource
+	 * @param resourceLabel
+	 *            label to investigate
+	 * @return true if the label is the preflabel or one of the altlabels of
+	 *         this uri
+	 */
+	boolean resourceHasLabel(String resourceUri, String resourceLabel);
 
 }

@@ -17,6 +17,7 @@ import fr.apiscol.metadata.scolomfr3utils.command.AbstractCommand;
 import fr.apiscol.metadata.scolomfr3utils.command.IScolomfrDomDocumentRequired;
 import fr.apiscol.metadata.scolomfr3utils.command.ISkosApiRequired;
 import fr.apiscol.metadata.scolomfr3utils.command.MessageStatus;
+import fr.apiscol.metadata.scolomfr3utils.utils.xml.DomDocumentWithLineNumbersBuilder;
 
 public class LabelCheckCommand extends AbstractCommand implements IScolomfrDomDocumentRequired, ISkosApiRequired {
 	private static final String MISSING_SCO_LO_MFR_SCHEMA_VERSION_MESSAGE = "Please provide the ScoLOMfr schema version to check classification purposes.";
@@ -34,16 +35,26 @@ public class LabelCheckCommand extends AbstractCommand implements IScolomfrDomDo
 		Iterator<Pair<Node, Node>> it = labelValuePairs.iterator();
 		boolean valid = true;
 		while (it.hasNext()) {
-			Pair<Node, Node> pair = (Pair<Node, Node>) it.next();
-			valid = valid & labelMatchesValue(pair);
+			Pair<Node, Node> pair = it.next();
+			boolean matches = labelMatchesValue(pair);
+			valid = valid && matches;
 		}
 
-		return true;
+		return valid;
 	}
 
 	private boolean labelMatchesValue(Pair<Node, Node> pair) {
-		System.out.println("on vérifie");
-		return false;
+		String resourceUri = pair.getLeft().getTextContent().trim();
+		String resourceLabel = pair.getRight().getTextContent().trim();
+		boolean resourceHasLabel = getSkosApi().resourceHasLabel(resourceUri, resourceLabel);
+		if (!resourceHasLabel) {
+			addMessage(MessageStatus.FAILURE,
+					String.format("Resource label %s line %s does not match any label of uri %s", resourceLabel,
+							pair.getRight().getUserData(DomDocumentWithLineNumbersBuilder.LINE_NUMBER_KEY),
+							resourceUri));
+			return false;
+		}
+		return true;
 	}
 
 	private List<Pair<Node, Node>> getLabelvaluePairs() {
@@ -57,7 +68,6 @@ public class LabelCheckCommand extends AbstractCommand implements IScolomfrDomDo
 				Node label = (Node) xPath.evaluate("label", labelValueParent, XPathConstants.NODE);
 				Node value = (Node) xPath.evaluate("value", labelValueParent, XPathConstants.NODE);
 				Pair<Node, Node> pair = new ImmutablePair<Node, Node>(value, label);
-
 				pairs.add(pair);
 			}
 		} catch (XPathExpressionException e) {

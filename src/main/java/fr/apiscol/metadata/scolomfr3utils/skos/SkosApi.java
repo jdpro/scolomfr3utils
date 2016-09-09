@@ -11,6 +11,7 @@ import com.hp.hpl.jena.rdf.model.Selector;
 import com.hp.hpl.jena.rdf.model.SimpleSelector;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
+import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 public class SkosApi implements ISkosApi {
 	private static final String HTTP_WWW_W3_ORG_1999_02_22_RDF_SYNTAX_NS = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
@@ -85,6 +86,26 @@ public class SkosApi implements ISkosApi {
 		Selector memberPropertySelector = new SimpleSelector(subject, memberProperty, object);
 		StmtIterator stmts = getSkosModel().listStatements(memberPropertySelector);
 		return stmts.hasNext();
+	}
+
+	@Override
+	public boolean resourceHasLabel(String resourceUri, String resourceLabel) {
+		Resource subject = getSkosModel().getResource(resourceUri);
+		Property prefLabel = getSkosModel().getProperty("http://www.w3.org/2004/02/skos/core#", "prefLabel");
+		Property altLabel = getSkosModel().getProperty("http://www.w3.org/2004/02/skos/core#", "altLabel");
+		Selector prefLabelSelector = new SimpleSelector(subject, prefLabel, (RDFNode) null);
+		Selector altLabelSelector = new SimpleSelector(subject, altLabel, (RDFNode) null);
+		StmtIterator stmts1 = getSkosModel().listStatements(prefLabelSelector);
+		StmtIterator stmts2 = getSkosModel().listStatements(altLabelSelector);
+		ExtendedIterator<Statement> stmts = stmts1.andThen(stmts2);
+		while (stmts.hasNext()) {
+			Statement statement = (Statement) stmts.next();
+			String label = ((Literal) statement.getObject()).getString();
+			if (StringUtils.equals(label, resourceLabel)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }
