@@ -15,7 +15,7 @@ import com.hp.hpl.jena.util.iterator.ExtendedIterator;
 
 public class SkosApi implements ISkosApi {
 	private static final String HTTP_WWW_W3_ORG_1999_02_22_RDF_SYNTAX_NS = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
-	private static final String NO_RESULT = "NO_RESULT";
+	static final String NO_RESULT = "NO_RESULT";
 	private static final String HTTP_WWW_W3_ORG_2004_02_SKOS_CORE = "http://www.w3.org/2004/02/skos/core#";
 	private Model skosModel;
 

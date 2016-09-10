@@ -161,7 +161,7 @@ public class App {
 
 	}
 
-	private static Logger getLogger() {
+	static Logger getLogger() {
 		if (logger == null) {
 			logger = LoggerProvider.getLogger(App.class);
 		}

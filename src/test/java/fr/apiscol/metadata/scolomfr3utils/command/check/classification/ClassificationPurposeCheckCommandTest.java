@@ -27,6 +27,9 @@ public class ClassificationPurposeCheckCommandTest {
 			ClassificationPurposesCheckCommand.VOCABULARY_NOT_ALLOWED_UNDER_PURPOSE_MESSAGE_PATTERN, "31",
 			"http://data.education.fr/voc/scolomfr/scolomfr-voc-015",
 			"http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-028-num-003");
+	private static final String INVALID_RESOURCE_USED_AS_VOCABULARY_MESSAGE = String.format(
+			ClassificationPurposesCheckCommand.INVALID_RESOURCE_USED_AS_VOCABULARY_MESSAGE_PATTERN,
+			"http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-005-num-007", "109");;
 	private AbstractCommand classificationPurposesCheckCommand;
 
 	@Before
@@ -49,6 +52,20 @@ public class ClassificationPurposeCheckCommandTest {
 		List<String> failureMessages = classificationPurposesCheckCommand.getMessages(MessageStatus.FAILURE);
 		assertTrue("The validation messages should contain : " + VOCABULARY_NOT_ALLOWED_UNDER_PURPOSE_MESSAGE,
 				failureMessages.contains(VOCABULARY_NOT_ALLOWED_UNDER_PURPOSE_MESSAGE));
+
+	}
+
+	@Test
+	public void testValidationFailureWithInvalidResourceAsVocabulray() throws Exception {
+		File scolomfrFile = new File(
+				"src/test/data/3.0/9/invalid/classification-with-invalid-resource-as-vocabulary.xml");
+		classificationPurposesCheckCommand
+				.setScolomfrDocument(DomDocumentWithLineNumbersBuilder.getInstance().parse(scolomfrFile));
+		boolean result = classificationPurposesCheckCommand.execute();
+		assertFalse("Classification purpose check command should have failed.", result);
+		List<String> failureMessages = classificationPurposesCheckCommand.getMessages(MessageStatus.FAILURE);
+		assertTrue("The validation messages should contain : " + INVALID_RESOURCE_USED_AS_VOCABULARY_MESSAGE,
+				failureMessages.contains(INVALID_RESOURCE_USED_AS_VOCABULARY_MESSAGE));
 
 	}
 

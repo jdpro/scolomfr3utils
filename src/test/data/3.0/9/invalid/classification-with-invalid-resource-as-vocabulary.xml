@@ -1,0 +1,145 @@
+<?xml version="1.0"?>
+<lom xmlns:lomfr="http://www.lom-fr.fr/xsd/LOMFR" xmlns:scolomfr="http://www.lom-fr.fr/xsd/SCOLOMFR"
+	xmlns="http://ltsc.ieee.org/xsd/LOM">
+	<general>
+		<identifier>
+			<catalog>URI</catalog>
+			<entry>https://any.uri</entry>
+		</identifier>
+		<title>
+			<string language="http://id.loc.gov/vocabulary/iso639-2/fre">Classification sous un objectif inadapté au
+				vocabulaire
+			</string>
+		</title>
+		<language>fr</language>
+		<description>
+			<string language="http://id.loc.gov/vocabulary/iso639-2/fre">Cette ressource est indexée avec le voc 22
+				sous le purpose "domaine d'enseignement"
+			</string>
+		</description>
+		<aggregationLevel>
+			<source>LOMv1.0</source>
+			<value>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-008-num-03
+			</value>
+			<label>3 - Cours</label>
+		</aggregationLevel>
+		<scolomfr:generalResourceType>
+			<scolomfr:source>SCOLOMFRv2.1</scolomfr:source>
+			<scolomfr:value>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-005-num-007
+			</scolomfr:value>
+			<scolomfr:label>banque d'images</scolomfr:label>
+		</scolomfr:generalResourceType>
+	</general>
+	<lifeCycle>
+		<contribute>
+			<role>
+				<source>LOMv1.0</source>
+				<value>http://data.education.fr/voc/scolomfr/concept/author</value>
+				<label>auteur</label>
+			</role>
+			<entity><![CDATA[BEGIN:VCARD
+VERSION:3.0
+N:Test 
+FN:Test
+END:VCARD]]>
+			</entity>
+			<date>
+				<dateTime>2016-07-15T00:00:00</dateTime>
+			</date>
+		</contribute>
+	</lifeCycle>
+	<metaMetadata>
+		<contribute>
+			<role>
+				<source>LOMv1.0</source>
+				<value>http://data.education.fr/voc/scolomfr/concept/creator</value>
+				<label>créateur</label>
+			</role>
+			<entity><![CDATA[BEGIN:VCARD
+VERSION:3.0
+N:Admin NEC
+FN:Admin NEC
+END:VCARD]]>
+			</entity>
+			<date>
+				<dateTime>2016-07-15T21:42:02.8547498+02:00</dateTime>
+				<description>
+					<string language="http://id.loc.gov/vocabulary/iso639-2/fre">Génération de la notice</string>
+				</description>
+			</date>
+		</contribute>
+	</metaMetadata>
+	<technical>
+		<format>text/html</format>
+		<size>0</size>
+		<location>http://localhost:16765/bo/Ressources/Cree/test_ressource_sc
+		</location>
+	</technical>
+	<educational>
+		<learningResourceType>
+			<source>LOMv1.0</source>
+			<value>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-010-num-001
+			</value>
+			<label>animation</label>
+		</learningResourceType>
+		<description>
+			<string language="http://id.loc.gov/vocabulary/iso639-2/fre">Peut être utilisé diversement... A voir!
+			</string>
+		</description>
+
+	</educational>
+	<rights>
+		<copyrightAndOtherRestrictions>
+			<source>LOMv1.0</source>
+			<value>http://data.education.fr/voc/scolomfr/concept/no_2</value>
+			<label>non</label>
+		</copyrightAndOtherRestrictions>
+	</rights>
+
+	<classification>
+		<purpose>
+			<source>SCOLOMFRv2.1</source>
+			<value>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-028-num-003
+			</value>
+			<label>domaine d'enseignement</label>
+		</purpose>
+		<taxonPath>
+			<source>
+				<!-- This resource isn't a vocabulary -->
+				<string language="http://id.loc.gov/vocabulary/iso639-2/fre">http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-005-num-007
+				</string>
+			</source>
+			<taxon>
+				<id>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-015-num-1830
+				</id>
+				<entry>
+					<string language="http://id.loc.gov/vocabulary/iso639-2/fre">Domaine d'enseignement (2015-)</string>
+				</entry>
+			</taxon>
+			<taxon>
+				<id>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-015-num-1273
+				</id>
+				<entry>
+					<string language="http://id.loc.gov/vocabulary/iso639-2/fre">enseignements du collège</string>
+				</entry>
+			</taxon>
+			<taxon>
+				<id>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-015-num-1229
+				</id>
+				<entry>
+					<string language="http://id.loc.gov/vocabulary/iso639-2/fre">histoire des arts (cycle 4)</string>
+				</entry>
+			</taxon>
+			<taxon>
+				<id>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-015-num-1230
+				</id>
+				<entry>
+					<string language="http://id.loc.gov/vocabulary/iso639-2/fre">arts et société à l'époque antique et au
+						Haut Moyen Age (histoire des arts cycle 4)
+					</string>
+				</entry>
+			</taxon>
+		</taxonPath>
+	</classification>
+
+</lom>

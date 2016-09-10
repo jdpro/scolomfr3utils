@@ -25,7 +25,7 @@ public class XsdValidationCommand extends AbstractCommand implements IScolomfrFi
 		try {
 			getLogger().info("Xsd validation of file " + getScolomfrFile().getAbsolutePath());
 			getXsdValidator().validate(source);
-			getLogger().error("XSD validation success");
+			getLogger().info("XSD validation success");
 		} catch (SAXException e) {
 			getLogger().error("XSD validation failure");
 			getLogger().error(e);

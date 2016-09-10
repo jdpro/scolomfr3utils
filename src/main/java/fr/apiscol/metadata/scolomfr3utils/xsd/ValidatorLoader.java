@@ -9,6 +9,7 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.xml.sax.SAXException;
 
@@ -21,6 +22,7 @@ import fr.apiscol.metadata.scolomfr3utils.resources.ResourcesLoader;
  */
 public class ValidatorLoader {
 
+	static final String NO_XSD_FILE_PATH_PROVIDED_IN_CONFIGURATION_FOR_VERSION = "No xsd file path provided in configuration for version %s";
 	private Logger logger;
 
 	/**
@@ -33,6 +35,10 @@ public class ValidatorLoader {
 	public Validator loadXsd(String scolomfrVersion) {
 		SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
 		String xsdFilePath = Configuration.getInstance().getXsdFilePath(scolomfrVersion);
+		if (StringUtils.isEmpty(xsdFilePath)) {
+			getLogger().error(String.format(NO_XSD_FILE_PATH_PROVIDED_IN_CONFIGURATION_FOR_VERSION, scolomfrVersion));
+			return null;
+		}
 		InputStream in = new ResourcesLoader().loadResource(xsdFilePath);
 		if (in == null) {
 			getLogger().error("Unable to load xsd file " + xsdFilePath + " for version " + scolomfrVersion);
@@ -54,7 +60,7 @@ public class ValidatorLoader {
 		return validator;
 	}
 
-	private Logger getLogger() {
+	Logger getLogger() {
 		if (logger == null) {
 			logger = LoggerProvider.getLogger(this.getClass());
 		}
