@@ -41,11 +41,12 @@ public class ClassificationPurposeCheckCommandTest {
 		ISkosApi skosApi = new SkosApi();
 		skosApi.setSkosModel(skosModel);
 		classificationPurposesCheckCommand.setSkosApi(skosApi);
-		classificationPurposesCheckCommand.setScolomfrVersion("3.0");
+		
 	}
 
 	@Test
 	public void testValidationFailureWithWrongPurpose() throws Exception {
+		classificationPurposesCheckCommand.setScolomfrVersion("3.0");
 		File scolomfrFile = new File("src/test/data/3.0/9/invalid/classification-with-wrong-purpose.xml");
 		classificationPurposesCheckCommand
 				.setScolomfrDocument(DomDocumentWithLineNumbersBuilder.getInstance().parse(scolomfrFile));
@@ -59,6 +60,7 @@ public class ClassificationPurposeCheckCommandTest {
 
 	@Test
 	public void testValidationFailureWithInvalidResourceAsVocabulray() throws Exception {
+		classificationPurposesCheckCommand.setScolomfrVersion("3.0");
 		File scolomfrFile = new File(
 				"src/test/data/3.0/9/invalid/classification-with-invalid-resource-as-vocabulary.xml");
 		classificationPurposesCheckCommand
@@ -68,6 +70,20 @@ public class ClassificationPurposeCheckCommandTest {
 		List<String> failureMessages = classificationPurposesCheckCommand.getMessages(MessageStatus.FAILURE);
 		assertTrue("The validation messages should contain : " + INVALID_RESOURCE_USED_AS_VOCABULARY_MESSAGE,
 				failureMessages.contains(INVALID_RESOURCE_USED_AS_VOCABULARY_MESSAGE));
+
+	}
+	
+	@Test
+	public void testValidationFailureWithoutScolomfrVersion() throws Exception {
+		File scolomfrFile = new File(
+				"src/test/data/3.0/9/valid/classification-with-right-purpose.xml");
+		classificationPurposesCheckCommand
+				.setScolomfrDocument(DomDocumentWithLineNumbersBuilder.getInstance().parse(scolomfrFile));
+		boolean result = classificationPurposesCheckCommand.execute();
+		assertFalse("Classification purpose check command should have failed.", result);
+		List<String> failureMessages = classificationPurposesCheckCommand.getMessages(MessageStatus.FAILURE);
+		assertTrue("The validation messages should contain : " + ClassificationPurposesCheckCommand.MISSING_SCO_LO_MFR_SCHEMA_VERSION_MESSAGE,
+				failureMessages.contains(ClassificationPurposesCheckCommand.MISSING_SCO_LO_MFR_SCHEMA_VERSION_MESSAGE));
 
 	}
 
