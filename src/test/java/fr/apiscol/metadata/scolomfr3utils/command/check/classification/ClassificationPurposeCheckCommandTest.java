@@ -8,9 +8,11 @@ import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Categories.ExcludeCategory;
 
 import com.hp.hpl.jena.rdf.model.Model;
 
+import fr.apiscol.metadata.scolomfr3utils.VersionHandlingException;
 import fr.apiscol.metadata.scolomfr3utils.command.AbstractCommand;
 import fr.apiscol.metadata.scolomfr3utils.command.MessageStatus;
 import fr.apiscol.metadata.scolomfr3utils.skos.ISkosApi;
@@ -66,6 +68,13 @@ public class ClassificationPurposeCheckCommandTest {
 		List<String> failureMessages = classificationPurposesCheckCommand.getMessages(MessageStatus.FAILURE);
 		assertTrue("The validation messages should contain : " + INVALID_RESOURCE_USED_AS_VOCABULARY_MESSAGE,
 				failureMessages.contains(INVALID_RESOURCE_USED_AS_VOCABULARY_MESSAGE));
+
+	}
+
+	@Test(expected = VersionHandlingException.class)
+	public void testValidationFailureWithNotSupportedScolomfrVersion() throws Exception {
+		ClassificationPurposeAndVocapularyMatcherFactory factory = new ClassificationPurposeAndVocapularyMatcherFactory();
+		IClassificationPurposeAndVocabularyMatcher matcher = factory.getMatcher("2.1");
 
 	}
 
