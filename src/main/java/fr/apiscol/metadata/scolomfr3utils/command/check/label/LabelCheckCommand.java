@@ -20,17 +20,11 @@ import fr.apiscol.metadata.scolomfr3utils.command.MessageStatus;
 import fr.apiscol.metadata.scolomfr3utils.utils.xml.DomDocumentWithLineNumbersBuilder;
 
 public class LabelCheckCommand extends AbstractCommand implements IScolomfrDomDocumentRequired, ISkosApiRequired {
-	private static final String MISSING_SCO_LO_MFR_SCHEMA_VERSION_MESSAGE = "Please provide the ScoLOMfr schema version to check classification purposes.";
-	static final String CLASSIFICATION_WITHOUT_PURPOSE_MESSAGE_PATTERN = "Classification element line %s node has no associated purpose";
-	static final String VOCABULARY_NOT_ALLOWED_UNDER_PURPOSE_MESSAGE_PATTERN = "Invalid element source line %s : you can't use vocabulary %s under purpose %s";
-	static final String INVALID_RESOURCE_USED_AS_VOCABULARY_MESSAGE_PATTERN = "TaxonPath uses a skos resource %s that is not a vocabulary as source line %s";
+
+	static final String RESOURCE_LABEL_DOES_NOT_MATCH_ANY_LABEL_OF_URI = "Resource label %s line %s does not match any label of uri %s";
 
 	@Override
 	public boolean execute() {
-		if (StringUtils.isEmpty(getScolomfrVersion())) {
-			addMessage(MessageStatus.FAILURE, MISSING_SCO_LO_MFR_SCHEMA_VERSION_MESSAGE);
-			return false;
-		}
 		List<Pair<Node, Node>> labelValuePairs = getLabelvaluePairs();
 		Iterator<Pair<Node, Node>> it = labelValuePairs.iterator();
 		boolean valid = true;
@@ -49,7 +43,7 @@ public class LabelCheckCommand extends AbstractCommand implements IScolomfrDomDo
 		boolean resourceHasLabel = getSkosApi().resourceHasLabel(resourceUri, resourceLabel);
 		if (!resourceHasLabel) {
 			addMessage(MessageStatus.FAILURE,
-					String.format("Resource label %s line %s does not match any label of uri %s", resourceLabel,
+					String.format(RESOURCE_LABEL_DOES_NOT_MATCH_ANY_LABEL_OF_URI, resourceLabel,
 							pair.getRight().getUserData(DomDocumentWithLineNumbersBuilder.LINE_NUMBER_KEY),
 							resourceUri));
 			return false;
