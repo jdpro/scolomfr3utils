@@ -27,6 +27,11 @@
 			<method>checkLabels</method>
 			<message>Check that labels are preflabels or altLabels of provided URIs.</message>
 		</feature>
+		<feature>
+			<option>check-vcards</option>
+			<method>checkVcards</method>
+			<message>Check that inline vcards are RFC 2426 compliant.</message>
+		</feature>
 	</command-line>
 	<schemas>
 		<schema>

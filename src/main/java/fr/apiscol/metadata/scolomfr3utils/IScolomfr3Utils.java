@@ -103,9 +103,16 @@ public interface IScolomfr3Utils {
 	IScolomfr3Utils checkTaxonPathVocab();
 
 	/**
-	 * Check that all labels math provided URI in skos vocabulary
+	 * Check that all labels match provided URI in skos vocabulary
 	 * 
 	 * @return {@link IScolomfr3Utils} for concatenation
 	 */
 	IScolomfr3Utils checkLabels();
+
+	/**
+	 * check that vcards are RFC 2426 compliant
+	 * 
+	 * @return {@link IScolomfr3Utils} for concatenation
+	 */
+	IScolomfr3Utils checkVcards();
 }

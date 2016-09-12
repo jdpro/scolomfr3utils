@@ -28,6 +28,7 @@ import fr.apiscol.metadata.scolomfr3utils.command.check.classification.TaxonPath
 import fr.apiscol.metadata.scolomfr3utils.command.check.classification.TaxonPathVocabCheckCommand;
 import fr.apiscol.metadata.scolomfr3utils.command.check.label.LabelCheckCommand;
 import fr.apiscol.metadata.scolomfr3utils.command.check.syntax.XsdValidationCommand;
+import fr.apiscol.metadata.scolomfr3utils.command.check.vcard.VcardCheckCommand;
 import fr.apiscol.metadata.scolomfr3utils.log.LoggerProvider;
 import fr.apiscol.metadata.scolomfr3utils.skos.ISkosApi;
 import fr.apiscol.metadata.scolomfr3utils.skos.SkosApi;
@@ -246,6 +247,12 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 	@Override
 	public IScolomfr3Utils checkLabels() {
 		execute(new LabelCheckCommand());
+		return this;
+	}
+	
+	@Override
+	public IScolomfr3Utils checkVcards() {
+		execute(new VcardCheckCommand());
 		return this;
 	}
 
