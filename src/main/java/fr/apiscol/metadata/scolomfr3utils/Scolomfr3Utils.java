@@ -212,7 +212,7 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 
 	@Override
 	public IScolomfr3Utils checkAll() {
-		return checkXsd().checkLabels().checkClassifications().checkTaxonPathVocab();
+		return checkXsd().checkLabels().checkClassifications().checkTaxonPathVocab().checkVcards();
 	}
 
 	@Override

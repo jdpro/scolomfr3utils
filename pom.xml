@@ -9,6 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>scolomfr3utils</name>
+	<description> Set of utilities to improve the quality of scoLOMFR3 learning resource metadata </description>
 	<url>http://maven.apache.org</url>
 
 	<properties>

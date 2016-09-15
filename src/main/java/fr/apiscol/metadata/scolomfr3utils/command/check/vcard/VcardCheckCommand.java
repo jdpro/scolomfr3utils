@@ -50,6 +50,7 @@ public class VcardCheckCommand extends AbstractCommand implements IScolomfrDomDo
 					vcardEntity.getUserData(DomDocumentWithLineNumbersBuilder.LINE_NUMBER_KEY)));
 			return false;
 		}
+		
 		VCardVersion vcardVersion = vcard.getVersion();
 		if (vcardVersion == null) {
 			addMessage(MessageStatus.FAILURE, String.format(IMPOSSIBLE_TO_EXTRACT_VCARD_VERSION,
@@ -64,8 +65,10 @@ public class VcardCheckCommand extends AbstractCommand implements IScolomfrDomDo
 			List<Warning> warnings = entry.getValue();
 			Iterator<Warning> it2 = warnings.iterator();
 			while (it2.hasNext()) {
-				Warning warning = it2.next();				
-				addMessage(MessageStatus.WARNING, key.toString() + " : " + warning.getMessage());
+				Warning warning = it2.next();
+				addMessage(MessageStatus.WARNING,
+						"Entity line " + vcardEntity.getUserData(DomDocumentWithLineNumbersBuilder.LINE_NUMBER_KEY)
+								+ " : " + warning.getMessage());
 			}
 		}
 		return true;

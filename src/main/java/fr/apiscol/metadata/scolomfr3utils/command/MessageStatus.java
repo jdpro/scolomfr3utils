@@ -1,7 +1,7 @@
 package fr.apiscol.metadata.scolomfr3utils.command;
 
 public enum MessageStatus {
-	FAILURE("failure"), WARNING("failure");
+	FAILURE("failure"), WARNING("warning");
 	private String value;
 
 	private MessageStatus(String value) {
