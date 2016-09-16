@@ -39,7 +39,7 @@ public class App {
 	 * 
 	 * @param args
 	 *            command line arguments
-	 * @throws IOException
+	 * @throws IOException If provided file is unreachable
 	 */
 	public static void main(String[] args) throws IOException {
 		createParser();

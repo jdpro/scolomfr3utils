@@ -26,6 +26,8 @@ public class LoggerProvider {
 	 * Returns true if it appears that log4j have been previously configured.
 	 * This code checks to see if there are any appenders defined for log4j
 	 * which is the definitive way to tell if log4j is already initialized
+	 * 
+	 * @return true if log4j have been previously configured
 	 */
 	public static boolean log4JisConfigured() {
 		Enumeration<Appender> appenders = Logger.getRootLogger().getAllAppenders();

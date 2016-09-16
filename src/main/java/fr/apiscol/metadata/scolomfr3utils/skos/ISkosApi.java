@@ -10,11 +10,11 @@ public interface ISkosApi {
 
 	/**
 	 * 
-	 * @param URI
+	 * @param Uri
 	 *            URI of subject resource
 	 * @return prefLabel or "NO_RESULT"
 	 */
-	String getPrefLabelForResource(String URI);
+	String getPrefLabelForResource(String Uri);
 
 	/**
 	 * Check if a broader relation exists from subject to object
@@ -29,8 +29,7 @@ public interface ISkosApi {
 
 	/**
 	 * 
-	 * @param URI
-	 *            URI of resource
+	 * @param Uri URI of resource
 	 * @return true if this resource is the subject of an assertion in skos
 	 *         vocabulary
 	 */
@@ -38,28 +37,23 @@ public interface ISkosApi {
 
 	/**
 	 * 
-	 * @param URI
-	 *            URI of vocabulary
+	 * @param Uri URI of vocabulary
 	 * @return true if this vocabulary is referenced in skos
 	 */
 	boolean vocabularyExists(String Uri);
 
 	/**
 	 * 
-	 * @param resourceUri
-	 *            URI of the resource
-	 * @param vocabUri
-	 *            URI of vocabulary
+	 * @param resourceUri URI of the resource
+	 * @param vocabUri URI of vocabulary
 	 * @return true if the resource belongs to the vocabulary
 	 */
 	boolean resourceIsMemberOfVocabulary(String resourceUri, String vocabUri);
 
 	/**
 	 * 
-	 * @param resourceUri
-	 *            URI of the resource
-	 * @param resourceLabel
-	 *            label to investigate
+	 * @param resourceUri URI of the resource
+	 * @param resourceLabel label to investigate
 	 * @return true if the label is the preflabel or one of the altlabels of
 	 *         this uri
 	 */

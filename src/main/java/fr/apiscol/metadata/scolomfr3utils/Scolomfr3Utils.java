@@ -75,7 +75,8 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 
 	private void execute(ICommand command) {
 		if (init(command)) {
-			isValid = isValid && command.execute();
+			boolean commandIsValid = command.execute();
+			isValid = isValid && commandIsValid;
 			messages.get(MessageStatus.FAILURE).addAll(command.getMessages(MessageStatus.FAILURE));
 			messages.get(MessageStatus.WARNING).addAll(command.getMessages(MessageStatus.WARNING));
 		} else {

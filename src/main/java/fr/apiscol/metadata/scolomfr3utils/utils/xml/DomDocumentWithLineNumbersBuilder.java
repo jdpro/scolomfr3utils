@@ -34,11 +34,11 @@ public class DomDocumentWithLineNumbersBuilder {
 	 * Build a document from xml file and adds line numbers as user data from
 	 * https://eyalsch.wordpress.com/2010/11/30/xml-dom-2/
 	 * 
-	 * @param xmlFile
-	 * @return
-	 * @throws IOException
-	 * @throws SAXException
-	 * @throws ParserConfigurationException
+	 * @param xmlFile The xml file to load
+	 * @return {@link Document} A document with line number information as user data
+	 * @throws IOException If file is unreachable
+	 * @throws SAXException If file is impossible to parse
+	 * @throws ParserConfigurationException Cannot happen
 	 */
 	public Document parse(File xmlFile) throws IOException, SAXException, ParserConfigurationException {
 		final Document doc;

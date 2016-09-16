@@ -29,7 +29,7 @@ public class ValidatorLoader {
 	 * Load the xsd file corresponding to this scolomfr version. Matching
 	 * between version and files is in config file.
 	 * 
-	 * @param scolomfrVersion
+	 * @param scolomfrVersion The xsd scolomfr version
 	 * @return Xsd Validator
 	 */
 	public Validator loadXsd(String scolomfrVersion) {

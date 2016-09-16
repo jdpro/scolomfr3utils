@@ -16,11 +16,6 @@ import org.w3c.dom.Document;
 import fr.apiscol.metadata.scolomfr3utils.log.LoggerProvider;
 import fr.apiscol.metadata.scolomfr3utils.skos.ISkosApi;
 
-/**
- * 
- * @{inheritDoc}
- *
- */
 public abstract class AbstractCommand implements ICommand {
 
 	private Validator xsdValidator;
