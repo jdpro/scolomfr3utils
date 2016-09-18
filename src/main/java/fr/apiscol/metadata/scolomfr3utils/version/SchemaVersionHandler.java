@@ -3,8 +3,6 @@ package fr.apiscol.metadata.scolomfr3utils.version;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
@@ -20,11 +18,10 @@ import org.w3c.dom.NodeList;
  */
 public class SchemaVersionHandler {
 
+	public static final String MISSING_METADATA_SCHEMA = "Missing metaMetadata.metadataSchema in scolomfr File.";
 	private static SchemaVersionHandler instance;
 	private final XPathFactory xpathFactory = XPathFactory.newInstance();
 	protected final XPath xPath = xpathFactory.newXPath();
-
-	private static final Pattern versionPattern = Pattern.compile("([0-9]{1,2})\\.([0-9]{1,2})");
 
 	private SchemaVersionHandler() {
 	}
@@ -42,24 +39,6 @@ public class SchemaVersionHandler {
 	}
 
 	/**
-	 * Guess version from any string containing major.minor schema
-	 * 
-	 * @param versionStr
-	 *            version as string, e.g. "SCOLOMFRv2.0"
-	 * @return null if provided string does not match pattern major.minor
-	 */
-	public SchemaVersion getVersionFromString(String versionStr) {
-		SchemaVersion version = null;
-		Matcher m = versionPattern.matcher(versionStr);
-		if (m.matches()) {
-			int major = Integer.parseInt(m.group(1));
-			int minor = Integer.parseInt(m.group(2));
-			version = new SchemaVersion(major, minor);
-		}
-		return version;
-	}
-
-	/**
 	 * 
 	 * @param scolomfrDocument
 	 *            Dom document to search in
@@ -70,13 +49,13 @@ public class SchemaVersionHandler {
 	public SchemaVersion getMostRecentVersionFromDocument(Document scolomfrDocument) throws VersionDetectionException {
 		NodeList metadataSchemaTags = getMetadataSchemaTags(scolomfrDocument);
 		if (metadataSchemaTags.getLength() == 0) {
-			throw new VersionDetectionException("Missing metaMetadata.metadataSchema in scolomfr File.");
+			throw new VersionDetectionException(MISSING_METADATA_SCHEMA);
 		}
 		List<SchemaVersion> versions = new ArrayList<>();
 		for (int i = 0; i < metadataSchemaTags.getLength(); i++) {
 			Node metadataSchemaTag = metadataSchemaTags.item(i);
 			String metadataSchema = metadataSchemaTag.getTextContent().trim();
-			SchemaVersion version = getVersionFromString(metadataSchema);
+			SchemaVersion version = SchemaVersion.fromString(metadataSchema);
 			if (version != null) {
 				versions.add(version);
 			}
@@ -95,7 +74,7 @@ public class SchemaVersionHandler {
 	private NodeList getMetadataSchemaTags(Document scolomfrDocument) throws VersionDetectionException {
 		NodeList metadataSchemaTags = null;
 		try {
-			metadataSchemaTags = (NodeList) xPath.evaluate("/metaMetadata/metadataSchema", scolomfrDocument,
+			metadataSchemaTags = (NodeList) xPath.evaluate("//metaMetadata/metadataSchema", scolomfrDocument,
 					XPathConstants.NODESET);
 		} catch (XPathExpressionException e) {
 			throw new VersionDetectionException(e);

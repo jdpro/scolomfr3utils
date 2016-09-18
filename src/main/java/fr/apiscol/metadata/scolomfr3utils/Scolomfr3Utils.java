@@ -45,6 +45,7 @@ import fr.apiscol.metadata.scolomfr3utils.xsd.ValidatorLoader;
  */
 public class Scolomfr3Utils implements IScolomfr3Utils {
 
+	static final String UNABLE_TO_DETERMINE_SCOLOMFR_VERSION = "Scolomfr version is neither specified as command line argument neither provided as metadataSchema tag in scolomfr file.";
 	private Logger logger;
 	private File scolomfrFile;
 	private Map<MessageStatus, List<String>> messages = new EnumMap<>(MessageStatus.class);
@@ -53,6 +54,8 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 	private Validator validator;
 	private boolean isValid;
 	private Document scolomfrDocument;
+
+	private boolean versionDetectionPerformed = false;
 
 	/**
 	 * Main class constructor
@@ -71,6 +74,7 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 	@Override
 	public void reset() {
 		isValid = true;
+		versionDetectionPerformed = false;
 		initMessages(MessageStatus.FAILURE);
 		initMessages(MessageStatus.WARNING);
 	}
@@ -105,12 +109,12 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 	}
 
 	private boolean init(ICommand command) {
-		if (scolomfrVersion == null) {
+		if (scolomfrVersion == null && !versionDetectionPerformed) {
 			detectScolomfrVersion();
 		}
 		if (scolomfrVersion == null) {
 			messages.get(MessageStatus.FAILURE).add(
-					"Scolomfr version is neither specified as command line argument neither provided as metadataSchema tag in scolomfr file.");
+					UNABLE_TO_DETERMINE_SCOLOMFR_VERSION);
 			return false;
 		}
 		command.setScolomfrVersion(scolomfrVersion);
@@ -126,6 +130,8 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 				getLogger().warn(e);
 				messages.get(MessageStatus.WARNING)
 						.add("Unable to detect scolomfr version from file : " + e.getMessage());
+			} finally {
+				versionDetectionPerformed = true;
 			}
 		}
 	}
@@ -219,7 +225,7 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 	 */
 	@Override
 	public void setScolomfrVersion(String versionStr) {
-		SchemaVersion newVersion = SchemaVersionHandler.getInstance().getVersionFromString(versionStr);
+		SchemaVersion newVersion = SchemaVersion.fromString(versionStr);
 		// If version has changed, unload the model and register new version
 		if (scolomfrVersion == null || (newVersion != null && !newVersion.equals(scolomfrVersion))) {
 			skosApi.setSkosModel(null);

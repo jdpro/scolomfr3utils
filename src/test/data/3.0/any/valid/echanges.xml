@@ -15,7 +15,8 @@
 		<description>
 			<string language="http://id.loc.gov/vocabulary/iso639-2/fre">Un être vivant échange de la matière avec son
 				environnement. Pour de nombreux animaux, c'est le sang qui véhicule
-				ces éléments indispensables à la vie.</string>
+				ces éléments indispensables à la vie.
+			</string>
 		</description>
 		<keyword>
 			<string language="http://id.loc.gov/vocabulary/iso639-2/fre">sang</string>
@@ -103,7 +104,8 @@
 				<lom:entry>
 					<lom:string language="http://id.loc.gov/vocabulary/iso639-2/fre">compétence 3 - les principaux
 						éléments de mathématiques et la culture scientifique et
-						technologique</lom:string>
+						technologique
+					</lom:string>
 				</lom:entry>
 			</lom:taxon>
 			<lom:taxon xmlns:lom="http://ltsc.ieee.org/xsd/LOM"
@@ -112,7 +114,8 @@
 				</lom:id>
 				<lom:entry>
 					<lom:string language="http://id.loc.gov/vocabulary/iso639-2/fre">pratiquer une démarche scientifique
-						et technologique, résoudre des problèmes</lom:string>
+						et technologique, résoudre des problèmes
+					</lom:string>
 				</lom:entry>
 			</lom:taxon>
 		</taxonPath>
@@ -134,7 +137,8 @@
 				</lom:id>
 				<lom:entry>
 					<lom:string language="http://id.loc.gov/vocabulary/iso639-2/fre">domaines d'enseignement du premier
-						degré</lom:string>
+						degré
+					</lom:string>
 				</lom:entry>
 			</lom:taxon>
 			<lom:taxon xmlns:lom="http://ltsc.ieee.org/xsd/LOM"
@@ -143,7 +147,8 @@
 				</lom:id>
 				<lom:entry>
 					<lom:string language="http://id.loc.gov/vocabulary/iso639-2/fre">sciences expérimentales et
-						technologie</lom:string>
+						technologie
+					</lom:string>
 				</lom:entry>
 			</lom:taxon>
 		</taxonPath>
@@ -204,7 +209,8 @@
 				<id>itop_1.3.2</id>
 				<entry>
 					<string language="http://id.loc.gov/vocabulary/iso639-2/fre">Le vivant, sa diversité et les fonctions
-						qui le caractérisent</string>
+						qui le caractérisent
+					</string>
 				</entry>
 			</taxon>
 			<taxon>
@@ -212,7 +218,8 @@
 				<entry>
 					<string language="http://id.loc.gov/vocabulary/iso639-2/fre">Expliquer les besoins variables en aliments
 						de l'être humain ; l'origine et les techniques mises en œuvre pour
-						transformer et conserver les aliments</string>
+						transformer et conserver les aliments
+					</string>
 				</entry>
 			</taxon>
 		</taxonPath>
@@ -223,6 +230,7 @@
 			<entry>https://notices.neteduc-cloud.fr/meta/c963d757-744f-48b6-8829-87eea0562a6a
 			</entry>
 		</identifier>
+		<metadataSchema>SCOLOMFRv3.0</metadataSchema>
 	</metaMetadata>
 	<relation>
 		<kind>

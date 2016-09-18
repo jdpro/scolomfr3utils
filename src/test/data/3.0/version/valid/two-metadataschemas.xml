@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<lom xmlns:lomfr="http://www.lom-fr.fr/xsd/LOMFR" xmlns:scolomfr="http://www.lom-fr.fr/xsd/SCOLOMFR"
+	xmlns="http://ltsc.ieee.org/xsd/LOM">
+	<general>
+		<identifier>
+			<catalog>ARK</catalog>
+			<entry>https://neteduc-cloud.deventeduc.fr/ark://uri-test-sca</entry>
+		</identifier>
+		<title>
+			<string language="http://id.loc.gov/vocabulary/iso639-2/fre">Deux schemas de métadonnées indiqués
+			</string>
+		</title>
+		<language>fr</language>
+		<description>
+			<string language="http://id.loc.gov/vocabulary/iso639-2/fre">Cette ressource comporte une référence aux
+				schéma 3.1 et 3.0
+			</string>
+		</description>
+	</general>
+	<metaMetadata>
+		<metadataSchema>SCOLOMFRv3.1</metadataSchema>
+		<metadataSchema>SCOLOMFRv3.0</metadataSchema>
+	</metaMetadata>
+</lom>

@@ -26,12 +26,12 @@ import fr.apiscol.metadata.scolomfr3utils.version.SchemaVersion;
 public class ClassificationPurposeCheckCommandTest {
 
 	private static final String VOCABULARY_NOT_ALLOWED_UNDER_PURPOSE_MESSAGE = String.format(
-			ClassificationPurposesCheckCommand.VOCABULARY_NOT_ALLOWED_UNDER_PURPOSE_MESSAGE_PATTERN, "31",
+			ClassificationPurposesCheckCommand.VOCABULARY_NOT_ALLOWED_UNDER_PURPOSE_MESSAGE_PATTERN, "34",
 			"http://data.education.fr/voc/scolomfr/scolomfr-voc-015",
 			"http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-028-num-003");
 	private static final String INVALID_RESOURCE_USED_AS_VOCABULARY_MESSAGE = String.format(
 			ClassificationPurposesCheckCommand.INVALID_RESOURCE_USED_AS_VOCABULARY_MESSAGE_PATTERN,
-			"http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-005-num-007", "109");;
+			"http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-005-num-007", "110");;
 	private AbstractCommand classificationPurposesCheckCommand;
 
 	@Before

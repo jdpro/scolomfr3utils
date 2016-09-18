@@ -1,11 +1,15 @@
 package fr.apiscol.metadata.scolomfr3utils.version;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * Versions of scoLOMfr schema
  */
 public class SchemaVersion implements Comparable<SchemaVersion> {
+	private static final Pattern versionPattern = Pattern.compile(".*([0-9]+)\\.([0-9]+)");
 	private static final String UNDEFINED = "undefined version";
 	private int minor = -1;
 	private int major = -1;
@@ -21,6 +25,14 @@ public class SchemaVersion implements Comparable<SchemaVersion> {
 	public SchemaVersion(int major, int minor) {
 		this.major = major;
 		this.minor = minor;
+	}
+
+	/**
+	 * Build a void schema version
+	 * 
+	 */
+	public SchemaVersion() {
+		// void constructor
 	}
 
 	public int getMinor() {
@@ -77,5 +89,23 @@ public class SchemaVersion implements Comparable<SchemaVersion> {
 			return 1;
 		}
 		return 0;
+	}
+	
+	/**
+	 * Guess version from any string containing major.minor schema
+	 * 
+	 * @param versionStr
+	 *            version as string, e.g. "SCOLOMFRv2.0"
+	 * @return null if provided string does not match pattern major.minor
+	 */
+	public static SchemaVersion fromString(String versionStr) {
+		SchemaVersion version = null;
+		Matcher m = versionPattern.matcher(versionStr);
+		if (m.matches()) {
+			int major = Integer.parseInt(m.group(1));
+			int minor = Integer.parseInt(m.group(2));
+			version = new SchemaVersion(major, minor);
+		}
+		return version;
 	}
 }

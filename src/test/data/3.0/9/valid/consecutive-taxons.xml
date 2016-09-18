@@ -66,6 +66,7 @@ END:VCARD]]>
 				</description>
 			</date>
 		</contribute>
+		<metadataSchema>SCOLOMFRv3.0</metadataSchema>
 	</metaMetadata>
 	<technical>
 		<format>text/html</format>

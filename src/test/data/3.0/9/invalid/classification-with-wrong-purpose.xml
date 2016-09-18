@@ -18,6 +18,9 @@
 			</string>
 		</description>
 	</general>
+	<metaMetadata>
+		<metadataSchema>SCOLOMFRv3.0</metadataSchema>
+	</metaMetadata>
 	<classification>
 		<purpose>
 			<source>SCOLOMFRv2.1</source>

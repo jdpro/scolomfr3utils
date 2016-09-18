@@ -79,5 +79,6 @@
 			<entry>https://my-system/meta/c963d757-744f-48b6-8829-87eea0562a6a
 			</entry>
 		</identifier>
+		<metadataSchema>SCOLOMFRv3.0</metadataSchema>
 	</metaMetadata>
 </lom>

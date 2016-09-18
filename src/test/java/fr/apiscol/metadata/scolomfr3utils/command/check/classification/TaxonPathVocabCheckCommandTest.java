@@ -26,10 +26,10 @@ import fr.apiscol.metadata.scolomfr3utils.version.SchemaVersion;
 public class TaxonPathVocabCheckCommandTest {
 
 	private static final String MISSING_SOURCE_ELEMENT_MESSAGE = String
-			.format(TaxonPathVocabCheckCommand.MISSING_SOURCE_ELEMENT_MESSAGE_TEMPLATE, "19");
+			.format(TaxonPathVocabCheckCommand.MISSING_SOURCE_ELEMENT_MESSAGE_TEMPLATE, "22");
 	private static final String TAXON_DOES_NOT_BELONG_TO_VOCABULARY_FAILURE_MESSAGE = String.format(
 			TaxonPathVocabCheckCommand.TAXON_DOES_NOT_BELONG_TO_VOCABULARY_MESSAGE_TEMPLATE,
-			"http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-022-num-626", "32",
+			"http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-022-num-626", "35",
 			"http://data.education.fr/voc/scolomfr/scolomfr-voc-015");
 	private AbstractCommand taxonPathVocabCheckCommand;
 
