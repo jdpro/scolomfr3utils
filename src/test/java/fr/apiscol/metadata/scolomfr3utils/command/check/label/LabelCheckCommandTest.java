@@ -17,6 +17,7 @@ import fr.apiscol.metadata.scolomfr3utils.skos.ISkosApi;
 import fr.apiscol.metadata.scolomfr3utils.skos.SkosApi;
 import fr.apiscol.metadata.scolomfr3utils.skos.SkosLoader;
 import fr.apiscol.metadata.scolomfr3utils.utils.xml.DomDocumentWithLineNumbersBuilder;
+import fr.apiscol.metadata.scolomfr3utils.version.SchemaVersion;
 
 /**
  * Test that consecutive taxons refers to entries related by broder/narrower in
@@ -33,7 +34,7 @@ public class LabelCheckCommandTest {
 	@Before
 	public void setup() {
 		taxonPathVocabCheckCommand = new LabelCheckCommand();
-		Model skosModel = new SkosLoader().loadSkos("3.0");
+		Model skosModel = new SkosLoader().loadSkos(new SchemaVersion(3, 0));
 		ISkosApi skosApi = new SkosApi();
 		skosApi.setSkosModel(skosModel);
 		taxonPathVocabCheckCommand.setSkosApi(skosApi);

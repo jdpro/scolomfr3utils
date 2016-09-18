@@ -8,7 +8,6 @@ import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.experimental.categories.Categories.ExcludeCategory;
 
 import com.hp.hpl.jena.rdf.model.Model;
 
@@ -19,6 +18,7 @@ import fr.apiscol.metadata.scolomfr3utils.skos.ISkosApi;
 import fr.apiscol.metadata.scolomfr3utils.skos.SkosApi;
 import fr.apiscol.metadata.scolomfr3utils.skos.SkosLoader;
 import fr.apiscol.metadata.scolomfr3utils.utils.xml.DomDocumentWithLineNumbersBuilder;
+import fr.apiscol.metadata.scolomfr3utils.version.SchemaVersion;
 
 /**
  * Test that each vocabulary is located under the right purpose
@@ -37,16 +37,16 @@ public class ClassificationPurposeCheckCommandTest {
 	@Before
 	public void setup() {
 		classificationPurposesCheckCommand = new ClassificationPurposesCheckCommand();
-		Model skosModel = new SkosLoader().loadSkos("3.0");
+		Model skosModel = new SkosLoader().loadSkos(new SchemaVersion(3, 0));
 		ISkosApi skosApi = new SkosApi();
 		skosApi.setSkosModel(skosModel);
 		classificationPurposesCheckCommand.setSkosApi(skosApi);
-		
+
 	}
 
 	@Test
 	public void testValidationFailureWithWrongPurpose() throws Exception {
-		classificationPurposesCheckCommand.setScolomfrVersion("3.0");
+		classificationPurposesCheckCommand.setScolomfrVersion(new SchemaVersion(3, 0));
 		File scolomfrFile = new File("src/test/data/3.0/9/invalid/classification-with-wrong-purpose.xml");
 		classificationPurposesCheckCommand
 				.setScolomfrDocument(DomDocumentWithLineNumbersBuilder.getInstance().parse(scolomfrFile));
@@ -60,7 +60,7 @@ public class ClassificationPurposeCheckCommandTest {
 
 	@Test
 	public void testValidationFailureWithInvalidResourceAsVocabulray() throws Exception {
-		classificationPurposesCheckCommand.setScolomfrVersion("3.0");
+		classificationPurposesCheckCommand.setScolomfrVersion(new SchemaVersion(3, 0));
 		File scolomfrFile = new File(
 				"src/test/data/3.0/9/invalid/classification-with-invalid-resource-as-vocabulary.xml");
 		classificationPurposesCheckCommand
@@ -72,17 +72,18 @@ public class ClassificationPurposeCheckCommandTest {
 				failureMessages.contains(INVALID_RESOURCE_USED_AS_VOCABULARY_MESSAGE));
 
 	}
-	
+
 	@Test
 	public void testValidationFailureWithoutScolomfrVersion() throws Exception {
-		File scolomfrFile = new File(
-				"src/test/data/3.0/9/valid/classification-with-right-purpose.xml");
+		File scolomfrFile = new File("src/test/data/3.0/9/valid/classification-with-right-purpose.xml");
 		classificationPurposesCheckCommand
 				.setScolomfrDocument(DomDocumentWithLineNumbersBuilder.getInstance().parse(scolomfrFile));
 		boolean result = classificationPurposesCheckCommand.execute();
 		assertFalse("Classification purpose check command should have failed.", result);
 		List<String> failureMessages = classificationPurposesCheckCommand.getMessages(MessageStatus.FAILURE);
-		assertTrue("The validation messages should contain : " + ClassificationPurposesCheckCommand.MISSING_SCO_LO_MFR_SCHEMA_VERSION_MESSAGE,
+		assertTrue(
+				"The validation messages should contain : "
+						+ ClassificationPurposesCheckCommand.MISSING_SCO_LO_MFR_SCHEMA_VERSION_MESSAGE,
 				failureMessages.contains(ClassificationPurposesCheckCommand.MISSING_SCO_LO_MFR_SCHEMA_VERSION_MESSAGE));
 
 	}
@@ -90,7 +91,7 @@ public class ClassificationPurposeCheckCommandTest {
 	@Test(expected = VersionHandlingException.class)
 	public void testValidationFailureWithNotSupportedScolomfrVersion() throws Exception {
 		ClassificationPurposeAndVocapularyMatcherFactory factory = new ClassificationPurposeAndVocapularyMatcherFactory();
-		IClassificationPurposeAndVocabularyMatcher matcher = factory.getMatcher("2.1");
+		factory.getMatcher("2.1");
 
 	}
 

@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import fr.apiscol.metadata.scolomfr3utils.command.MessageStatus;
+import fr.apiscol.metadata.scolomfr3utils.version.SchemaVersion;
 import fr.apiscol.metadata.scolomfr3utils.xsd.ValidatorLoader;
 
 /**
@@ -23,7 +24,7 @@ public class XsdValidationCommandTest {
 	@Before
 	public void setup() {
 		xsdValidationCommand = new XsdValidationCommand();
-		xsdValidationCommand.setXsdValidator(new ValidatorLoader().loadXsd("3.0"));
+		xsdValidationCommand.setXsdValidator(new ValidatorLoader().loadXsd(new SchemaVersion(3, 0)));
 	}
 
 	@Test

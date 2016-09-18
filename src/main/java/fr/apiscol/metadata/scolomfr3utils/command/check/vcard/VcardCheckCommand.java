@@ -50,7 +50,7 @@ public class VcardCheckCommand extends AbstractCommand implements IScolomfrDomDo
 					vcardEntity.getUserData(DomDocumentWithLineNumbersBuilder.LINE_NUMBER_KEY)));
 			return false;
 		}
-		
+
 		VCardVersion vcardVersion = vcard.getVersion();
 		if (vcardVersion == null) {
 			addMessage(MessageStatus.FAILURE, String.format(IMPOSSIBLE_TO_EXTRACT_VCARD_VERSION,
@@ -61,7 +61,6 @@ public class VcardCheckCommand extends AbstractCommand implements IScolomfrDomDo
 		Iterator<Entry<VCardProperty, List<Warning>>> it = validatioWarnings.iterator();
 		while (it.hasNext()) {
 			Map.Entry<VCardProperty, java.util.List<Warning>> entry = it.next();
-			VCardProperty key = entry.getKey();
 			List<Warning> warnings = entry.getValue();
 			Iterator<Warning> it2 = warnings.iterator();
 			while (it2.hasNext()) {

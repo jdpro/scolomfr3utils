@@ -13,16 +13,17 @@ import org.apache.log4j.spi.LoggingEvent;
 import org.junit.Test;
 
 import fr.apiscol.metadata.scolomfr3utils.TestAppender;
+import fr.apiscol.metadata.scolomfr3utils.version.SchemaVersion;
 
 /**
  * Test xsd validation with different kinds of files
  */
 public class ValidatorLoaderTest {
 
-	private static final String WRONG_SCOLOMFR_VERSION = "2.1";
+	private static final SchemaVersion WRONG_SCOLOMFR_VERSION = new SchemaVersion(2, 1);
 	private static final String WRONG_VERSION_MESSAGE = String
 			.format(ValidatorLoader.NO_XSD_FILE_PATH_PROVIDED_IN_CONFIGURATION_FOR_VERSION, WRONG_SCOLOMFR_VERSION);
-	private static final String RIGHT_SCOLOMFR_VERSION = "3.0";
+	private static final SchemaVersion RIGHT_SCOLOMFR_VERSION = new SchemaVersion(3, 0);
 
 	@Test
 	public void testXsdLoadingFailureWithWrongVersion() {
@@ -30,7 +31,7 @@ public class ValidatorLoaderTest {
 		final Logger logger = Logger.getRootLogger();
 		logger.addAppender(appender);
 		ValidatorLoader validatorLoader = new ValidatorLoader();
-		Validator xsd = validatorLoader.loadXsd(WRONG_SCOLOMFR_VERSION);
+		validatorLoader.loadXsd(WRONG_SCOLOMFR_VERSION);
 		final List<LoggingEvent> log = appender.getLog();
 		assertTrue("There is 1 message", log.size() == 1);
 		final LoggingEvent firstLogEntry = log.get(0);

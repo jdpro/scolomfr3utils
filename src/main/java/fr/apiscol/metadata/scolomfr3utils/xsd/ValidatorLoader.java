@@ -16,6 +16,7 @@ import org.xml.sax.SAXException;
 import fr.apiscol.metadata.scolomfr3utils.Configuration;
 import fr.apiscol.metadata.scolomfr3utils.log.LoggerProvider;
 import fr.apiscol.metadata.scolomfr3utils.resources.ResourcesLoader;
+import fr.apiscol.metadata.scolomfr3utils.version.SchemaVersion;
 
 /**
  * Utility class to create xsd validator from xsd file located in classpath
@@ -29,12 +30,13 @@ public class ValidatorLoader {
 	 * Load the xsd file corresponding to this scolomfr version. Matching
 	 * between version and files is in config file.
 	 * 
-	 * @param scolomfrVersion The xsd scolomfr version
+	 * @param scolomfrVersion
+	 *            The xsd scolomfr version
 	 * @return Xsd Validator
 	 */
-	public Validator loadXsd(String scolomfrVersion) {
+	public Validator loadXsd(SchemaVersion scolomfrVersion) {
 		SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-		String xsdFilePath = Configuration.getInstance().getXsdFilePath(scolomfrVersion);
+		String xsdFilePath = Configuration.getInstance().getXsdFilePath(scolomfrVersion.toString());
 		if (StringUtils.isEmpty(xsdFilePath)) {
 			getLogger().error(String.format(NO_XSD_FILE_PATH_PROVIDED_IN_CONFIGURATION_FOR_VERSION, scolomfrVersion));
 			return null;

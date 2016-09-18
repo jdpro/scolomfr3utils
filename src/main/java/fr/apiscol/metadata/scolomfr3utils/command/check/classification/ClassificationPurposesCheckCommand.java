@@ -13,7 +13,8 @@ import fr.apiscol.metadata.scolomfr3utils.command.ISkosApiRequired;
 import fr.apiscol.metadata.scolomfr3utils.command.MessageStatus;
 import fr.apiscol.metadata.scolomfr3utils.utils.xml.DomDocumentWithLineNumbersBuilder;
 
-public class ClassificationPurposesCheckCommand extends AbstractCommand implements IScolomfrDomDocumentRequired, ISkosApiRequired {
+public class ClassificationPurposesCheckCommand extends AbstractCommand
+		implements IScolomfrDomDocumentRequired, ISkosApiRequired {
 	static final String MISSING_SCO_LO_MFR_SCHEMA_VERSION_MESSAGE = "Please provide the ScoLOMfr schema version to check classification purposes.";
 	static final String CLASSIFICATION_WITHOUT_PURPOSE_MESSAGE_PATTERN = "Classification element line %s node has no associated purpose";
 	static final String VOCABULARY_NOT_ALLOWED_UNDER_PURPOSE_MESSAGE_PATTERN = "Invalid element source line %s : you can't use vocabulary %s under purpose %s";
@@ -21,7 +22,7 @@ public class ClassificationPurposesCheckCommand extends AbstractCommand implemen
 
 	@Override
 	public boolean execute() {
-		if (StringUtils.isEmpty(getScolomfrVersion())) {
+		if (getScolomfrVersion() == null) {
 			addMessage(MessageStatus.FAILURE, MISSING_SCO_LO_MFR_SCHEMA_VERSION_MESSAGE);
 			return false;
 		}

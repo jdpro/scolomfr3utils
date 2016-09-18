@@ -9,8 +9,8 @@ import org.apache.log4j.Logger;
 
 public class LoggerProvider {
 
-	private LoggerProvider(){
-		
+	private LoggerProvider() {
+
 	}
 
 	public static Logger getLogger(Class<?> callingClass) {
@@ -29,7 +29,9 @@ public class LoggerProvider {
 	 * 
 	 * @return true if log4j have been previously configured
 	 */
+
 	public static boolean log4JisConfigured() {
+		@SuppressWarnings("unchecked")
 		Enumeration<Appender> appenders = Logger.getRootLogger().getAllAppenders();
 		if (appenders.hasMoreElements()) {
 			return true;

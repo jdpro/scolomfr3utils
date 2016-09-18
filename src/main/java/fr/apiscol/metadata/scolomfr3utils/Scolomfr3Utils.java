@@ -10,7 +10,6 @@ import java.util.Map;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.validation.Validator;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
@@ -34,6 +33,9 @@ import fr.apiscol.metadata.scolomfr3utils.skos.ISkosApi;
 import fr.apiscol.metadata.scolomfr3utils.skos.SkosApi;
 import fr.apiscol.metadata.scolomfr3utils.skos.SkosLoader;
 import fr.apiscol.metadata.scolomfr3utils.utils.xml.DomDocumentWithLineNumbersBuilder;
+import fr.apiscol.metadata.scolomfr3utils.version.SchemaVersion;
+import fr.apiscol.metadata.scolomfr3utils.version.SchemaVersionHandler;
+import fr.apiscol.metadata.scolomfr3utils.version.VersionDetectionException;
 import fr.apiscol.metadata.scolomfr3utils.xsd.ValidatorLoader;
 
 /**
@@ -46,7 +48,7 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 	private Logger logger;
 	private File scolomfrFile;
 	private Map<MessageStatus, List<String>> messages = new EnumMap<>(MessageStatus.class);
-	private String scolomfrVersion;
+	private SchemaVersion scolomfrVersion;
 	private final ISkosApi skosApi = new SkosApi();
 	private Validator validator;
 	private boolean isValid;
@@ -103,12 +105,29 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 	}
 
 	private boolean init(ICommand command) {
-		if (StringUtils.isEmpty(scolomfrVersion)) {
-			messages.get(MessageStatus.FAILURE).add("Please specify the scolomfr major.minor version.");
+		if (scolomfrVersion == null) {
+			detectScolomfrVersion();
+		}
+		if (scolomfrVersion == null) {
+			messages.get(MessageStatus.FAILURE).add(
+					"Scolomfr version is neither specified as command line argument neither provided as metadataSchema tag in scolomfr file.");
 			return false;
 		}
 		command.setScolomfrVersion(scolomfrVersion);
 		return checkScolomfrFile(command) && checkScolomfrDomDocument(command) && loadSkos(command) && loadXsd(command);
+	}
+
+	private void detectScolomfrVersion() {
+		if (loadScolomfrFileAsDocument()) {
+			SchemaVersionHandler schemaVersionHandler = SchemaVersionHandler.getInstance();
+			try {
+				scolomfrVersion = schemaVersionHandler.getMostRecentVersionFromDocument(scolomfrDocument);
+			} catch (VersionDetectionException e) {
+				getLogger().warn(e);
+				messages.get(MessageStatus.WARNING)
+						.add("Unable to detect scolomfr version from file : " + e.getMessage());
+			}
+		}
 	}
 
 	private boolean loadXsd(ICommand command) {
@@ -155,19 +174,28 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 
 	private boolean checkScolomfrDomDocument(ICommand command) {
 		if (command instanceof IScolomfrDomDocumentRequired) {
-			if (null == scolomfrFile) {
-				messages.get(MessageStatus.FAILURE)
-						.add("Please provide a scolomfr file before calling scolomfrutils methods.");
+			if (loadScolomfrFileAsDocument()) {
+				((IScolomfrDomDocumentRequired) command).setScolomfrDocument(scolomfrDocument);
+				return true;
+			} else {
 				return false;
 			}
-			if (!buildScolomfrDocument()) {
-				messages.get(MessageStatus.FAILURE).add("Unable to build Dom document from provided xml file..");
-				return false;
-			}
-			((IScolomfrDomDocumentRequired) command).setScolomfrDocument(scolomfrDocument);
 		}
 		return true;
 
+	}
+
+	private boolean loadScolomfrFileAsDocument() {
+		if (null == scolomfrFile) {
+			messages.get(MessageStatus.FAILURE)
+					.add("Please provide a scolomfr file before calling scolomfrutils methods.");
+			return false;
+		}
+		if (!buildScolomfrDocument()) {
+			messages.get(MessageStatus.FAILURE).add("Unable to build Dom document from provided xml file..");
+			return false;
+		}
+		return true;
 	}
 
 	protected boolean buildScolomfrDocument() {
@@ -186,16 +214,18 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 	/**
 	 * Indicates the version of Scolomfr with which scolomfrutils must work
 	 * 
-	 * @param version
+	 * @param versionStr
 	 *            A string "major.minor" (e.g. 3.0)
 	 */
 	@Override
-	public void setScolomfrVersion(String version) {
-		// If version has changed, unload the model
-		if (version != scolomfrVersion) {
+	public void setScolomfrVersion(String versionStr) {
+		SchemaVersion newVersion = SchemaVersionHandler.getInstance().getVersionFromString(versionStr);
+		// If version has changed, unload the model and register new version
+		if (scolomfrVersion == null || (newVersion != null && !newVersion.equals(scolomfrVersion))) {
 			skosApi.setSkosModel(null);
+			scolomfrVersion = newVersion;
 		}
-		scolomfrVersion = version;
+
 	}
 
 	private Logger getLogger() {
@@ -250,7 +280,7 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 		execute(new LabelCheckCommand());
 		return this;
 	}
-	
+
 	@Override
 	public IScolomfr3Utils checkVcards() {
 		execute(new VcardCheckCommand());

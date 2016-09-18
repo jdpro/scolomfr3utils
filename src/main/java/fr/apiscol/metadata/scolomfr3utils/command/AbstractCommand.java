@@ -15,6 +15,7 @@ import org.w3c.dom.Document;
 
 import fr.apiscol.metadata.scolomfr3utils.log.LoggerProvider;
 import fr.apiscol.metadata.scolomfr3utils.skos.ISkosApi;
+import fr.apiscol.metadata.scolomfr3utils.version.SchemaVersion;
 
 public abstract class AbstractCommand implements ICommand {
 
@@ -26,7 +27,7 @@ public abstract class AbstractCommand implements ICommand {
 	private Logger logger;
 	private final XPathFactory xpathFactory = XPathFactory.newInstance();
 	protected final XPath xPath = xpathFactory.newXPath();
-	private String scolomfrVersion;
+	private SchemaVersion scolomfrVersion;
 	private Map<MessageStatus, List<String>> messages = new EnumMap<>(MessageStatus.class);
 
 	protected AbstractCommand() {
@@ -40,12 +41,12 @@ public abstract class AbstractCommand implements ICommand {
 	}
 
 	@Override
-	public String getScolomfrVersion() {
+	public SchemaVersion getScolomfrVersion() {
 		return scolomfrVersion;
 	}
 
 	@Override
-	public void setScolomfrVersion(final String scolomfrVersion) {
+	public void setScolomfrVersion(final SchemaVersion scolomfrVersion) {
 		this.scolomfrVersion = scolomfrVersion;
 	}
 

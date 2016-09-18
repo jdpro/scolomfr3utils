@@ -10,6 +10,7 @@ import com.hp.hpl.jena.rdf.model.ModelFactory;
 import fr.apiscol.metadata.scolomfr3utils.Configuration;
 import fr.apiscol.metadata.scolomfr3utils.log.LoggerProvider;
 import fr.apiscol.metadata.scolomfr3utils.resources.ResourcesLoader;
+import fr.apiscol.metadata.scolomfr3utils.version.SchemaVersion;
 
 /**
  * Utility class to create Jena skos model from Skos file located in classpath
@@ -26,8 +27,8 @@ public class SkosLoader {
 	 *            Major.minor version as string
 	 * @return The Jena skos model
 	 */
-	public Model loadSkos(String scolomfrVersion) {
-		String skosFilePath = Configuration.getInstance().getSkosFilePath(scolomfrVersion);
+	public Model loadSkos(SchemaVersion scolomfrVersion) {
+		String skosFilePath = Configuration.getInstance().getSkosFilePath(scolomfrVersion.toString());
 		getLogger().info("Loading skos file from " + skosFilePath);
 		InputStream in = new ResourcesLoader().loadResource(skosFilePath);
 		if (in == null) {
