@@ -46,11 +46,17 @@ public class TaxonPathVocabCheckCommand extends AbstractCommand
 		Iterator<String> it = taxonNodesListsBySource.keySet().iterator();
 		boolean valid = true;
 		while (it.hasNext()) {
-			String vocabUri = it.next();
-			if (!getSkosApi().vocabularyExists(vocabUri)) {
+			String vocabLabelOrUri = it.next();
+			String vocabUri = null;
+			if (getSkosApi().vocabularyExists(vocabLabelOrUri)) {
+				vocabUri = vocabLabelOrUri;
+			} else {
+				vocabUri = getSkosApi().getVocabUriByLabel(vocabLabelOrUri);
+			}
+			if (StringUtils.isEmpty(vocabUri)) {
 				continue;
 			}
-			valid &= checkTaxonsBelongToVocabulary(vocabUri, taxonNodesListsBySource.get(vocabUri));
+			valid &= checkTaxonsBelongToVocabulary(vocabUri, taxonNodesListsBySource.get(vocabLabelOrUri));
 		}
 		return valid;
 	}

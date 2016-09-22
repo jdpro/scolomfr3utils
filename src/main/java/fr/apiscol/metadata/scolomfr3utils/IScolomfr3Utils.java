@@ -100,7 +100,7 @@ public interface IScolomfr3Utils {
 	 * 
 	 * @return {@link IScolomfr3Utils} for concatenation
 	 */
-	IScolomfr3Utils checkTaxonPathVocab();
+	IScolomfr3Utils checkTaxonPathVocabs();
 
 	/**
 	 * Check that all labels match provided URI in skos vocabulary

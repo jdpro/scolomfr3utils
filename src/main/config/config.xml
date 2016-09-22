@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 	<command-line>
-	<feature>
+		<feature>
 			<option>check-all</option>
 			<method>checkAll</method>
 			<message>Apply all available validations</message>
@@ -18,6 +18,12 @@
 			</message>
 		</feature>
 		<feature>
+			<option>check-taxonpath-vocabs</option>
+			<method>checkTaxonPathVocabs</method>
+			<message>Check that consecutive taxon are in hierarchical relation
+			</message>
+		</feature>
+		<feature>
 			<option>check-classification-purposes</option>
 			<method>checkClassificationPurposes</method>
 			<message>Check that taxonpaths are under the right purpose</message>
@@ -25,7 +31,8 @@
 		<feature>
 			<option>check-labels</option>
 			<method>checkLabels</method>
-			<message>Check that labels are preflabels or altLabels of provided URIs.</message>
+			<message>Check that labels are preflabels or altLabels of provided
+				URIs.</message>
 		</feature>
 		<feature>
 			<option>check-vcards</option>

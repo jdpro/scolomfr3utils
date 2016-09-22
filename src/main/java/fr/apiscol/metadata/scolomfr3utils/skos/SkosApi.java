@@ -62,9 +62,8 @@ public class SkosApi implements ISkosApi {
 
 	@Override
 	public boolean vocabularyExists(String subjectUri) {
-		Resource subject = getSkosModel().getResource(subjectUri);
 		Property type = getSkosModel().getProperty(HTTP_WWW_W3_ORG_1999_02_22_RDF_SYNTAX_NS, "type");
-		Selector selector = new SimpleSelector(subject, type, (RDFNode) null);
+		Selector selector = new SimpleSelector(null, type, (RDFNode) null);
 		StmtIterator stmts = getSkosModel().listStatements(selector);
 		if (!stmts.hasNext()) {
 			return false;
@@ -106,6 +105,32 @@ public class SkosApi implements ISkosApi {
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public String getVocabUriByLabel(final String vocabLabel) {
+		final String collection = HTTP_WWW_W3_ORG_2004_02_SKOS_CORE + "Collection";
+		Property type = getSkosModel().getProperty(HTTP_WWW_W3_ORG_1999_02_22_RDF_SYNTAX_NS, "type");
+		Selector selector = new SimpleSelector(null, type, (RDFNode) null) {
+			@Override
+			public boolean selects(Statement s) {
+				if (!s.getObject().isResource()) {
+					return false;
+				}
+				String objectUri = s.getObject().asResource().getURI();
+				if (!StringUtils.equalsIgnoreCase(objectUri, collection)) {
+					return false;
+				}
+				return resourceHasLabel(s.getSubject().getURI(), vocabLabel);
+			}
+		};
+
+		StmtIterator stmts = getSkosModel().listStatements(selector);
+		if (!stmts.hasNext()) {
+			return null;
+		}
+		Statement next = stmts.next();
+		return next.getSubject().getURI();
 	}
 
 }

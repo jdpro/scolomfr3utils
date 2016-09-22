@@ -115,7 +115,7 @@ END:VCARD]]>
 		</purpose>
 		<taxonPath>
 			<source>
-				<string language="http://id.loc.gov/vocabulary/iso639-2/fre">http://data.education.fr/voc/scolomfr/scolomfr-voc-015
+				<string language="http://id.loc.gov/vocabulary/iso639-2/fre">ScoLomFr Vocabulaire15
 				</string>
 			</source>
 			<taxon>

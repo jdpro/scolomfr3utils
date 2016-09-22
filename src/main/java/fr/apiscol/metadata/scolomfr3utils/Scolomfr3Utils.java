@@ -249,7 +249,7 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 
 	@Override
 	public IScolomfr3Utils checkAll() {
-		return checkXsd().checkLabels().checkClassifications().checkTaxonPathVocab().checkVcards();
+		return checkXsd().checkLabels().checkClassifications().checkVcards();
 	}
 
 	@Override
@@ -260,7 +260,7 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 
 	@Override
 	public IScolomfr3Utils checkClassifications() {
-		return checkTaxonPaths().checkClassificationPurposes();
+		return checkTaxonPaths().checkClassificationPurposes().checkTaxonPathVocabs();
 	}
 
 	@Override
@@ -276,7 +276,7 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 	}
 
 	@Override
-	public IScolomfr3Utils checkTaxonPathVocab() {
+	public IScolomfr3Utils checkTaxonPathVocabs() {
 		execute(new TaxonPathVocabCheckCommand());
 		return this;
 	}
