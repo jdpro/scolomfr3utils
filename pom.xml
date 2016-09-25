@@ -5,7 +5,7 @@
 	<groupId>fr.apiscol.metadata</groupId>
 	<artifactId>scolomfr3utils</artifactId>
 
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<packaging>jar</packaging>
 
 	<name>scolomfr3utils</name>
