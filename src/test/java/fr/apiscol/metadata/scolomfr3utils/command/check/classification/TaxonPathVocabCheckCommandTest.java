@@ -45,7 +45,8 @@ public class TaxonPathVocabCheckCommandTest {
 	@Test
 	public void testValidationSuccessWithRightVocabulary() throws Exception {
 		File scolomfrFile = new File("src/test/data/3.0/9/valid/taxon-member-of-vocabulary.xml");
-		taxonPathVocabCheckCommand.setScolomfrDocument(DomDocumentWithLineNumbersBuilder.getInstance().parse(scolomfrFile));
+		taxonPathVocabCheckCommand
+				.setScolomfrDocument(DomDocumentWithLineNumbersBuilder.getInstance().parse(scolomfrFile));
 		boolean result = taxonPathVocabCheckCommand.execute();
 		assertTrue("TaxonPath check command should not have failed.", result);
 		List<String> messages = taxonPathVocabCheckCommand.getMessages();
@@ -56,7 +57,8 @@ public class TaxonPathVocabCheckCommandTest {
 	@Test
 	public void testValidationSuccessWithTaxonPathWithoutSource() throws Exception {
 		File scolomfrFile = new File("src/test/data/3.0/9/valid/taxonpath-without-source.xml");
-		taxonPathVocabCheckCommand.setScolomfrDocument(DomDocumentWithLineNumbersBuilder.getInstance().parse(scolomfrFile));
+		taxonPathVocabCheckCommand
+				.setScolomfrDocument(DomDocumentWithLineNumbersBuilder.getInstance().parse(scolomfrFile));
 		boolean result = taxonPathVocabCheckCommand.execute();
 		assertTrue("TaxonPath check command should not have failed.", result);
 		List<String> messages = taxonPathVocabCheckCommand.getMessages(MessageStatus.WARNING);
@@ -68,11 +70,14 @@ public class TaxonPathVocabCheckCommandTest {
 	@Test
 	public void testValidationFailureWithWrongVocabulary() throws Exception {
 		File scolomfrFile = new File("src/test/data/3.0/9/invalid/taxon-non-member-of-vocabulary.xml");
-		taxonPathVocabCheckCommand.setScolomfrDocument(DomDocumentWithLineNumbersBuilder.getInstance().parse(scolomfrFile));
+		taxonPathVocabCheckCommand
+				.setScolomfrDocument(DomDocumentWithLineNumbersBuilder.getInstance().parse(scolomfrFile));
 		boolean result = taxonPathVocabCheckCommand.execute();
 		assertFalse("TaxonPath check command should have failed.", result);
 		List<String> failureMessages = taxonPathVocabCheckCommand.getMessages(MessageStatus.FAILURE);
-		assertTrue("The validation messages should contain : " + TAXON_DOES_NOT_BELONG_TO_VOCABULARY_FAILURE_MESSAGE,
+		assertTrue(
+				"The validation messages should contain : " + TAXON_DOES_NOT_BELONG_TO_VOCABULARY_FAILURE_MESSAGE
+						+ ", it is :" + failureMessages.toString(),
 				failureMessages.contains(TAXON_DOES_NOT_BELONG_TO_VOCABULARY_FAILURE_MESSAGE));
 	}
 

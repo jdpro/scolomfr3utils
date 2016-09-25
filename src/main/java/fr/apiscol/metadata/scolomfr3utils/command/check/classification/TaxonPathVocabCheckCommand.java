@@ -29,8 +29,9 @@ import fr.apiscol.metadata.scolomfr3utils.utils.xml.DomDocumentWithLineNumbersBu
 public class TaxonPathVocabCheckCommand extends AbstractCommand
 		implements IScolomfrDomDocumentRequired, ISkosApiRequired {
 
-	static final String TAXON_DOES_NOT_BELONG_TO_VOCABULARY_MESSAGE_TEMPLATE = "Taxon %s line %s does not belong to vocabulary %s";
+	static final String TAXON_DOES_NOT_BELONG_TO_VOCABULARY_MESSAGE_TEMPLATE = "Taxon %s line \"%s\" does not belong to vocabulary \"%s\"";
 	static final String MISSING_SOURCE_ELEMENT_MESSAGE_TEMPLATE = "Classification node line %s is missing a source child élément.";
+	static final String VOCAB_URI_DOES_NOT_MATCH_TAXONS = "Vocabulary \"%s\" line %s does not match vocabulary of taxons used in classification : it should be URI \"%s\" or label \"%s\".";
 
 	@Override
 	public boolean execute() {
@@ -53,10 +54,21 @@ public class TaxonPathVocabCheckCommand extends AbstractCommand
 			} else {
 				vocabUri = getSkosApi().getVocabUriByLabel(vocabLabelOrUri);
 			}
-			if (StringUtils.isEmpty(vocabUri)) {
-				continue;
+			if (!StringUtils.isEmpty(vocabUri)) {
+				valid &= checkTaxonsBelongToVocabulary(vocabUri, taxonNodesListsBySource.get(vocabLabelOrUri));
+			} else {
+				String taxonsCommonVocaburi = getSkosApi()
+						.detectCommonVocabularyForTaxonNodes(taxonNodesListsBySource.get(vocabLabelOrUri));
+				if (taxonsCommonVocaburi != null && !StringUtils.equalsIgnoreCase(vocabLabelOrUri, taxonsCommonVocaburi)
+						&& !getSkosApi().resourceHasLabel(taxonsCommonVocaburi, vocabLabelOrUri)) {
+					addMessage(MessageStatus.FAILURE,
+							String.format(VOCAB_URI_DOES_NOT_MATCH_TAXONS, vocabLabelOrUri,
+									getTaxonSourceNodeLineNumber(vocabLabelOrUri), taxonsCommonVocaburi,
+									getSkosApi().getPrefLabelForResource(taxonsCommonVocaburi)));
+					valid = false;
+				}
 			}
-			valid &= checkTaxonsBelongToVocabulary(vocabUri, taxonNodesListsBySource.get(vocabLabelOrUri));
+
 		}
 		return valid;
 	}
@@ -106,6 +118,27 @@ public class TaxonPathVocabCheckCommand extends AbstractCommand
 		}
 		return taxonLists;
 
+	}
+
+	private String getTaxonSourceNodeLineNumber(String taxonSource) {
+
+		NodeList taxonPathSourceNodes;
+		try {
+			taxonPathSourceNodes = (NodeList) xPath.evaluate("/lom/classification/taxonPath/source/string",
+					scolomfrDocument, XPathConstants.NODESET);
+		} catch (XPathExpressionException e) {
+			getLogger().error(e);
+			return "";
+		}
+
+		for (int i = 0; i < taxonPathSourceNodes.getLength(); i++) {
+			Node taxonPathSourceNode = taxonPathSourceNodes.item(i);
+			String taxonPathSourceId = taxonPathSourceNode.getTextContent().trim();
+			if (StringUtils.equalsIgnoreCase(taxonPathSourceId, taxonSource)) {
+				return taxonPathSourceNode.getUserData(DomDocumentWithLineNumbersBuilder.LINE_NUMBER_KEY).toString();
+			}
+		}
+		return "";
 	}
 
 	private List<Node> extractTaxons(Node classificationNode) {

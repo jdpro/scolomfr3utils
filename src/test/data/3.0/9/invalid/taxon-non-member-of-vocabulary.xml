@@ -46,7 +46,9 @@
 				</entry>
 			</taxon>
 			<taxon>
-				<id>http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-022-num-021
+				<!-- Uri fantaisiste, sinon scolomfrutils va déduire le vocabulaire des 
+					taxons -->
+				<id>http://my-own-uri
 				</id>
 				<entry>
 					<string language="http://id.loc.gov/vocabulary/iso639-2/fre">4e</string>

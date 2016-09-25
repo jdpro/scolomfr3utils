@@ -1,6 +1,9 @@
 package fr.apiscol.metadata.scolomfr3utils.skos;
 
+import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
+import org.w3c.dom.Node;
 
 import com.hp.hpl.jena.rdf.model.Literal;
 import com.hp.hpl.jena.rdf.model.Model;
@@ -12,6 +15,9 @@ import com.hp.hpl.jena.rdf.model.SimpleSelector;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.util.iterator.ExtendedIterator;
+
+import fr.apiscol.metadata.scolomfr3utils.command.MessageStatus;
+import fr.apiscol.metadata.scolomfr3utils.utils.xml.DomDocumentWithLineNumbersBuilder;
 
 public class SkosApi implements ISkosApi {
 	private static final String HTTP_WWW_W3_ORG_1999_02_22_RDF_SYNTAX_NS = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
@@ -62,19 +68,26 @@ public class SkosApi implements ISkosApi {
 
 	@Override
 	public boolean vocabularyExists(String subjectUri) {
+		Resource subject = getSkosModel().getResource(subjectUri);
 		Property type = getSkosModel().getProperty(HTTP_WWW_W3_ORG_1999_02_22_RDF_SYNTAX_NS, "type");
-		Selector selector = new SimpleSelector(null, type, (RDFNode) null);
+		Selector selector = new SimpleSelector(subject, type, (RDFNode) null);
 		StmtIterator stmts = getSkosModel().listStatements(selector);
 		if (!stmts.hasNext()) {
 			return false;
 		}
-		Statement next = stmts.next();
-		RDFNode typeObject = next.getObject();
-		if (!typeObject.isResource()) {
-			return false;
+		while (stmts.hasNext()) {
+			Statement next = stmts.next();
+			RDFNode typeObject = next.getObject();
+			if (!typeObject.isResource()) {
+				continue;
+			}
+			String typeStr = typeObject.asResource().getURI();
+			if (StringUtils.equalsIgnoreCase(typeStr, HTTP_WWW_W3_ORG_2004_02_SKOS_CORE + "Collection")) {
+				return true;
+			}
+
 		}
-		String typeStr = typeObject.asResource().getURI();
-		return StringUtils.equalsIgnoreCase(typeStr, HTTP_WWW_W3_ORG_2004_02_SKOS_CORE + "Collection");
+		return false;
 	}
 
 	@Override
@@ -131,6 +144,39 @@ public class SkosApi implements ISkosApi {
 		}
 		Statement next = stmts.next();
 		return next.getSubject().getURI();
+	}
+
+	@Override
+	public String detectCommonVocabularyForTaxonNodes(List<Node> taxonNodesList) {
+		Node taxonNode;
+		String commonVocabUri = null;
+		for (int i = 0; i < taxonNodesList.size(); i++) {
+			taxonNode = taxonNodesList.get(i);
+			String taxonUri = taxonNode.getTextContent().trim();
+			String taxonVocabUri = getResourceVocabulary(taxonUri);
+			if (StringUtils.isEmpty(commonVocabUri)) {
+				commonVocabUri = taxonVocabUri;
+			} else {
+				if (!StringUtils.equalsIgnoreCase(commonVocabUri, taxonVocabUri)) {
+					commonVocabUri = null;
+					break;
+				}
+			}
+		}
+		return commonVocabUri;
+	}
+
+	@Override
+	public String getResourceVocabulary(String resourceUri) {
+		Resource object = getSkosModel().getResource(resourceUri);
+		Property memberProperty = getSkosModel().getProperty(HTTP_WWW_W3_ORG_2004_02_SKOS_CORE, "member");
+		Selector memberPropertySelector = new SimpleSelector(null, memberProperty, object);
+		StmtIterator stmts = getSkosModel().listStatements(memberPropertySelector);
+		if (stmts.hasNext()) {
+			Statement next = stmts.nextStatement();
+			return next.getSubject().getURI();
+		}
+		return null;
 	}
 
 }

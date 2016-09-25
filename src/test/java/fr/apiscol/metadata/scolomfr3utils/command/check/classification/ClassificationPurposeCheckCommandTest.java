@@ -68,7 +68,9 @@ public class ClassificationPurposeCheckCommandTest {
 		boolean result = classificationPurposesCheckCommand.execute();
 		assertFalse("Classification purpose check command should have failed.", result);
 		List<String> failureMessages = classificationPurposesCheckCommand.getMessages(MessageStatus.FAILURE);
-		assertTrue("The validation messages should contain : " + INVALID_RESOURCE_USED_AS_VOCABULARY_MESSAGE,
+		assertTrue(
+				"The validation messages should contain : " + INVALID_RESOURCE_USED_AS_VOCABULARY_MESSAGE
+						+ ", they are " + failureMessages.toString(),
 				failureMessages.contains(INVALID_RESOURCE_USED_AS_VOCABULARY_MESSAGE));
 
 	}

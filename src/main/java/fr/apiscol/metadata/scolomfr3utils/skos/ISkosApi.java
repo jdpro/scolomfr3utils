@@ -1,5 +1,9 @@
 package fr.apiscol.metadata.scolomfr3utils.skos;
 
+import java.util.List;
+
+import org.w3c.dom.Node;
+
 import com.hp.hpl.jena.rdf.model.Model;
 
 public interface ISkosApi {
@@ -72,5 +76,20 @@ public interface ISkosApi {
 	 * @return null if no vocabulary has this label
 	 */
 	String getVocabUriByLabel(String vocabLabel);
+
+	/**
+	 * 
+	 * @param taxonNodes
+	 *            list of taxon nodes
+	 * @return URI of common vocabulary, else null
+	 */
+	String detectCommonVocabularyForTaxonNodes(List<Node> taxonNodes);
+
+	/**
+	 * 
+	 * @param resourceUri
+	 * @return URI of vocabulary this resource belongs to
+	 */
+	String getResourceVocabulary(String resourceUri);
 
 }
