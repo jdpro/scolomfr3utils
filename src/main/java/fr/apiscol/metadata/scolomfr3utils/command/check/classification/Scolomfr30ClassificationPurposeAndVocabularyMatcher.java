@@ -7,7 +7,7 @@ public class Scolomfr30ClassificationPurposeAndVocabularyMatcher implements ICla
 
 	private static final Map<String, String> purposeVocabularyCorrespondency;
 	static {
-		purposeVocabularyCorrespondency = new HashMap<String, String>();
+		purposeVocabularyCorrespondency = new HashMap<>();
 		purposeVocabularyCorrespondency.put("http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-028-num-003",
 				"http://data.education.fr/voc/scolomfr/scolomfr-voc-015");
 		purposeVocabularyCorrespondency.put("http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-028-num-021",

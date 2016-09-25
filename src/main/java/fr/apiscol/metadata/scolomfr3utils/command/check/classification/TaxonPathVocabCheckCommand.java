@@ -48,7 +48,7 @@ public class TaxonPathVocabCheckCommand extends AbstractCommand
 		boolean valid = true;
 		while (it.hasNext()) {
 			String vocabLabelOrUri = it.next();
-			String vocabUri = null;
+			String vocabUri;
 			if (getSkosApi().vocabularyExists(vocabLabelOrUri)) {
 				vocabUri = vocabLabelOrUri;
 			} else {

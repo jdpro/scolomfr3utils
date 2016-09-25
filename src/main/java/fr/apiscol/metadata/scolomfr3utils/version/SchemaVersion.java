@@ -10,7 +10,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
  */
 public class SchemaVersion implements Comparable<SchemaVersion> {
 	private static final Pattern versionPattern = Pattern.compile(".*([0-9]+)\\.([0-9]+)");
-	private static final String UNDEFINED = "undefined version";
+	static final String UNDEFINED = "undefined version";
 	private int minor = -1;
 	private int major = -1;
 

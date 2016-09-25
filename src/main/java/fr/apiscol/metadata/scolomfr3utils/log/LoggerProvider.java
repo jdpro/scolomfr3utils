@@ -18,8 +18,7 @@ public class LoggerProvider {
 			BasicConfigurator.configure();
 		}
 
-		Logger logger = Logger.getLogger(callingClass);
-		return logger;
+		return Logger.getLogger(callingClass);
 	}
 
 	/**

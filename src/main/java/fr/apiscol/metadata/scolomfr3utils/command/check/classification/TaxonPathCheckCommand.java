@@ -20,7 +20,7 @@ import fr.apiscol.metadata.scolomfr3utils.utils.xml.DomDocumentWithLineNumbersBu
 
 public class TaxonPathCheckCommand extends AbstractCommand implements IScolomfrDomDocumentRequired, ISkosApiRequired {
 
-	static final String NON_CONSECUTIVE_TAXONS_FAILURE_MESSAGE_PATTERN = "Taxon %s (%s) line %s follows taxon %s (%s) but the latter is not connected to the former by a broader relation";
+	static final String NON_CONSECUTIVE_TAXONS_FAILURE_MESSAGE_PATTERN = "Taxon \"%s\" (\"%s\") line %s follows taxon \"%s\" (\"%s\") but the latter is not connected to the former by a broader relation";
 
 	@Override
 	public boolean execute() {
@@ -33,7 +33,7 @@ public class TaxonPathCheckCommand extends AbstractCommand implements IScolomfrD
 			addMessage(MessageStatus.FAILURE, e.getMessage());
 			return false;
 		}
-		List<Node> taxonNodesList = null;
+		List<Node> taxonNodesList;
 		boolean valid = true;
 		for (int i = 0; i < taxonNodesLists.size(); i++) {
 			taxonNodesList = taxonNodesLists.get(i);
@@ -48,19 +48,18 @@ public class TaxonPathCheckCommand extends AbstractCommand implements IScolomfrD
 		String taxonIdUri;
 		boolean valid = true;
 		while (it.hasNext()) {
-			Node taxonId = (Node) it.next();
+			Node taxonId = it.next();
 			taxonIdUri = taxonId.getTextContent().trim();
-			if (!StringUtils.isEmpty(previousTaxonIdUri)) {
-				if (getSkosApi().resourceExists(taxonIdUri) && getSkosApi().resourceExists(previousTaxonIdUri)
-						&& !getSkosApi().isBroaderThan(previousTaxonIdUri, taxonIdUri)) {
-					String taxonPreflabel = getSkosApi().getPrefLabelForResource(taxonIdUri);
-					String previousTaxonPreflabel = getSkosApi().getPrefLabelForResource(previousTaxonIdUri);
-					String lineNumber = taxonId.getUserData(DomDocumentWithLineNumbersBuilder.LINE_NUMBER_KEY)
-							.toString();
-					addMessage(MessageStatus.FAILURE, String.format(NON_CONSECUTIVE_TAXONS_FAILURE_MESSAGE_PATTERN,
-							taxonIdUri, taxonPreflabel, lineNumber, previousTaxonIdUri, previousTaxonPreflabel));
-					valid = false;
-				}
+			if (!StringUtils.isEmpty(previousTaxonIdUri) && getSkosApi().resourceExists(taxonIdUri)
+					&& getSkosApi().resourceExists(previousTaxonIdUri)
+					&& !getSkosApi().isBroaderThan(previousTaxonIdUri, taxonIdUri)) {
+				String taxonPreflabel = getSkosApi().getPrefLabelForResource(taxonIdUri);
+				String previousTaxonPreflabel = getSkosApi().getPrefLabelForResource(previousTaxonIdUri);
+				String lineNumber = taxonId.getUserData(DomDocumentWithLineNumbersBuilder.LINE_NUMBER_KEY).toString();
+				addMessage(MessageStatus.FAILURE, String.format(NON_CONSECUTIVE_TAXONS_FAILURE_MESSAGE_PATTERN,
+						taxonIdUri, taxonPreflabel, lineNumber, previousTaxonIdUri, previousTaxonPreflabel));
+				valid = false;
+
 			}
 			previousTaxonIdUri = taxonIdUri;
 		}
@@ -69,11 +68,11 @@ public class TaxonPathCheckCommand extends AbstractCommand implements IScolomfrD
 
 	private List<List<Node>> getTaxonLists() throws XPathExpressionException {
 		List<List<Node>> taxonLists = new ArrayList<>();
-		NodeList taxonPathNodes = null;
+		NodeList taxonPathNodes;
 		taxonPathNodes = (NodeList) xPath.evaluate("/lom/classification/taxonPath", scolomfrDocument,
 				XPathConstants.NODESET);
-		Node taxonPathNode = null;
-		NodeList taxonNodeIds = null;
+		Node taxonPathNode;
+		NodeList taxonNodeIds;
 		for (int i = 0; i < taxonPathNodes.getLength(); i++) {
 			List<Node> taxonList = new LinkedList<>();
 			taxonPathNode = taxonPathNodes.item(i);
@@ -81,7 +80,7 @@ public class TaxonPathCheckCommand extends AbstractCommand implements IScolomfrD
 			if (taxonNodeIds.getLength() == 0) {
 				continue;
 			}
-			Node taxonNodeId = null;
+			Node taxonNodeId;
 			for (int j = 0; j < taxonNodeIds.getLength(); j++) {
 				taxonNodeId = taxonNodeIds.item(j);
 				taxonList.add(taxonNodeId);

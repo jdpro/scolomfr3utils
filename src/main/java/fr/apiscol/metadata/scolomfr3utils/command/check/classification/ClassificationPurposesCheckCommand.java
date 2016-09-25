@@ -18,7 +18,7 @@ public class ClassificationPurposesCheckCommand extends AbstractCommand
 	static final String MISSING_SCO_LO_MFR_SCHEMA_VERSION_MESSAGE = "Please provide the ScoLOMfr schema version to check classification purposes.";
 	static final String CLASSIFICATION_WITHOUT_PURPOSE_MESSAGE_PATTERN = "Classification element line %s node has no associated purpose";
 	static final String VOCABULARY_NOT_ALLOWED_UNDER_PURPOSE_MESSAGE_PATTERN = "Invalid element source line %s : you can't use vocabulary %s under purpose %s";
-	static final String INVALID_RESOURCE_USED_AS_VOCABULARY_MESSAGE_PATTERN = "TaxonPath uses a skos resource %s that is not a vocabulary as source line %s";
+	static final String INVALID_RESOURCE_USED_AS_VOCABULARY_MESSAGE_PATTERN = "TaxonPath uses a skos resource \"%s\" that is not a vocabulary as source line %s";
 
 	@Override
 	public boolean execute() {

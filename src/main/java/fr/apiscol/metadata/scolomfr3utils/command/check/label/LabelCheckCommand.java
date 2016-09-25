@@ -20,7 +20,7 @@ import fr.apiscol.metadata.scolomfr3utils.utils.xml.DomDocumentWithLineNumbersBu
 
 public class LabelCheckCommand extends AbstractCommand implements IScolomfrDomDocumentRequired, ISkosApiRequired {
 
-	static final String RESOURCE_LABEL_DOES_NOT_MATCH_ANY_LABEL_OF_URI = "Resource label %s line %s does not match any label of uri %s";
+	static final String RESOURCE_LABEL_DOES_NOT_MATCH_ANY_LABEL_OF_URI = "Resource label \"%s\" line %s does not match any label of uri \"%s\"";
 
 	@Override
 	public boolean execute() {
@@ -60,7 +60,7 @@ public class LabelCheckCommand extends AbstractCommand implements IScolomfrDomDo
 				Node labelValueParent = labelValueParents.item(i);
 				Node label = (Node) xPath.evaluate("label", labelValueParent, XPathConstants.NODE);
 				Node value = (Node) xPath.evaluate("value", labelValueParent, XPathConstants.NODE);
-				Pair<Node, Node> pair = new ImmutablePair<Node, Node>(value, label);
+				Pair<Node, Node> pair = new ImmutablePair<>(value, label);
 				pairs.add(pair);
 			}
 		} catch (XPathExpressionException e) {

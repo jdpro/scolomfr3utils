@@ -3,6 +3,8 @@ package fr.apiscol.metadata.scolomfr3utils.version;
 import org.junit.Test;
 import static org.junit.Assert.assertTrue;
 
+import javax.xml.validation.Schema;
+
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -55,6 +57,14 @@ public class SchemaVersionTest {
 		assertTrue("Schema version 1 and 2 should be equals, major should be " + major + " and minor " + minor
 				+ " schema version 2 has major " + schemaVersion2.getMajor() + " and minor "
 				+ schemaVersion2.getMinor(), schemaVersion1.equals(schemaVersion2));
+
+	}
+
+	@Test
+	public void testUndefinedSchemaVersion() throws Exception {
+		SchemaVersion schemaVersion = new SchemaVersion();
+		assertTrue("Schema version string should be :" + SchemaVersion.UNDEFINED,
+				schemaVersion.toString().equals(SchemaVersion.UNDEFINED));
 
 	}
 
