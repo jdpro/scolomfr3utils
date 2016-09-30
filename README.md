@@ -12,4 +12,8 @@
 ### Portability
 Scolomfr Utils Is likely to be used in both Java and non Java projects.
 
+#### Java projects
+
+Add scolomfr3utils jar to your project dependencies (http://search.maven.org/#search|ga|1|g%3A%22fr.apiscol.metadata%22)  and use the Java programming API.
+
 ### Quality
