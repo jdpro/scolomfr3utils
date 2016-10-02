@@ -4,12 +4,22 @@
 		<feature>
 			<option>check-all</option>
 			<method>checkAll</method>
-			<message>Apply all available validations</message>
+			<message>Apply all available validations.
+				Equals : --check-xsd
+				--check-classifications --check-vcards --check-labels
+			</message>
 		</feature>
 		<feature>
 			<option>check-xsd</option>
 			<method>checkXsd</method>
 			<message>Apply xsd validation</message>
+		</feature>
+		<feature>
+			<option>check-classifications</option>
+			<method>checkClassifications</method>
+			<message>Equals : --check-taxonpaths --check-taxonpath-vocabs
+				--check-classification-purposes
+			</message>
 		</feature>
 		<feature>
 			<option>check-taxonpaths</option>
@@ -20,24 +30,28 @@
 		<feature>
 			<option>check-taxonpath-vocabs</option>
 			<method>checkTaxonPathVocabs</method>
-			<message>Check that consecutive taxon are in hierarchical relation
+			<message>Check that taxon belong to their vocabulary if specified.
 			</message>
 		</feature>
 		<feature>
 			<option>check-classification-purposes</option>
 			<method>checkClassificationPurposes</method>
-			<message>Check that taxonpaths are under the right purpose</message>
+			<message>Check that taxonpaths are under the right purpose if
+				specified.</message>
 		</feature>
 		<feature>
 			<option>check-labels</option>
 			<method>checkLabels</method>
-			<message>Check that labels are preflabels or altLabels of provided
-				URIs.</message>
+			<message>Check that labels are either preflabels or altLabels of
+				provided
+				URIs.
+			</message>
 		</feature>
 		<feature>
 			<option>check-vcards</option>
 			<method>checkVcards</method>
-			<message>Check that inline vcards are RFC 2426 compliant.</message>
+			<message>Check that inline vcards are RFC compliant according to
+				specified vcard version.</message>
 		</feature>
 	</command-line>
 	<schemas>

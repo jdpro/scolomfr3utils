@@ -2,6 +2,7 @@ package fr.apiscol.metadata.scolomfr3utils;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Iterator;
@@ -9,11 +10,13 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.tuple.Pair;
+import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.w3c.dom.DOMException;
 
 import fr.apiscol.metadata.scolomfr3utils.command.MessageStatus;
 import fr.apiscol.metadata.scolomfr3utils.log.LoggerProvider;
+import fr.apiscol.metadata.scolomfr3utils.log.LoggingOutputStream;
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
 
@@ -39,13 +42,15 @@ public class App {
 	 * 
 	 * @param args
 	 *            command line arguments
-	 * @throws IOException If provided file is unreachable
+	 * @throws IOException
+	 *             If provided file is unreachable
 	 */
 	public static void main(String[] args) throws IOException {
 		createParser();
 		options = parser.parse(args);
 		if (options.has("h")) {
-
+			OutputStream writer = new LoggingOutputStream(getLogger(), Level.INFO);
+			parser.printHelpOn(writer);
 			return;
 		}
 		loadXmlFile();
