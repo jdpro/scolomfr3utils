@@ -93,5 +93,3 @@ Copyright (C) 2016 Joachim Dornbusch.
 Copyright (C) 2016 Itop Education
 
 Distributed under the GNU/GPL v3 license.
-
-Distributed under the Apache 2 license.
