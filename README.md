@@ -34,7 +34,7 @@ if (!scolomfrUtils.isValid()) {
 
 #### Non-java projects
 
-Download scolomfr3utils **stand-alone jar** and execute it from command line.
+Download [scolomfr3utils **stand-alone jar**](https://github.com/jdpro/scolomfr3utils/blob/master/etc/stand-alone-jar.zip?raw=true) and execute it from command line.
 
 ```shell
 java -jar target/scolomfr3utils-0.0.1-jar-with-dependencies.jar -f /path/to/my/scolomfr/file.xml -v 3.0 --check-all
@@ -56,7 +56,10 @@ WARNING MESSAGES
 Entity line 191 : ENCODING parameter value ("8BIT") is not supported by this vCard version.
 Entity line 191 : CHARSET parameter is not supported in this vCard version.
 ```
-
+For maven users, the stand-alone jar may be generated in the following way :
+```
+mvn clean compile assembly:single
+```
 ### Requirements
 
 Scolomfr3utils embeds 2.x versions of Apache Jena which requires **Java 7**. Jena has not been upgraded to 3.X versions to avoid losing Java 7 compatibility.
