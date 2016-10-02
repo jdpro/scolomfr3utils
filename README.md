@@ -85,6 +85,9 @@ Option                           Description
 -h                               Display help                                  
 -v                               Scolomfr schema version                       
 ```
+## Future improvements
+
+In the future, a major improvement would be to control the consistency of indexing by discipline, by educational level and by program ("domaine d'enseignement"). For example, a warning should be issued if a resource intended to the 'CM1' class is indexed to the program of the 'Terminale' class or if it is attached to a field that is not taught in CM1.
 
 ## Copyright
 
