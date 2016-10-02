@@ -5,7 +5,7 @@
 
  Only xsd validation is currently available to control scoLOMFR3 metadata. However, these metadata refer to vocabularies published in the semantic web formats (RDF, SKOS).
  
- The aim of scolomfr3utils project, for lack of other available technology, is to improve the coherence of scolomfr3 metadata *both at the syntactic (XSD) and semantic level*.
+ The aim of scolomfr3utils project, for lack of other available technology, is to monitor the coherence of scolomfr3 metadata *both at the syntactic (XSD) and semantic level*.
  
 ## Benefits
 
