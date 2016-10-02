@@ -60,3 +60,25 @@ Entity line 191 : CHARSET parameter is not supported in this vCard version.
 ### Requirements
 
 Scolomfr3utils embeds 2.x versions of Apache Jena which requires **Java 7**. Jena has not been upgraded to 3.X versions to avoid losing Java 7 compatibility.
+
+### Command line API
+
+May be displayed by the standalone jar (-h option)
+
+```shell
+$ java -jar target/scolomfr3utils-0.0.1-jar-with-dependencies.jar -h
+Option                           Description                                   
+------                           -----------                                   
+--check-all                      Apply all available validations.              
+                                 Equals : --check-xsd --check-classifications --check-vcards --check-labels                                
+--check-classification-purposes  Check that taxonpaths are under the right purpose if specified.                                
+--check-classifications          Equals : --check-taxonpaths --check-taxonpath- vocabs  --check-classification-purposes           
+--check-labels                   Check that labels are either preflabels or altLabels of provided URIs.                                     
+--check-taxonpath-vocabs         Check that taxon belong to their vocabulary if specified.                                  
+--check-taxonpaths               Check that consecutive taxon are in hierarchical relation                       
+--check-vcards                   Check that inline vcards are RFC compliant according to specified vcard version.                  
+--check-xsd                      Apply xsd validation                          
+-f                               Scolomfr xml file path                        
+-h                               Display help                                  
+-v                               Scolomfr schema version                       
+```
