@@ -3,7 +3,7 @@
 
 ## Purpose
 
- Only xsd validation is currently available to control scolomfr3 metadata. However, these metadata refer to vocabularies published in the semantic web formats (RDF, SKOS).
+ Only xsd validation is currently available to control scoLOMFR3 metadata. However, these metadata refer to vocabularies published in the semantic web formats (RDF, SKOS).
  
  The aim of scolomfr3utils project, for lack of other available technology, is to improve the coherence of scolomfr3 metadata both at the syntactic (XSD) and semantic level.
  
@@ -57,5 +57,6 @@ Entity line 191 : ENCODING parameter value ("8BIT") is not supported by this vCa
 Entity line 191 : CHARSET parameter is not supported in this vCard version.
 ```
 
-
 ### Requirements
+
+Scolomfr3utils embed 2.x versions of Apache Jena which requires Java 7. Jena has not been upgraded to 3.X versions to avoid losing Java 7 compatibility.
