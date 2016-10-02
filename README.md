@@ -9,16 +9,16 @@
  
 ## Benefits
 
-### Quality
+## Quality
 
 A tool to ensure the quality of data needs to offer itself quality guarantees...
 * Scolomfr3utils source code quality is *managed by Sonarqube*.
-* Scolomfr3utils is covered by unit and integration tests *at a minimum level of 80%*.
+* Scolomfr3utils is covered by unit and integration tests *at an average level of 80%*.
 
-### Portability
+## Portability
 Scolomfr3utils is likely to be used in both Java and non-Java projects.
 
-#### Java projects
+### Java projects
 
 Add scolomfr3utils jar to your project dependencies [from Maven Central](http://search.maven.org/#search|ga|1|g%3A%22fr.apiscol.metadata%22) and use the Java programming API.
 
@@ -32,7 +32,7 @@ if (!scolomfrUtils.isValid()) {
      ...
 ```
 
-#### Non-java projects
+### Non-java projects
 
 Download [scolomfr3utils **stand-alone jar**](https://github.com/jdpro/scolomfr3utils/blob/master/etc/stand-alone-jar.zip?raw=true) and execute it from command line.
 
@@ -60,11 +60,11 @@ For maven users, the stand-alone jar may be generated in the following way :
 ```
 mvn clean compile assembly:single
 ```
-### Requirements
+## Requirements
 
 Scolomfr3utils embeds 2.x versions of Apache Jena which requires **Java 7**. Jena has not been upgraded to 3.X versions to avoid losing Java 7 compatibility.
 
-### Command line API
+## Command line API
 
 May be displayed by the standalone jar (-h option)
 
