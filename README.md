@@ -1,22 +1,22 @@
 # Scolomfr3utils
- Set of utilities to improve the quality of scoLOMFR3 learning resource metadata
+ Set of utilities to improve the quality of scoLOMFR3 learning resource metadata.
 
 ## Purpose
 
  Only xsd validation is currently available to control scoLOMFR3 metadata. However, these metadata refer to vocabularies published in the semantic web formats (RDF, SKOS).
  
- The aim of scolomfr3utils project, for lack of other available technology, is to improve the coherence of scolomfr3 metadata both at the syntactic (XSD) and semantic level.
+ The aim of scolomfr3utils project, for lack of other available technology, is to monitor the coherence of scolomfr3 metadata *both at the syntactic (XSD) and semantic level*.
  
 ## Benefits
 
 ### Quality
 
 A tool to ensure the quality of data needs to offer itself quality guarantees...
-* Scolomfr3utils source code quality is managed by Sonarqube
-* Scolomfr3utils is covered by unit and integration tests at a minimum level of 80%
+* Scolomfr3utils source code quality is *managed by Sonarqube*.
+* Scolomfr3utils is covered by unit and integration tests *at a minimum level of 80%*.
 
 ### Portability
-Scolomfr3utils is likely to be used in both Java and non Java projects.
+Scolomfr3utils is likely to be used in both Java and non-Java projects.
 
 #### Java projects
 
@@ -34,7 +34,7 @@ if (!scolomfrUtils.isValid()) {
 
 #### Non-java projects
 
-Download scolomfr3utils stand-alone jar and execute it from command line.
+Download scolomfr3utils **stand-alone jar** and execute it from command line.
 
 ```shell
 java -jar target/scolomfr3utils-0.0.1-jar-with-dependencies.jar -f /path/to/my/scolomfr/file.xml -v 3.0 --check-all
@@ -59,4 +59,4 @@ Entity line 191 : CHARSET parameter is not supported in this vCard version.
 
 ### Requirements
 
-Scolomfr3utils embed 2.x versions of Apache Jena which requires Java 7. Jena has not been upgraded to 3.X versions to avoid losing Java 7 compatibility.
+Scolomfr3utils embeds 2.x versions of Apache Jena which requires **Java 7**. Jena has not been upgraded to 3.X versions to avoid losing Java 7 compatibility.
