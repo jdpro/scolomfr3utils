@@ -29,9 +29,9 @@ import fr.apiscol.metadata.scolomfr3utils.utils.xml.DomDocumentWithLineNumbersBu
 public class TaxonPathVocabCheckCommand extends AbstractCommand
 		implements IScolomfrDomDocumentRequired, ISkosApiRequired {
 
-	static final String TAXON_DOES_NOT_BELONG_TO_VOCABULARY_MESSAGE_TEMPLATE = "Taxon %s line \"%s\" does not belong to vocabulary \"%s\"";
-	static final String MISSING_SOURCE_ELEMENT_MESSAGE_TEMPLATE = "Classification node line %s is missing a source child élément.";
-	static final String VOCAB_URI_DOES_NOT_MATCH_TAXONS = "Vocabulary \"%s\" line %s does not match vocabulary of taxons used in classification : it should be URI \"%s\" or label \"%s\".";
+	static final String TAXON_DOES_NOT_BELONG_TO_VOCABULARY_MESSAGE_TEMPLATE = "# Line %s : Taxon \"%s\" does not belong to vocabulary \"%s\"";
+	static final String MISSING_SOURCE_ELEMENT_MESSAGE_TEMPLATE = "# Line %s : Classification node is missing a source child élément.";
+	static final String VOCAB_URI_DOES_NOT_MATCH_TAXONS = "# Line %s : Vocabulary \"%s\" does not match vocabulary of taxons used in classification : it should be URI \"%s\" or label \"%s\".";
 
 	@Override
 	public boolean execute() {
@@ -62,9 +62,9 @@ public class TaxonPathVocabCheckCommand extends AbstractCommand
 				if (taxonsCommonVocaburi != null && !StringUtils.equalsIgnoreCase(vocabLabelOrUri, taxonsCommonVocaburi)
 						&& !getSkosApi().resourceHasLabel(taxonsCommonVocaburi, vocabLabelOrUri)) {
 					addMessage(MessageStatus.FAILURE,
-							String.format(VOCAB_URI_DOES_NOT_MATCH_TAXONS, vocabLabelOrUri,
-									getTaxonSourceNodeLineNumber(vocabLabelOrUri), taxonsCommonVocaburi,
-									getSkosApi().getPrefLabelForResource(taxonsCommonVocaburi)));
+							String.format(VOCAB_URI_DOES_NOT_MATCH_TAXONS,
+									getTaxonSourceNodeLineNumber(vocabLabelOrUri), vocabLabelOrUri,
+									taxonsCommonVocaburi, getSkosApi().getPrefLabelForResource(taxonsCommonVocaburi)));
 					valid = false;
 				}
 			}
@@ -81,7 +81,7 @@ public class TaxonPathVocabCheckCommand extends AbstractCommand
 			String taxonuri = taxonNode.getTextContent().trim();
 			if (!getSkosApi().resourceIsMemberOfVocabulary(taxonuri, vocabUri)) {
 				addMessage(MessageStatus.FAILURE, String.format(TAXON_DOES_NOT_BELONG_TO_VOCABULARY_MESSAGE_TEMPLATE,
-						taxonuri, taxonNode.getUserData(DomDocumentWithLineNumbersBuilder.LINE_NUMBER_KEY), vocabUri));
+						taxonNode.getUserData(DomDocumentWithLineNumbersBuilder.LINE_NUMBER_KEY), taxonuri, vocabUri));
 				valid = false;
 			}
 		}

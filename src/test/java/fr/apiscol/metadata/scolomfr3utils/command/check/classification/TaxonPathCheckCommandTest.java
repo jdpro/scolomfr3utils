@@ -26,8 +26,8 @@ import fr.apiscol.metadata.scolomfr3utils.version.SchemaVersion;
 public class TaxonPathCheckCommandTest {
 
 	private static final String NON_CONSECUTIVE_TAXONS_FAILURE_MESSAGE = String.format(
-			TaxonPathCheckCommand.NON_CONSECUTIVE_TAXONS_FAILURE_MESSAGE_PATTERN,
-			"http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-022-num-020", "5e", "53",
+			TaxonPathCheckCommand.NON_CONSECUTIVE_TAXONS_FAILURE_MESSAGE_PATTERN, "53",
+			"http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-022-num-020", "5e",
 			"http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-022-num-021", "4e");
 	private AbstractCommand taxonPathCheckCommand;
 

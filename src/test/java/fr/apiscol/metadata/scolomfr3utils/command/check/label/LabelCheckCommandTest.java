@@ -26,9 +26,9 @@ import fr.apiscol.metadata.scolomfr3utils.version.SchemaVersion;
 public class LabelCheckCommandTest {
 
 	private static final String INVALID_LABEL_COURS_FAILURE_MESSAGE = String
-			.format(LabelCheckCommand.RESOURCE_LABEL_DOES_NOT_MATCH_ANY_LABEL_OF_URI, "cours", "142", "http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-008-num-03");
+			.format(LabelCheckCommand.RESOURCE_LABEL_DOES_NOT_MATCH_ANY_LABEL_OF_URI, "142", "cours", "http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-008-num-03");
 	private static final String INVALID_LABEL_QUOTE_FAILURE_MESSAGE = String
-			.format(LabelCheckCommand.RESOURCE_LABEL_DOES_NOT_MATCH_ANY_LABEL_OF_URI, "logiciel organiseur d’idées", "515", "http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-020-num-057");
+			.format(LabelCheckCommand.RESOURCE_LABEL_DOES_NOT_MATCH_ANY_LABEL_OF_URI, "515", "logiciel organiseur d’idées", "http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-020-num-057");
 	private AbstractCommand taxonPathVocabCheckCommand;
 
 	@Before

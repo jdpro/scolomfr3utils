@@ -17,7 +17,7 @@ import fr.apiscol.metadata.scolomfr3utils.xsd.ValidatorLoader;
  * Test xsd validation with different kinds of files
  */
 public class XsdValidationCommandTest {
-	public static final String DUPLICATE_GENERAL_ELEMENT_FAILURE_MESSAGE = "cvc-identity-constraint.4.1: Duplicate unique value [general] declared for identity constraint \"lomUnique\" of element \"lom\".";
+	public static final String DUPLICATE_GENERAL_ELEMENT_FAILURE_MESSAGE = "# Global : cvc-identity-constraint.4.1: Duplicate unique value [general] declared for identity constraint \"lomUnique\" of element \"lom\".";
 
 	private XsdValidationCommand xsdValidationCommand;
 

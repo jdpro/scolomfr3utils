@@ -2,6 +2,7 @@ package fr.apiscol.metadata.scolomfr3utils.skos;
 
 import java.io.InputStream;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
 import com.hp.hpl.jena.rdf.model.Model;
@@ -29,7 +30,12 @@ public class SkosLoader {
 	 */
 	public Model loadSkos(SchemaVersion scolomfrVersion) {
 		String skosFilePath = Configuration.getInstance().getSkosFilePath(scolomfrVersion.toString());
+		if (StringUtils.isEmpty(skosFilePath)) {
+			getLogger().error("No registered Skos file for version " + scolomfrVersion);
+			return null;
+		}
 		getLogger().info("Loading skos file from " + skosFilePath);
+
 		InputStream in = new ResourcesLoader().loadResource(skosFilePath);
 		if (in == null) {
 			getLogger().error("Unable to load skos file " + skosFilePath + " for version " + scolomfrVersion);

@@ -26,8 +26,8 @@ import fr.apiscol.metadata.scolomfr3utils.utils.xml.DomDocumentWithLineNumbersBu
 
 public class VcardCheckCommand extends AbstractCommand implements IScolomfrDomDocumentRequired, ISkosApiRequired {
 
-	private static final String IMPOSSIBLE_TO_EXTRACT_VCARD_VERSION = "Impossible to extract vcard version line %s";
-	private static final String STRING_CANNOT_BE_PARSED_AS_VCARD = "Provided string can't be parsed as vcard line %s";
+	private static final String IMPOSSIBLE_TO_EXTRACT_VCARD_VERSION = "# Line %s : Impossible to extract vcard version";
+	private static final String STRING_CANNOT_BE_PARSED_AS_VCARD = "# Line %s : Provided string can't be parsed as vcard";
 
 	@Override
 	public boolean execute() {
@@ -66,8 +66,8 @@ public class VcardCheckCommand extends AbstractCommand implements IScolomfrDomDo
 			while (it2.hasNext()) {
 				Warning warning = it2.next();
 				addMessage(MessageStatus.WARNING,
-						"Entity line " + vcardEntity.getUserData(DomDocumentWithLineNumbersBuilder.LINE_NUMBER_KEY)
-								+ " : " + warning.getMessage());
+						"# Line " + vcardEntity.getUserData(DomDocumentWithLineNumbersBuilder.LINE_NUMBER_KEY) + " : "
+								+ warning.getMessage());
 			}
 		}
 		return true;

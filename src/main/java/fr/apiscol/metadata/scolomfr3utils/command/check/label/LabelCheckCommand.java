@@ -20,7 +20,7 @@ import fr.apiscol.metadata.scolomfr3utils.utils.xml.DomDocumentWithLineNumbersBu
 
 public class LabelCheckCommand extends AbstractCommand implements IScolomfrDomDocumentRequired, ISkosApiRequired {
 
-	static final String RESOURCE_LABEL_DOES_NOT_MATCH_ANY_LABEL_OF_URI = "Resource label \"%s\" line %s does not match any label of uri \"%s\"";
+	static final String RESOURCE_LABEL_DOES_NOT_MATCH_ANY_LABEL_OF_URI = "# Line %s : Resource label \"%s\" does not match any label of uri \"%s\"";
 
 	@Override
 	public boolean execute() {
@@ -42,9 +42,9 @@ public class LabelCheckCommand extends AbstractCommand implements IScolomfrDomDo
 		boolean resourceHasLabel = getSkosApi().resourceHasLabel(resourceUri, resourceLabel);
 		if (!resourceHasLabel) {
 			addMessage(MessageStatus.FAILURE,
-					String.format(RESOURCE_LABEL_DOES_NOT_MATCH_ANY_LABEL_OF_URI, resourceLabel,
+					String.format(RESOURCE_LABEL_DOES_NOT_MATCH_ANY_LABEL_OF_URI,
 							pair.getRight().getUserData(DomDocumentWithLineNumbersBuilder.LINE_NUMBER_KEY),
-							resourceUri));
+							resourceLabel, resourceUri));
 			return false;
 		}
 		return true;

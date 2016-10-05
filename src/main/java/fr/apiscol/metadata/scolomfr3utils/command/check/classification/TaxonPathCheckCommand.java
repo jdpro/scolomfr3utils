@@ -20,7 +20,7 @@ import fr.apiscol.metadata.scolomfr3utils.utils.xml.DomDocumentWithLineNumbersBu
 
 public class TaxonPathCheckCommand extends AbstractCommand implements IScolomfrDomDocumentRequired, ISkosApiRequired {
 
-	static final String NON_CONSECUTIVE_TAXONS_FAILURE_MESSAGE_PATTERN = "Taxon \"%s\" (\"%s\") line %s follows taxon \"%s\" (\"%s\") but the latter is not connected to the former by a broader relation";
+	static final String NON_CONSECUTIVE_TAXONS_FAILURE_MESSAGE_PATTERN = "# Line %s : Taxon \"%s\" (\"%s\") follows taxon \"%s\" (\"%s\") but the latter is not connected to the former by a broader relation";
 
 	@Override
 	public boolean execute() {
@@ -57,7 +57,8 @@ public class TaxonPathCheckCommand extends AbstractCommand implements IScolomfrD
 				String previousTaxonPreflabel = getSkosApi().getPrefLabelForResource(previousTaxonIdUri);
 				String lineNumber = taxonId.getUserData(DomDocumentWithLineNumbersBuilder.LINE_NUMBER_KEY).toString();
 				addMessage(MessageStatus.FAILURE, String.format(NON_CONSECUTIVE_TAXONS_FAILURE_MESSAGE_PATTERN,
-						taxonIdUri, taxonPreflabel, lineNumber, previousTaxonIdUri, previousTaxonPreflabel));
+						lineNumber,
+						taxonIdUri, taxonPreflabel, previousTaxonIdUri, previousTaxonPreflabel));
 				valid = false;
 
 			}

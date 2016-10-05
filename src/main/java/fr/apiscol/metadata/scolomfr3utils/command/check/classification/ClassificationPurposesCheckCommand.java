@@ -16,9 +16,9 @@ import fr.apiscol.metadata.scolomfr3utils.utils.xml.DomDocumentWithLineNumbersBu
 public class ClassificationPurposesCheckCommand extends AbstractCommand
 		implements IScolomfrDomDocumentRequired, ISkosApiRequired {
 	static final String MISSING_SCO_LO_MFR_SCHEMA_VERSION_MESSAGE = "Please provide the ScoLOMfr schema version to check classification purposes.";
-	static final String CLASSIFICATION_WITHOUT_PURPOSE_MESSAGE_PATTERN = "Classification element line %s node has no associated purpose";
-	static final String VOCABULARY_NOT_ALLOWED_UNDER_PURPOSE_MESSAGE_PATTERN = "Invalid element source line %s : you can't use vocabulary %s under purpose %s";
-	static final String INVALID_RESOURCE_USED_AS_VOCABULARY_MESSAGE_PATTERN = "TaxonPath uses a skos resource \"%s\" that is not a vocabulary as source line %s";
+	static final String CLASSIFICATION_WITHOUT_PURPOSE_MESSAGE_PATTERN = "# Line %s : Classification element has no associated purpose";
+	static final String VOCABULARY_NOT_ALLOWED_UNDER_PURPOSE_MESSAGE_PATTERN = "# Line %s : Invalid element source : you can't use vocabulary %s under purpose %s";
+	static final String INVALID_RESOURCE_USED_AS_VOCABULARY_MESSAGE_PATTERN = "# Line %s : TaxonPath uses a skos resource \"%s\" that is not a vocabulary as source";
 
 	@Override
 	public boolean execute() {
@@ -80,8 +80,9 @@ public class ClassificationPurposesCheckCommand extends AbstractCommand
 		if (!getSkosApi().vocabularyExists(taxonPathSourceId)) {
 			if (getSkosApi().resourceExists(taxonPathSourceId)) {
 				addMessage(MessageStatus.FAILURE,
-						String.format(INVALID_RESOURCE_USED_AS_VOCABULARY_MESSAGE_PATTERN, taxonPathSourceId,
-								taxonPathSource.getUserData(DomDocumentWithLineNumbersBuilder.LINE_NUMBER_KEY)));
+						String.format(INVALID_RESOURCE_USED_AS_VOCABULARY_MESSAGE_PATTERN,
+								taxonPathSource.getUserData(DomDocumentWithLineNumbersBuilder.LINE_NUMBER_KEY),
+								taxonPathSourceId));
 				valid = false;
 			}
 			return valid;

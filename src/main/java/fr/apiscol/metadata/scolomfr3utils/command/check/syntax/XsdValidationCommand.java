@@ -29,7 +29,7 @@ public class XsdValidationCommand extends AbstractCommand implements IScolomfrFi
 		} catch (SAXException e) {
 			getLogger().error("XSD validation failure");
 			getLogger().error(e);
-			addMessage(MessageStatus.FAILURE, e.getMessage());
+			addMessage(MessageStatus.FAILURE, "# Global : "+e.getMessage());
 			return false;
 		} catch (IOException e) {
 			String message = "Unable to open scolomfr file " + getScolomfrFile().getAbsolutePath()

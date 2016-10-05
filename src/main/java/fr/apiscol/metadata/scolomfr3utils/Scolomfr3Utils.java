@@ -113,8 +113,7 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 			detectScolomfrVersion();
 		}
 		if (scolomfrVersion == null) {
-			messages.get(MessageStatus.FAILURE).add(
-					UNABLE_TO_DETERMINE_SCOLOMFR_VERSION);
+			messages.get(MessageStatus.FAILURE).add(UNABLE_TO_DETERMINE_SCOLOMFR_VERSION);
 			return false;
 		}
 		command.setScolomfrVersion(scolomfrVersion);
@@ -155,6 +154,7 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 		if (command instanceof ISkosApiRequired) {
 			loadSkos();
 			((ISkosApiRequired) command).setSkosApi(skosApi);
+			return null != skosApi.getSkosModel();
 		}
 		return true;
 	}

@@ -30,8 +30,8 @@ public class ClassificationPurposeCheckCommandTest {
 			"http://data.education.fr/voc/scolomfr/scolomfr-voc-015",
 			"http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-028-num-003");
 	private static final String INVALID_RESOURCE_USED_AS_VOCABULARY_MESSAGE = String.format(
-			ClassificationPurposesCheckCommand.INVALID_RESOURCE_USED_AS_VOCABULARY_MESSAGE_PATTERN,
-			"http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-005-num-007", "110");;
+			ClassificationPurposesCheckCommand.INVALID_RESOURCE_USED_AS_VOCABULARY_MESSAGE_PATTERN, "110",
+			"http://data.education.fr/voc/scolomfr/concept/scolomfr-voc-005-num-007");;
 	private AbstractCommand classificationPurposesCheckCommand;
 
 	@Before
