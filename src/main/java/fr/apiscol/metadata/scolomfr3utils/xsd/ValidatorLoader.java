@@ -23,7 +23,7 @@ import fr.apiscol.metadata.scolomfr3utils.version.SchemaVersion;
  */
 public class ValidatorLoader {
 
-	static final String NO_XSD_FILE_PATH_PROVIDED_IN_CONFIGURATION_FOR_VERSION = "No xsd file path provided in configuration for version %s";
+	static final String NO_XSD_FILE_PATH_PROVIDED_IN_CONFIGURATION_FOR_VERSION = "# Version : No xsd file path provided in configuration for version %s";
 	private Logger logger;
 
 	/**
@@ -43,7 +43,7 @@ public class ValidatorLoader {
 		}
 		InputStream in = new ResourcesLoader().loadResource(xsdFilePath);
 		if (in == null) {
-			getLogger().error("Unable to load xsd file " + xsdFilePath + " for version " + scolomfrVersion);
+			getLogger().error("# Version : Unable to load xsd file " + xsdFilePath + " for version " + scolomfrVersion);
 			return null;
 		}
 		String systemId = new ResourcesLoader().getSystemId(xsdFilePath);
