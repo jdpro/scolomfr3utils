@@ -209,7 +209,7 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 			return false;
 		}
 		if (!buildScolomfrDocument()) {
-			messages.get(MessageStatus.FAILURE).add("# Global :Unable to build Dom document from provided xml file..");
+			messages.get(MessageStatus.FAILURE).add("# Global : Unable to build Dom document from provided xml file..");
 			return false;
 		}
 		return true;
