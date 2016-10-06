@@ -121,4 +121,10 @@ public class Configuration implements IConfiguration {
 		return null;
 	}
 
+	@Override
+	public boolean versionIsSupported(String scolomfrVersion) {
+		return StringUtils.isNotEmpty(getSkosFilePath(scolomfrVersion))
+				&& StringUtils.isNotEmpty(getXsdFilePath((scolomfrVersion)));
+	}
+
 }

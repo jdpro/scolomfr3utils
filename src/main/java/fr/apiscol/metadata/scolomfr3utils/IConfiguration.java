@@ -34,4 +34,12 @@ public interface IConfiguration {
 	 */
 	String getXsdFilePath(String scolomfrVersion);
 
+	/**
+	 * 
+	 * @param scolomfrVersion
+	 *            Major.minor version of scolomfr schema to be used
+	 * @return True if version is supported
+	 */
+	boolean versionIsSupported(String scolomfrVersion);
+
 }

@@ -45,7 +45,7 @@ import fr.apiscol.metadata.scolomfr3utils.xsd.ValidatorLoader;
  */
 public class Scolomfr3Utils implements IScolomfr3Utils {
 
-	static final String UNABLE_TO_DETERMINE_SCOLOMFR_VERSION = "Scolomfr version is neither specified as command line argument neither provided as metadataSchema tag in scolomfr file.";
+	static final String UNABLE_TO_DETERMINE_SCOLOMFR_VERSION = "# Global : Scolomfr version is neither specified as command line argument neither provided as metadataSchema tag in scolomfr file.";
 	private Logger logger;
 	private File scolomfrFile;
 	private Map<MessageStatus, List<String>> messages = new EnumMap<>(MessageStatus.class);
@@ -56,6 +56,7 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 	private Document scolomfrDocument;
 
 	private boolean versionDetectionPerformed = false;
+	private boolean fatalError = false;
 
 	/**
 	 * Main class constructor
@@ -75,11 +76,15 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 	public void reset() {
 		isValid = true;
 		versionDetectionPerformed = false;
+		setFatalError(false);
 		initMessages(MessageStatus.FAILURE);
 		initMessages(MessageStatus.WARNING);
 	}
 
 	private void execute(ICommand command) {
+		if (isFatalError()) {
+			return;
+		}
 		if (init(command)) {
 			boolean commandIsValid = command.execute();
 			isValid = isValid && commandIsValid;
@@ -116,6 +121,12 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 			messages.get(MessageStatus.FAILURE).add(UNABLE_TO_DETERMINE_SCOLOMFR_VERSION);
 			return false;
 		}
+		if (!Configuration.getInstance().versionIsSupported(scolomfrVersion.toString())) {
+			this.setFatalError(true);
+			isValid = false;
+			messages.get(MessageStatus.FAILURE)
+					.add("# GLOBAL : Scolomfr version not supported : " + scolomfrVersion.toString());
+		}
 		command.setScolomfrVersion(scolomfrVersion);
 		return checkScolomfrFile(command) && checkScolomfrDomDocument(command) && loadSkos(command) && loadXsd(command);
 	}
@@ -128,7 +139,7 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 			} catch (VersionDetectionException e) {
 				getLogger().warn(e);
 				messages.get(MessageStatus.WARNING)
-						.add("Unable to detect scolomfr version from file : " + e.getMessage());
+						.add("# GLOBAL : Unable to detect scolomfr version from file : " + e.getMessage());
 			} finally {
 				versionDetectionPerformed = true;
 			}
@@ -198,7 +209,7 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 			return false;
 		}
 		if (!buildScolomfrDocument()) {
-			messages.get(MessageStatus.FAILURE).add("Unable to build Dom document from provided xml file..");
+			messages.get(MessageStatus.FAILURE).add("# Global :Unable to build Dom document from provided xml file..");
 			return false;
 		}
 		return true;
@@ -291,6 +302,14 @@ public class Scolomfr3Utils implements IScolomfr3Utils {
 	public IScolomfr3Utils checkVcards() {
 		execute(new VcardCheckCommand());
 		return this;
+	}
+
+	public boolean isFatalError() {
+		return fatalError;
+	}
+
+	public void setFatalError(boolean fatalError) {
+		this.fatalError = fatalError;
 	}
 
 }

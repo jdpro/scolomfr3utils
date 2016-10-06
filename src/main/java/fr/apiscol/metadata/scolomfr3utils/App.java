@@ -121,7 +121,7 @@ public class App {
 			String filePath = (String) options.valueOf("f");
 			scolomfrFile = new File(filePath);
 			if (!scolomfrFile.exists()) {
-				getLogger().error("File provided (" + filePath + ") does not exist");
+				getLogger().error("# Global : File provided (" + filePath + ") does not exist");
 			}
 		}
 
