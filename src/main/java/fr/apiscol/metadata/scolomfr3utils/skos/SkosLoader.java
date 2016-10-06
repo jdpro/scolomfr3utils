@@ -38,7 +38,7 @@ public class SkosLoader {
 
 		InputStream in = new ResourcesLoader().loadResource(skosFilePath);
 		if (in == null) {
-			getLogger().error("Unable to load skos file " + skosFilePath + " for version " + scolomfrVersion);
+			getLogger().error("# Version : Unable to load skos file " + skosFilePath + " for version " + scolomfrVersion);
 			return null;
 		}
 		Model skosModel = ModelFactory.createDefaultModel();
