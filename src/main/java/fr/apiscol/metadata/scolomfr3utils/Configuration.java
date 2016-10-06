@@ -109,7 +109,7 @@ public class Configuration implements IConfiguration {
 
 	private String getFilePath(final String scolomfrVersion, final String fileType) {
 		Element configDocumentElement = xmlConfig.getDocumentElement();
-		NodeList schemas = configDocumentElement.getElementsByTagName("schemas");
+		NodeList schemas = configDocumentElement.getElementsByTagName("schema");
 		for (int i = 0; i < schemas.getLength(); i++) {
 			Element schema = (Element) schemas.item(i);
 			Element version = (Element) schema.getElementsByTagName("version").item(0);
