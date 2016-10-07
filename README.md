@@ -18,27 +18,13 @@ A tool to ensure the quality of data needs to offer itself quality guarantees...
 ## Portability
 Scolomfr3utils is likely to be used in both Java and non-Java projects.
 
-### Windows exécutable version
+### Windows executable version
 
 Download the C++/Qt5 executable wrapper for Windows :
  * [With installer](https://github.com/jdpro/scolomfr3utils/blob/master/etc/scolomfr3utils.exe?raw=true)
  * [Without installer](https://github.com/jdpro/scolomfr3utils/blob/master/etc/scolomfr3utils.zip)
 
-### Java projects
-
-Add scolomfr3utils jar to your project dependencies [from Maven Central](http://search.maven.org/#search|ga|1|g%3A%22fr.apiscol.metadata%22) and use the Java programming API.
-
-```java
-Scolomfr3Utils scolomfrUtils = new Scolomfr3Utils();
-scolomfrUtils.setScolomfrVersion("3.0");
-scolomfrUtils.checkXsd().checkLabels().checkClassifications();
-if (!scolomfrUtils.isValid()) {
-			List<String> messages = scolomfrUtils
-					.getMessages(MessageStatus.FAILURE);
-     ...
-```
-
-### Non-java projects
+### Command line java executable
 
 Download [scolomfr3utils **stand-alone jar**](https://github.com/jdpro/scolomfr3utils/blob/master/etc/stand-alone-jar.zip?raw=true) and execute it from command line.
 
@@ -66,6 +52,21 @@ For maven users, the stand-alone jar may be generated in the following way :
 ```
 mvn clean compile assembly:single
 ```
+
+### Java projects
+
+Add scolomfr3utils jar to your project dependencies [from Maven Central](http://search.maven.org/#search|ga|1|g%3A%22fr.apiscol.metadata%22) and use the Java programming API.
+
+```java
+Scolomfr3Utils scolomfrUtils = new Scolomfr3Utils();
+scolomfrUtils.setScolomfrVersion("3.0");
+scolomfrUtils.checkXsd().checkLabels().checkClassifications();
+if (!scolomfrUtils.isValid()) {
+			List<String> messages = scolomfrUtils
+					.getMessages(MessageStatus.FAILURE);
+     ...
+```
+
 ## Requirements
 
 Scolomfr3utils embeds 2.x versions of Apache Jena which requires **Java 7**. Jena has not been upgraded to 3.X versions to avoid losing Java 7 compatibility.
