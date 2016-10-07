@@ -18,6 +18,12 @@ A tool to ensure the quality of data needs to offer itself quality guarantees...
 ## Portability
 Scolomfr3utils is likely to be used in both Java and non-Java projects.
 
+### Windows exécutable version
+
+Download the C++/Qt5 executable wrapper for Windows :
+ * [With installer](https://github.com/jdpro/scolomfr3utils/blob/master/etc/scolomfr3utils.exe?raw=true)
+ * [Without installer](https://github.com/jdpro/scolomfr3utils/blob/master/etc/scolomfr3utils.zip)
+
 ### Java projects
 
 Add scolomfr3utils jar to your project dependencies [from Maven Central](http://search.maven.org/#search|ga|1|g%3A%22fr.apiscol.metadata%22) and use the Java programming API.
